@@ -66,4 +66,26 @@ Unter `legal: { stammdaten: { ... } }` können Sie Namen von Vorständen, die E-
 
 ---
 
+## 4. Live-Schaltung: Änderungen im Internet veröffentlichen
+
+Wenn Sie eine Datei (z.B. `config.js`) auf GitHub bearbeitet und gespeichert haben ("Commit changes"), passiert Folgendes:
+
+1.  **Automatisches Update:** GitHub erkennt Ihre Änderung und aktualisiert die Webseite im Hintergrund.
+2.  **Dauer:** Es dauert meist ca. **1 bis 2 Minuten**, bis die Änderungen auf der echten Webseite sichtbar sind.
+3.  **Anschauen:** Laden Sie die Webseite in Ihrem Browser neu (ggf. die Seite mit der Taste `F5` oder `Strg + R` "hart" neu laden), um das Ergebnis zu sehen.
+
+---
+
+## 5. Fehler beheben: Eine alte Version wiederherstellen
+
+Sollte die Webseite nach einer Änderung nicht mehr laden oder "kaputt" aussehen, können Sie ganz einfach den Stand von gestern (oder von vor einer Stunde) wiederherstellen:
+
+1.  Klicken Sie oben in Ihrem GitHub-Projekt auf den Punkt **"History"** (das kleine Uhr-Symbol rechts über der Dateiliste).
+2.  Dort sehen Sie eine Liste aller vergangenen Änderungen.
+3.  Klicken Sie auf die Version, die zuletzt gut funktioniert hat.
+4.  Klicken Sie rechts oben auf die drei Punkte `...` und wählen Sie **"Revert"** oder kopieren Sie den Inhalt der alten Datei und überschreiben Sie damit die aktuelle `config.js`.
+5.  Speichern Sie die Änderung ("Commit changes"). Die Webseite wird nun wieder mit dem alten Stand neu geladen.
+
+---
+
 Viel Erfolg bei der Pflege der Seite! Gemeinsam machen wir die Kita Senfkorn noch schöner.
