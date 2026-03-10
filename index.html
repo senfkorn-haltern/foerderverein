@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Förderverein Ev. Kindergarten Senfkorn e.V.</title>
+    
+    <!-- Konfiguration -->
+    <script src="config.js"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -17,11 +21,16 @@
                 extend: {
                     colors: {
                         brand: {
-                            light: '#E9D5CA', // Helles Erd-Beige
-                            DEFAULT: '#D97706', // Senfgelb / Gold (passend zum Senfkorn)
-                            dark: '#B45309', // Dunkles Goldbraun
-                            green: '#65A30D' // Blattgrün für den Pflanzen-Aspekt
+                            light: '#F3E9E2', 
+                            DEFAULT: '#D97706', 
+                            dark: '#B45309', 
+                            green: '#65A30D' 
                         },
+                        soft: {
+                            amber: '#FFFBF0', 
+                            green: '#F7FBF2', 
+                            stone: '#FAFAF9'  
+                        }
                     },
                     fontFamily: {
                         sans: ['"Open Sans"', 'sans-serif'],
@@ -41,36 +50,49 @@
             50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
             100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         }
-        /* Utility für Text-Shadow bei Bildern */
         .text-shadow {
             text-shadow: 0 2px 4px rgba(0,0,0,0.7);
         }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Spielerische Animationen */
+        .floating { animation: float 6s ease-in-out infinite; }
+        .floating-delayed { animation: float 8s ease-in-out infinite; animation-delay: 2s; }
+        .floating-slow { animation: float 12s ease-in-out infinite; animation-delay: 1s; }
+        
+        @keyframes float {
+            0% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(10px, -25px) rotate(3deg); }
+            66% { transform: translate(-10px, -15px) rotate(-3deg); }
+            100% { transform: translate(0px, 0px) rotate(0deg); }
+        }
     </style>
 </head>
-<body class="font-sans text-gray-700 bg-amber-50/30 flex flex-col min-h-screen">
+<body class="font-sans text-gray-700 bg-soft-amber flex flex-col min-h-screen">
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm fixed w-full z-50">
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center gap-2">
-                        <!-- Logo Icon -->
                         <div class="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white relative overflow-hidden">
                             <i data-lucide="sprout" class="w-6 h-6 relative z-10"></i>
-                            <div class="absolute bottom-0 w-full h-1/3 bg-brand-dark opacity-20"></div> <!-- Erde -->
+                            <div class="absolute bottom-0 w-full h-1/3 bg-brand-dark opacity-20"></div>
                         </div>
                         <span class="font-display font-bold text-lg sm:text-xl text-gray-800 tracking-tight leading-tight">
-                            <span id="nav-title">FV Ev. Kiga Senfkorn</span> 
-                            <span class="block text-xs font-normal text-gray-500" id="nav-subtitle">Haltern am See</span>
+                            <span id="nav-title"></span> 
+                            <span class="block text-xs font-normal text-gray-500" id="nav-subtitle"></span>
                         </span>
                     </div>
                 </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8" id="desktop-menu">
-                    <!-- Wird durch JS gefüllt -->
-                </div>
-                <!-- Mobile Menu Button -->
+                <div class="hidden md:flex items-center space-x-8" id="desktop-menu"></div>
                 <div class="flex items-center md:hidden">
                     <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand focus:outline-none p-2">
                         <i data-lucide="menu" class="w-8 h-8"></i>
@@ -78,34 +100,30 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg" id="mobile-menu-items">
-                <!-- Wird durch JS gefüllt -->
-            </div>
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg" id="mobile-menu-items"></div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-28 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+    <section id="home" class="relative pt-28 pb-16 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-brand/30 bg-orange-50 text-brand-dark text-sm font-semibold mb-6">
-                        <i data-lucide="heart" class="w-4 h-4 mr-2 text-brand"></i> <span id="hero-badge">Gemeinsam wachsen</span>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-brand/20 bg-orange-50/50 text-brand-dark text-sm font-semibold mb-6">
+                        <i data-lucide="heart" class="w-4 h-4 mr-2 text-brand"></i> <span id="hero-badge"></span>
                     </div>
                     <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl font-display mb-6">
-                        <span id="hero-title-1">Aus kleinen Körnern</span><br>
-                        <span class="text-brand" id="hero-title-2">werden starke Bäume.</span>
+                        <span id="hero-title-1"></span><br>
+                        <span class="text-brand" id="hero-title-2"></span>
                     </h1>
-                    <p class="mt-4 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" id="hero-text">
-                        Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und lassen Wünsche wahr werden.
-                    </p>
+                    <p class="mt-4 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" id="hero-text"></p>
                     <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
                         <a href="#mitgliedschaft" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand hover:bg-brand-dark md:py-4 md:text-lg transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                             Mitglied werden
                         </a>
-                        <a href="#projekte" class="flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition">
+                        <a href="#projekte" class="flex items-center justify-center px-8 py-3 border border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition">
                             Unsere Projekte
                         </a>
                     </div>
@@ -114,95 +132,80 @@
                     <div class="relative mx-auto w-full aspect-square max-w-md blob-shape bg-white shadow-xl overflow-hidden border-4 border-white">
                         <img id="hero-image" class="w-full h-full object-cover" src="" alt="Kita Atmosphäre">
                     </div>
-                    <!-- Decorative Elements -->
-                    <div class="absolute -top-10 -right-10 text-brand-light opacity-50 transform rotate-12">
-                        <i data-lucide="sun" class="w-24 h-24"></i>
-                    </div>
-                    <div class="absolute -bottom-5 -left-5 text-brand-green opacity-30 transform -rotate-12">
-                        <i data-lucide="leaf" class="w-16 h-16"></i>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Über Uns Section -->
-    <section id="ueber-uns" class="py-16 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="ueber-uns" class="py-20 bg-white relative overflow-hidden">
+        <div class="section-decorations"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-brand font-semibold tracking-wide uppercase" id="about-badge">Unser Verein</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 font-display sm:text-4xl" id="about-title">
-                    Wurzeln schlagen, Welt entdecken
-                </p>
-                <p class="mt-4 max-w-3xl text-xl text-gray-500 mx-auto" id="about-text">
-                    Im Einklang mit dem offenen Konzept der Kita Senfkorn ermöglichen wir den Kindern, ihre Interessen selbstbestimmt zu entfalten. Wir finanzieren Materialien und Räume, die zum Forschen, Bewegen und Entspannen einladen.
-                </p>
+                <h2 class="text-brand font-semibold tracking-wide uppercase" id="about-badge"></h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 font-display sm:text-4xl" id="about-title"></p>
+                <p class="mt-4 max-w-3xl text-xl text-gray-500 mx-auto" id="about-text"></p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="features-container">
-                <!-- Features werden hier dynamisch eingefügt -->
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="features-container"></div>
         </div>
     </section>
 
-    <!-- Projekte Section (Dynamisch) -->
-    <section id="projekte" class="py-16 bg-stone-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Projekte Section -->
+    <section id="projekte" class="py-20 bg-soft-stone relative overflow-hidden">
+        <div class="section-decorations"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex items-center justify-between mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-display border-l-4 border-brand pl-4">Projekte & Anschaffungen</h2>
+                <h2 class="text-3xl font-extrabold text-gray-900 font-display border-l-4 border-brand pl-4" id="projects-title"></h2>
             </div>
-            
-            <div class="flex flex-col gap-10" id="projects-container">
-                <!-- Projekte werden hier durch JS eingefügt -->
-            </div>
-            
-            <!-- Show More Button Container -->
+            <div class="flex flex-col gap-10" id="projects-container"></div>
             <div id="projects-more-container" class="mt-12 text-center hidden">
                 <button id="projects-more-btn" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition">
-                    Alle Projekte anzeigen
+                    <span id="projects-more-text"></span>
                     <i data-lucide="chevron-down" class="ml-2 -mr-1 h-5 w-5"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- NEU: Aktionen Section -->
-    <section id="aktionen" class="py-16 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Aktionen Section -->
+    <section id="aktionen" class="py-20 bg-white relative overflow-hidden">
+        <div class="section-decorations"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-4">Aktionen & Termine</h2>
-                <p class="text-xl text-gray-500 max-w-2xl mx-auto">
-                    Gemeinsam aktiv für unsere Kita. Hier treffen wir uns, verkaufen Selbstgemachtes und feiern zusammen.
-                </p>
+                <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-4" id="actions-title"></h2>
+                <p class="text-xl text-gray-500 max-w-2xl mx-auto" id="actions-subtitle"></p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="actions-container">
-                <!-- Aktionen werden hier durch JS eingefügt -->
-            </div>
-
-            <!-- Show More Button Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="actions-container"></div>
             <div id="actions-more-container" class="mt-12 text-center hidden">
                 <button id="actions-more-btn" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition">
-                    Alle Aktionen anzeigen
+                    <span id="actions-more-text"></span>
                     <i data-lucide="chevron-down" class="ml-2 -mr-1 h-5 w-5"></i>
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-soft-green relative overflow-hidden">
+        <div class="section-decorations"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-4" id="testimonials-title"></h2>
+                <p class="text-xl text-gray-500" id="testimonials-subtitle"></p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonials-container"></div>
         </div>
     </section>
 
     <!-- Mitgliedschaft CTA -->
     <section id="mitgliedschaft" class="py-20 bg-brand-green text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-        
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-3xl sm:text-4xl font-extrabold font-display mb-6" id="cta-title">Werde ein Senfkorn-Unterstützer!</h2>
-            <p class="text-lg sm:text-xl mb-10 text-green-50" id="cta-text">
-                Mit einem kleinen Beitrag Großes bewirken. Unterstütze unsere Arbeit als passives oder aktives Mitglied.
-            </p>
-            
+            <h2 class="text-3xl sm:text-4xl font-extrabold font-display mb-6" id="cta-title"></h2>
+            <p class="text-lg sm:text-xl mb-10 text-green-50" id="cta-text"></p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button onclick="openModal()" class="bg-white text-brand-green font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i data-lucide="file-down" class="w-5 h-5"></i> <span id="btn-antrag">Mitgliedsantrag (PDF)</span>
+                    <i data-lucide="file-down" class="w-5 h-5"></i> <span id="btn-antrag"></span>
                 </button>
                 <a href="#spenden" class="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
                     <i data-lucide="heart-handshake" class="w-5 h-5"></i> Spendeninfos
@@ -212,29 +215,27 @@
     </section>
 
     <!-- Spenden Details -->
-    <section id="spenden" class="py-16 bg-white">
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="bg-orange-50/50 border border-orange-100 rounded-3xl p-8 sm:p-12 text-center">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">Spendenkonto</h3>
-                <p class="text-gray-600 mb-8" id="donate-text">Jeder Euro fließt zu 100% in die Projekte für die Kinder. Spendenquittungen stellen wir gerne aus.</p>
-                
+    <section id="spenden" class="py-20 bg-white relative overflow-hidden">
+        <div class="section-decorations"></div>
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+            <div class="bg-orange-50/40 border border-orange-100/50 rounded-3xl p-8 sm:p-12 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6" id="bank-title"></h3>
+                <p class="text-gray-600 mb-8" id="donate-text"></p>
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 inline-block w-full max-w-md mx-auto text-left relative">
-                    <!-- Decorative paperclip -->
                     <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gray-200/50 rounded-full"></div>
-
                     <div class="space-y-4">
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
                             <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Empfänger</span>
-                            <span class="font-bold text-gray-800 break-words text-right" id="bank-recipient">FV Ev. Kiga Senfkorn</span>
+                            <span class="font-bold text-gray-800 break-words text-right" id="bank-recipient"></span>
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
                             <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Bank</span>
-                            <span class="font-medium text-gray-800 text-right" id="bank-name">Volksbank Haltern</span>
+                            <span class="font-medium text-gray-800 text-right" id="bank-name"></span>
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
                             <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">IBAN</span>
                             <div class="flex items-center justify-end gap-3 w-full sm:w-auto">
-                                <span class="font-mono font-bold text-brand-dark text-lg break-all" id="iban-display">DE00 0000 0000 0000 00</span>
+                                <span class="font-mono font-bold text-brand-dark text-lg break-all" id="iban-display"></span>
                                 <button onclick="copyToClipboard()" class="bg-gray-100 hover:bg-brand hover:text-white p-2 rounded-lg transition shrink-0" title="IBAN Kopieren">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
                                 </button>
@@ -242,11 +243,11 @@
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center pt-1 gap-1">
                             <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">BIC</span>
-                            <span class="font-mono text-gray-800 text-right" id="bic-display">GENODED1HAL</span>
+                            <span class="font-mono text-gray-800 text-right" id="bic-display"></span>
                         </div>
                     </div>
                 </div>
-                <div id="copy-feedback" class="h-6 text-sm text-brand font-bold mt-4 opacity-0 transition transform translate-y-2">IBAN in die Zwischenablage kopiert!</div>
+                <div id="copy-feedback" class="h-6 text-sm text-brand font-bold mt-4 opacity-0 transition transform translate-y-2"></div>
             </div>
         </div>
     </section>
@@ -255,44 +256,33 @@
     <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Adresse -->
                 <div>
                     <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
                         <i data-lucide="map-pin" class="w-5 h-5 text-brand"></i> Kontakt
                     </h4>
-                    <div id="footer-address" class="space-y-1">
-                        <!-- Wird via JS gefüllt -->
-                    </div>
-                    <a id="footer-email" href="" class="mt-4 inline-flex items-center gap-2 text-brand hover:text-white transition">
-                        <!-- Wird via JS gefüllt -->
-                    </a>
+                    <div id="footer-address" class="space-y-1"></div>
+                    <a id="footer-email" href="" class="mt-4 inline-flex items-center gap-2 text-brand hover:text-white transition"></a>
                 </div>
-                <!-- Links -->
                 <div>
                     <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
                         <i data-lucide="scale" class="w-5 h-5 text-brand"></i> Rechtliches
                     </h4>
-                    <ul class="space-y-3" id="footer-links">
-                        <!-- Links werden via JS gefüllt -->
-                    </ul>
+                    <ul class="space-y-3" id="footer-links"></ul>
                 </div>
-                <!-- Über -->
                 <div>
                     <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
                         <i data-lucide="sprout" class="w-5 h-5 text-brand"></i> Kita Senfkorn
                     </h4>
-                    <p class="text-sm text-gray-400 leading-relaxed" id="footer-about">
-                        <!-- Wird via JS gefüllt -->
-                    </p>
+                    <p class="text-sm text-gray-400 leading-relaxed" id="footer-about"></p>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
-                &copy; <span id="current-year"></span> Förderverein Ev. Kindergarten Senfkorn Haltern am See e.V.
+                &copy; <span id="current-year"></span> <span id="footer-copyright"></span>
             </div>
         </div>
     </footer>
 
-    <!-- Modal (Versteckt) -->
+    <!-- Modal -->
     <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl transform scale-100 transition-transform duration-300">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition">
@@ -302,190 +292,22 @@
                 <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
                     <i data-lucide="download" class="h-8 w-8 text-green-600"></i>
                 </div>
-                <h3 class="text-xl leading-6 font-bold text-gray-900 font-display mb-2">Mitgliedsantrag</h3>
-                <p class="text-gray-500 mb-6">
-                    Laden Sie das PDF herunter, füllen Sie es aus und werfen Sie es einfach in den Briefkasten der Kita "Senfkorn".
-                </p>
-                
+                <h3 class="text-xl leading-6 font-bold text-gray-900 font-display mb-2" id="modal-title"></h3>
+                <p class="text-gray-500 mb-6" id="modal-text"></p>
                 <a id="modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3">
-                    <i data-lucide="file-text" class="w-5 h-5"></i> PDF Herunterladen
+                    <i data-lucide="file-text" class="w-5 h-5"></i> <span id="modal-btn-text"></span>
                 </a>
-                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline">
-                    Schließen
-                </button>
+                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline" id="modal-close-btn"></button>
             </div>
         </div>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- JAVASCRIPT LOGIK & KONFIGURATION -->
-    <!-- ================================================================= -->
     <script>
-        
-        // =================================================================
-        // --- KONFIGURATION - HIER INHALTE BEARBEITEN ---
-        // =================================================================
-        
-        const webseitenInhalt = {
-            // GRUNDEINSTELLUNGEN
-            vereinName: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
-            vereinNameKurz: "FV Ev. Kiga Senfkorn",
-            stadt: "Haltern am See",
-            
-            // NAVIGATION MENÜ (Links und Labels)
-            menu: [
-                { label: "Start", link: "#home" },
-                { label: "Über uns", link: "#ueber-uns" },
-                { label: "Projekte", link: "#projekte" },
-                { label: "Aktionen", link: "#aktionen" },
-                { label: "Mitglied werden", link: "#mitgliedschaft" },
-                { label: "Spenden", link: "#spenden", highlight: true }
-            ],
-
-            // STARTSEITE (HERO)
-            hero: {
-                badge: "Gemeinsam für unsere Kleinen",
-                titelZeile1: "Aus kleinen Körnern",
-                titelZeile2: "werden starke Bäume.",
-                text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
-                bildUrl: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-            },
-
-            // ÜBER UNS
-            ueberUns: {
-                badge: "Unser Ansatz",
-                titel: "Wurzeln schlagen, Welt entdecken",
-                text: "Das offene Konzept der Kita Senfkorn stellt das Kind und seine Interessen in den Mittelpunkt. Als Förderverein unterstützen wir genau hier: Wir finanzieren Materialien, die Neugier wecken, und Projekte, die Selbstvertrauen stärken.",
-                karten: [
-                    {
-                        icon: "sprout",
-                        farbe: "green",
-                        titel: "Wachstum fördern",
-                        text: "Zusätzliche pädagogische Materialien für die Funktionsräume der Kita."
-                    },
-                    {
-                        icon: "sun",
-                        farbe: "yellow",
-                        titel: "Freude schenken",
-                        text: "Finanzierung von Ausflügen, Theaterbesuchen und Sommerfesten."
-                    },
-                    {
-                        icon: "users",
-                        farbe: "orange",
-                        titel: "Gemeinschaft",
-                        text: "Verbindung zwischen Eltern, Erzieherteam und Kirchengemeinde stärken."
-                    }
-                ]
-            },
-
-            // PROJEKTE
-            // Wenn mehr als 3 Projekte eingetragen werden, erscheint ein "Alle anzeigen" Button.
-            projekte: [
-                {
-                    titel: "Ausflug zum Maislabyrinth",
-                    status: "abgeschlossen",
-                    statusText: "Erfolgreich",
-                    bildUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfaFNyIcOopdg_3FYiSq7_v6KHeiEsVs_Dfg&s", // NEUES BILD (Mais)
-                    beschreibung: "Das war ein Riesenspaß! Alle Kinder und Erzieher haben gemeinsam den Weg durchs Labyrinth gesucht. Ein toller Tag in der Natur.",
-                },
-                {
-                    titel: "Neuer Schiebewagen",
-                    status: "abgeschlossen",
-                    statusText: "Angeschafft",
-                    bildUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa5u9zINX-nwgk797juZgcFAjXPiP2Ws3GEA&s",
-                    beschreibung: "Für unsere Kleinsten haben wir einen robusten 6-Sitzer-Schiebewagen finanziert. So sind auch längere Ausflüge rund um Haltern kein Problem mehr.",
-                },
-                {
-                    titel: "Platzhalter",
-                    status: "geplant",
-                    statusText: "In Planung",
-                    bildUrl: "",
-                    beschreibung: "Platzhalter",
-                }
-            ],
-
-            // AKTIONEN
-            // Auch hier: Ab dem 4. Eintrag erscheint ein "Mehr anzeigen" Button.
-            // "bildUrl" ist optional. Wenn gesetzt, wird es als Hintergrund genommen.
-            // "textFarbe": "white" oder "black" steuert die Lesbarkeit auf dem Bild.
-            aktionen: [
-                {
-                    titel: "Waffelverkauf",
-                    zeitraum: "Regelmäßig",
-                    icon: "utensils",
-                    text: "Der Duft von frischen Waffeln gehört dazu! Wir verkaufen regelmäßig an Markttagen oder bei Kita-Festen.",
-                    bildUrl: "data:image/jpeg;base64,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", // Waffeln
-                    textFarbe: "white"
-                },
-                {
-                    titel: "Nikolausnachmittag",
-                    zeitraum: "Dezember",
-                    icon: "gift",
-                    text: "In der Weihnachtszeit organisieren wir einen gemütlichen Nachmittag mit Kakao, Plätzchen und einer kleinen Überraschung.",
-                    bildUrl: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=800&auto=format&fit=crop", // Weihnachten
-                    textFarbe: "white"
-                },
-                {
-                    titel: "Grillen für die Handwerker",
-                    zeitraum: "Einmalig",
-                    icon: "utensils",
-                    text: "Ein herzliches Dankeschön an alle fleißigen Helfer! Nach getaner Arbeit gab es Würstchen und Salate.",
-                    bildUrl: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop", // Grillen
-                    textFarbe: "white"
-                },
-                // Beispiel für einen 4. Eintrag (versteckt bis Klick)
-                {
-                    titel: "Gartenaktion",
-                    zeitraum: "Frühling",
-                    icon: "shovel",
-                    text: "Eltern packen an: Gemeinsam machen wir den Garten fit für den Frühling. Mit Hacke, Schaufel und guter Laune.",
-                    // Kein Bild gesetzt -> Standard Darstellung
-                }
-            ],
-
-            // MITGLIEDSCHAFT & ACTION
-            cta: {
-                titel: "Werde ein Senfkorn-Unterstützer!",
-                text: "Schon mit einem kleinen Jahresbeitrag hilfst du uns, große Sprünge zu machen.",
-                buttonAntrag: "Mitgliedsantrag (PDF)",
-                dateiNameAntrag: "Mitgliedsantrag_Senfkorn.pdf"
-            },
-
-            // BANKDATEN
-            bank: {
-                empfaenger: "Förderverein des ev. Kiga Senfkorn",
-                bankName: "Volksbank Haltern",
-                iban: "DE00 1234 5678 9000 00",
-                bic: "GENODED1HAL",
-                infoText: "Wir sind wegen Förderung der Jugendhilfe als gemeinnützig anerkannt."
-            },
-
-            // KONTAKT & FOOTER
-            footer: {
-                adresse: [
-                    "Förderverein des ev. Kindergartens Senfkorn e.V.",
-                    "Musterstraße 12",
-                    "45721 Haltern am See"
-                ],
-                email: "kontakt@fv-senfkorn-haltern.de",
-                links: [
-                    { text: "Impressum", url: "#" },
-                    { text: "Datenschutz", url: "#" },
-                    { text: "Satzung (PDF)", url: "#" }
-                ],
-                ueberText: "Der Förderverein unterstützt die pädagogische Arbeit der Einrichtung in Haltern am See finanziell und ideell."
-            }
-        };
-
-        // =================================================================
-        // --- LOGIK ---
-        // =================================================================
-        
-        // Konstante für Anzahl angezeigter Items
         const ITEMS_PER_PAGE = 3;
 
         document.addEventListener('DOMContentLoaded', () => {
             renderContent();
+            renderDecorations();
             lucide.createIcons();
             document.getElementById('current-year').textContent = new Date().getFullYear();
         });
@@ -512,10 +334,20 @@
             renderFeatures(c.ueberUns.karten);
 
             // Projekte
+            document.getElementById('projects-title').textContent = c.projekteSettings.titel;
+            document.getElementById('projects-more-text').textContent = c.projekteSettings.buttonAlle;
             renderProjects(c.projekte);
 
             // Aktionen
+            document.getElementById('actions-title').textContent = c.aktionenSettings.titel;
+            document.getElementById('actions-subtitle').textContent = c.aktionenSettings.untertitel;
+            document.getElementById('actions-more-text').textContent = c.aktionenSettings.buttonAlle;
             renderActions(c.aktionen);
+
+            // Testimonials
+            document.getElementById('testimonials-title').textContent = c.testimonialsSettings.titel;
+            document.getElementById('testimonials-subtitle').textContent = c.testimonialsSettings.untertitel;
+            renderTestimonials(c.testimonials);
 
             // CTA
             document.getElementById('cta-title').textContent = c.cta.titel;
@@ -524,11 +356,13 @@
             document.getElementById('modal-download-btn').href = c.cta.dateiNameAntrag;
 
             // Bank
+            document.getElementById('bank-title').textContent = c.bank.titel;
             document.getElementById('donate-text').textContent = c.bank.infoText;
             document.getElementById('bank-recipient').textContent = c.bank.empfaenger;
             document.getElementById('bank-name').textContent = c.bank.bankName;
             document.getElementById('iban-display').textContent = c.bank.iban;
             document.getElementById('bic-display').textContent = c.bank.bic;
+            document.getElementById('copy-feedback').textContent = c.bank.copyFeedback;
 
             // Footer
             const addressContainer = document.getElementById('footer-address');
@@ -542,14 +376,37 @@
             linksContainer.innerHTML = c.footer.links.map(l => `<li><a href="${l.url}" class="hover:text-white transition">${l.text}</a></li>`).join('');
 
             document.getElementById('footer-about').textContent = c.footer.ueberText;
+            document.getElementById('footer-copyright').textContent = c.vereinName;
+
+            // Modal
+            document.getElementById('modal-title').textContent = c.modal.titel;
+            document.getElementById('modal-text').textContent = c.modal.text;
+            document.getElementById('modal-btn-text').textContent = c.modal.buttonDownload;
+            document.getElementById('modal-close-btn').textContent = c.modal.buttonSchliessen;
+        }
+
+        function renderDecorations() {
+            const deko = webseitenInhalt.dekoElemente;
+            
+            Object.keys(deko).forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                
+                const container = section.querySelector('.section-decorations');
+                if (!container) return;
+                
+                container.innerHTML = deko[sectionId].map(item => `
+                    <div class="absolute ${item.pos} ${item.color} ${item.anim} z-0 pointer-events-none">
+                        <i data-lucide="${item.icon}" class="${item.size}"></i>
+                    </div>
+                `).join('');
+            });
         }
 
         function renderMenu(items) {
             const desktop = document.getElementById('desktop-menu');
             const mobile = document.getElementById('mobile-menu-items');
-            desktop.innerHTML = ''; 
-            mobile.innerHTML = '';
-            
+            desktop.innerHTML = ''; mobile.innerHTML = '';
             items.forEach(item => {
                 if(item.highlight) {
                     desktop.innerHTML += `<a href="${item.link}" class="px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5">${item.label}</a>`;
@@ -558,21 +415,15 @@
                 }
                 mobile.innerHTML += `<a href="${item.link}" class="block px-3 py-2 rounded-md text-base font-medium ${item.highlight ? 'text-brand font-bold bg-orange-50' : 'text-gray-700 hover:text-brand hover:bg-gray-50'}">${item.label}</a>`;
             });
-
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
-            });
         }
 
         function renderFeatures(cards) {
             const container = document.getElementById('features-container');
-            container.innerHTML = '';
-            cards.forEach(card => {
+            container.innerHTML = cards.map(card => {
                 let colorClass = "bg-green-50 text-brand-green border-green-100";
                 if(card.farbe === "yellow") colorClass = "bg-yellow-50 text-yellow-600 border-yellow-100";
                 if(card.farbe === "orange") colorClass = "bg-orange-50 text-orange-600 border-orange-100";
-
-                container.innerHTML += `
+                return `
                 <div class="text-center p-6 ${colorClass} bg-opacity-50 rounded-2xl border transition hover:shadow-lg">
                     <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current">
                         <i data-lucide="${card.icon}" class="w-8 h-8"></i>
@@ -580,34 +431,17 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3>
                     <p class="text-gray-600 leading-relaxed">${card.text}</p>
                 </div>`;
-            });
+            }).join('');
         }
 
         function renderProjects(projects, showAll = false) {
             const container = document.getElementById('projects-container');
             const moreContainer = document.getElementById('projects-more-container');
-            
-            // Wenn nicht "showAll", dann begrenze auf ITEMS_PER_PAGE
             const itemsToShow = showAll ? projects : projects.slice(0, ITEMS_PER_PAGE);
-            
-            // Container nur leeren wenn initialer Render
-            if(!showAll) container.innerHTML = '';
-            // Wenn wir alle anzeigen (Button-Click), rendern wir die RESTLICHEN, um sie anzuhängen? 
-            // Einfacher: Wir rendern alles neu, oder wir rendern initial nur 3.
-            // Strategie: Wenn showAll = true, rendern wir einfach alles neu.
-            
-            // Bessere UX Strategie für "showAll":
-            // Wir rendern immer die Liste neu, das ist performant genug hier.
-            if(showAll) container.innerHTML = '';
-
-            itemsToShow.forEach(p => {
-                let statusColors = "";
-                if(p.status === "aktiv") statusColors = "text-brand-green bg-green-100";
-                else if(p.status === "geplant") statusColors = "text-brand bg-orange-100";
-                else statusColors = "text-blue-600 bg-blue-100";
-
-                const html = `
-                <div class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden md:flex transition hover:shadow-md animate-fade-in">
+            container.innerHTML = itemsToShow.map(p => {
+                let statusColors = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100");
+                return `
+                <div class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden md:flex transition hover:shadow-md animate-fade-in relative z-10">
                     <div class="md:w-1/3 relative">
                         <img class="h-64 w-full object-cover md:h-full" src="${p.bildUrl}" alt="${p.titel}">
                         <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${statusColors}">
@@ -619,54 +453,24 @@
                         <p class="mt-3 text-gray-600 leading-relaxed">${p.beschreibung}</p>
                     </div>
                 </div>`;
-                container.innerHTML += html;
-            });
-
-            // Button Logik
-            if (projects.length > ITEMS_PER_PAGE && !showAll) {
-                moreContainer.classList.remove('hidden');
-                document.getElementById('projects-more-btn').onclick = () => renderProjects(projects, true);
-            } else {
-                moreContainer.classList.add('hidden');
-            }
-            
-            // Icons aktualisieren für neu gerenderte Elemente (falls welche dabei wären)
+            }).join('');
+            if (projects.length > ITEMS_PER_PAGE && !showAll) moreContainer.classList.remove('hidden');
+            else moreContainer.classList.add('hidden');
+            document.getElementById('projects-more-btn').onclick = () => renderProjects(projects, true);
             lucide.createIcons();
         }
 
         function renderActions(actions, showAll = false) {
             const container = document.getElementById('actions-container');
             const moreContainer = document.getElementById('actions-more-container');
-            
             const itemsToShow = showAll ? actions : actions.slice(0, ITEMS_PER_PAGE);
-            
-            if(showAll || !showAll) container.innerHTML = ''; // Reset und neu rendern
-
-            itemsToShow.forEach(a => {
-                let style = "";
-                let textColorClass = "text-gray-900";
-                let descColorClass = "text-gray-600";
-                let bgClass = "bg-orange-50 border-orange-100";
-                let overlay = "";
-
-                if (a.bildUrl) {
-                    style = `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;`;
-                    bgClass = "border-transparent relative overflow-hidden group"; // group for potential hover effects
-                    overlay = `<div class="absolute inset-0 bg-black/40 transition group-hover:bg-black/50 z-0"></div>`;
-                    
-                    if (a.textFarbe === 'white') {
-                        textColorClass = "text-white text-shadow";
-                        descColorClass = "text-gray-100 text-shadow";
-                    } else {
-                        // Falls man ein helles Bild hat und schwarze Schrift will
-                        textColorClass = "text-gray-900";
-                        descColorClass = "text-gray-800";
-                        overlay = `<div class="absolute inset-0 bg-white/60 transition group-hover:bg-white/70 z-0"></div>`;
-                    }
-                }
-
-                container.innerHTML += `
-                <div class="${bgClass} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col" style="${style}">
+            container.innerHTML = itemsToShow.map(a => {
+                let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : "";
+                let textColor = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900";
+                let descColor = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
+                let overlay = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40 group-hover:bg-black/50' : 'bg-white/60 group-hover:bg-white/70'} transition z-0"></div>` : "";
+                return `
+                <div class="${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10" style="${style}">
                     ${overlay}
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="flex items-center justify-between mb-4">
@@ -675,29 +479,40 @@
                             </div>
                             <span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span>
                         </div>
-                        <h3 class="text-lg font-bold ${textColorClass} mb-2 font-display">${a.titel}</h3>
-                        <p class="${descColorClass} text-sm flex-grow">${a.text}</p>
+                        <h3 class="text-lg font-bold ${textColor} mb-2 font-display">${a.titel}</h3>
+                        <p class="${descColor} text-sm flex-grow">${a.text}</p>
                     </div>
-                </div>
-                `;
-            });
-
-            if (actions.length > ITEMS_PER_PAGE && !showAll) {
-                moreContainer.classList.remove('hidden');
-                document.getElementById('actions-more-btn').onclick = () => renderActions(actions, true);
-            } else {
-                moreContainer.classList.add('hidden');
-            }
-
+                </div>`;
+            }).join('');
+            if (actions.length > ITEMS_PER_PAGE && !showAll) moreContainer.classList.remove('hidden');
+            else moreContainer.classList.add('hidden');
+            document.getElementById('actions-more-btn').onclick = () => renderActions(actions, true);
             lucide.createIcons();
         }
 
-        // Mobile Menu Logic
+        function renderTestimonials(testimonials) {
+            const container = document.getElementById('testimonials-container');
+            container.innerHTML = testimonials.map(t => `
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20">
+                        <div>
+                            <h4 class="font-bold text-gray-900">${t.name}</h4>
+                            <p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p>
+                    <div class="mt-4 text-brand-light">
+                        <i data-lucide="quote" class="w-8 h-8 opacity-20"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        // Copy Function
         function copyToClipboard() {
             const iban = webseitenInhalt.bank.iban.replace(/\s/g, '');
             navigator.clipboard.writeText(iban).then(() => {
@@ -707,24 +522,19 @@
             });
         }
 
-        // Modal Logic
         function openModal() {
             const modal = document.getElementById('membership-modal');
             modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.firstElementChild.classList.remove('scale-95', 'opacity-0');
-            }, 10);
+            setTimeout(() => modal.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10);
         }
 
         function closeModal() {
-            const modal = document.getElementById('membership-modal');
-            modal.classList.add('hidden');
+            document.getElementById('membership-modal').classList.add('hidden');
         }
 
         document.getElementById('membership-modal').addEventListener('click', (e) => {
             if (e.target.id === 'membership-modal') closeModal();
         });
-
     </script>
 </body>
 </html>
