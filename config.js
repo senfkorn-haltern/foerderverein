@@ -180,8 +180,8 @@ const webseitenInhalt = {
     cta: {
         titel: "Werde ein Senfkorn-Unterstützer!",
         text: "Schon mit einem kleinen Jahresbeitrag hilfst du uns, große Sprünge zu machen.",
-        buttonAntrag: "Mitgliedsantrag (PDF)",
-        dateiNameAntrag: "Mitgliedsantrag_Senfkorn.pdf" // Muss im gleichen Ordner liegen
+        buttonAntrag: "Mitgliedsantrag",
+        dateiNameAntrag: "./assets/documents/Aufnahmeantrag_Förderverein-Senfkorn-Haltern.pdf" // Muss im gleichen Ordner liegen
     },
 
     // --- BANKDATEN & SPENDEN ---
@@ -242,12 +242,12 @@ const webseitenInhalt = {
     legal: {
         stammdaten: {
             verein: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
-            strasse: "Marler Straße 22",
+            strasse: "Flaesheimer Str. 3",
             plzOrt: "45721 Haltern am See",
-            vorstand1: "[Name des 1. Vorsitzenden]",
-            vorstand2: "[Name des 2. Vorsitzenden]",
+            vorstand1: "Lara Bennemann",
+            vorstand2: "Daniel Langer",
             email: "förderverein.sfk@gmail.com",
-            webseite: "www.fv-senfkorn-haltern.de",
+            webseite: "https://senfkorn-haltern.github.io/foerderverein",
             registergericht: "Amtsgericht Gelsenkirchen",
             registernummer: "VR 2763",
             verantwortlich: "Christian Danowski-Buhren"
@@ -289,14 +289,14 @@ const webseitenInhalt = {
     footer: {
         adresse: [
             "Förderverein des ev. Kindergartens Senfkorn e.V.",
-            "Marler Straße 22",
+            "Flaesheimer Str. 3",
             "45721 Haltern am See"
         ],
         email: "förderverein.sfk@gmail.com",
         links: [
             { text: "Impressum", url: "#" },
             { text: "Datenschutz", url: "#" },
-            { text: "Satzung (PDF)", url: "#" }
+            { text: "Satzung (PDF)", url: "./assets/documents/Satzung_Förderverein Senfkorn_2025.pdf" }
         ],
         ueberText: "Der Förderverein unterstützt die pädagogische Arbeit der Einrichtung in Haltern am See finanziell und ideell."
     }

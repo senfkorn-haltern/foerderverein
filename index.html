@@ -86,7 +86,7 @@
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center gap-3">
                         <!-- Logo -->
-                        <img id="nav-logo" src="" alt="Logo" class="h-16 w-auto">
+                        <img id="nav-logo" src="" alt="Logo" class="h-24 w-auto">
                         <span class="font-display font-bold text-lg sm:text-xl text-gray-800 tracking-tight leading-tight">
                             <span id="nav-title"></span> 
                             <span class="block text-xs font-normal text-gray-500" id="nav-subtitle"></span>
@@ -260,7 +260,7 @@
                     <div class="flex flex-col items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                         <div id="qrcode-container" class="bg-white p-2 rounded-xl border border-gray-100 mb-4">
                             <!-- QR Code wird via JS eingefügt -->
-                            <img id="bank-qrcode" src="./assets/Bank_Giro_Code.jpg" alt="GiroCode" class="w-48 h-48">
+                            <img id="bank-qrcode" src="" alt="GiroCode" class="w-48 h-48">
                         </div>
                         <p class="text-xs text-gray-500 max-w-[200px]" id="qr-info-text"></p>
                     </div>
@@ -291,7 +291,7 @@
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="mb-6 w-full flex justify-center">
-                        <img id="footer-logo" src="./assets/logo.png" alt="Logo" class="h-40 w-auto brightness-0 invert opacity-80">
+                        <img id="footer-logo" src="" alt="Logo" class="h-40 w-auto brightness-0 invert opacity-80">
                     </div>
                     <p class="text-sm text-gray-400 leading-relaxed text-center" id="footer-about"></p>
                 </div>
@@ -322,9 +322,8 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="membership-modal"
- class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
+    <!-- Modal Mitgliedsantrag -->
+    <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl transform scale-100 transition-transform duration-300">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition">
                 <i data-lucide="x" class="w-6 h-6"></i>
@@ -338,7 +337,7 @@
                 <a id="modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3">
                     <i data-lucide="file-text" class="w-5 h-5"></i> <span id="modal-btn-text"></span>
                 </a>
-                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline" id="modal-close-btn"></button>
+                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline">Schließen</button>
             </div>
         </div>
     </div>
@@ -406,8 +405,11 @@
             document.getElementById('bic-display').textContent = c.bank.bic;
             document.getElementById('copy-feedback').textContent = c.bank.copyFeedback;
             document.getElementById('qr-info-text').textContent = c.bank.qrInfo;
+            
+            renderGiroCode(c.bank);
 
             // Footer
+            document.getElementById('footer-logo').src = c.logoUrl;
             const addressContainer = document.getElementById('footer-address');
             addressContainer.innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
             
@@ -431,14 +433,19 @@
             document.getElementById('modal-title').textContent = c.modal.titel;
             document.getElementById('modal-text').textContent = c.modal.text;
             document.getElementById('modal-btn-text').textContent = c.modal.buttonDownload;
-            document.getElementById('modal-close-btn').textContent = c.modal.buttonSchliessen;
+        }
+
+        function renderGiroCode(bank) {
+            const lineBreak = "\n";
+            const iban = bank.iban.replace(/\s/g, '');
+            const bic = bank.bic.replace(/\s/g, '');
+            const epcData = ["BCD", "001", "1", "SCT", bic, bank.empfaenger, iban, "", "", "", bank.standardZweck].join(lineBreak);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(epcData)}`;
+            document.getElementById('bank-qrcode').src = qrUrl;
         }
 
         function copyToClipboard(type) {
-            let text = "";
-            if (type === 'iban') text = webseitenInhalt.bank.iban.replace(/\s/g, '');
-            else text = type;
-
+            let text = type === 'iban' ? webseitenInhalt.bank.iban.replace(/\s/g, '') : type;
             navigator.clipboard.writeText(text).then(() => {
                 const fb = document.getElementById('copy-feedback');
                 fb.textContent = webseitenInhalt.bank.copyFeedback;
@@ -450,7 +457,6 @@
         function copyAllBankData() {
             const b = webseitenInhalt.bank;
             const allData = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`;
-            
             navigator.clipboard.writeText(allData).then(() => {
                 const fb = document.getElementById('copy-feedback');
                 fb.textContent = "Alle Bankdaten wurden kopiert!";
@@ -491,17 +497,8 @@
         function renderFeatures(cards) {
             const container = document.getElementById('features-container');
             container.innerHTML = cards.map(card => {
-                let colorClass = "bg-green-50 text-brand-green border-green-100";
-                if(card.farbe === "yellow") colorClass = "bg-yellow-50 text-yellow-600 border-yellow-100";
-                if(card.farbe === "orange") colorClass = "bg-orange-50 text-orange-600 border-orange-100";
-                return `
-                <div class="text-center p-6 ${colorClass} bg-opacity-50 rounded-2xl border transition hover:shadow-lg">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current">
-                        <i data-lucide="${card.icon}" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3>
-                    <p class="text-gray-600 leading-relaxed">${card.text}</p>
-                </div>`;
+                let colorClass = card.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (card.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100");
+                return `<div class="text-center p-6 ${colorClass} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current"><i data-lucide="${card.icon}" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3><p class="text-gray-600 leading-relaxed">${card.text}</p></div>`;
             }).join('');
         }
 
@@ -511,22 +508,9 @@
             const itemsToShow = showAll ? projects : projects.slice(0, ITEMS_PER_PAGE);
             container.innerHTML = itemsToShow.map(p => {
                 let statusColors = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100");
-                return `
-                <div class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden md:flex transition hover:shadow-md animate-fade-in relative z-10">
-                    <div class="md:w-1/3 relative">
-                        <img class="h-64 w-full object-cover md:h-full" src="${p.bildUrl}" alt="${p.titel}">
-                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${statusColors}">
-                            ${p.statusText}
-                        </div>
-                    </div>
-                    <div class="p-8 md:w-2/3 flex flex-col justify-center">
-                        <h3 class="block mt-1 text-2xl leading-tight font-bold text-gray-900 font-display">${p.titel}</h3>
-                        <p class="mt-3 text-gray-600 leading-relaxed">${p.beschreibung}</p>
-                    </div>
-                </div>`;
+                return `<div class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden md:flex transition hover:shadow-md animate-fade-in relative z-10"><div class="md:w-1/3 relative"><img class="h-64 w-full object-cover md:h-full" src="${p.bildUrl}" alt="${p.titel}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${statusColors}">${p.statusText}</div></div><div class="p-8 md:w-2/3 flex flex-col justify-center"><h3 class="block mt-1 text-2xl leading-tight font-bold text-gray-900 font-display">${p.titel}</h3><p class="mt-3 text-gray-600 leading-relaxed">${p.beschreibung}</p></div></div>`;
             }).join('');
-            if (projects.length > ITEMS_PER_PAGE && !showAll) moreContainer.classList.remove('hidden');
-            else moreContainer.classList.add('hidden');
+            projects.length > ITEMS_PER_PAGE && !showAll ? moreContainer.classList.remove('hidden') : moreContainer.classList.add('hidden');
             document.getElementById('projects-more-btn').onclick = () => renderProjects(projects, true);
             lucide.createIcons();
         }
@@ -540,23 +524,9 @@
                 let textColor = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900";
                 let descColor = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
                 let overlay = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40 group-hover:bg-black/50' : 'bg-white/60 group-hover:bg-white/70'} transition z-0"></div>` : "";
-                return `
-                <div class="${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10" style="${style}">
-                    ${overlay}
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0">
-                                <i data-lucide="${a.icon}" class="w-6 h-6"></i>
-                            </div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span>
-                        </div>
-                        <h3 class="text-lg font-bold ${textColor} mb-2 font-display">${a.titel}</h3>
-                        <p class="${descColor} text-sm flex-grow">${a.text}</p>
-                    </div>
-                </div>`;
+                return `<div class="${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10" style="${style}">${overlay}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${textColor} mb-2 font-display">${a.titel}</h3><p class="${descColor} text-sm flex-grow">${a.text}</p></div></div>`;
             }).join('');
-            if (actions.length > ITEMS_PER_PAGE && !showAll) moreContainer.classList.remove('hidden');
-            else moreContainer.classList.add('hidden');
+            actions.length > ITEMS_PER_PAGE && !showAll ? moreContainer.classList.remove('hidden') : moreContainer.classList.add('hidden');
             document.getElementById('actions-more-btn').onclick = () => renderActions(actions, true);
             lucide.createIcons();
         }
@@ -564,31 +534,8 @@
         function renderTestimonials(testimonials) {
             const container = document.getElementById('testimonials-container');
             container.innerHTML = testimonials.map(t => {
-                let avatarHtml = '';
-                if (t.avatar) {
-                    avatarHtml = `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">`;
-                } else {
-                    avatarHtml = `
-                        <div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green">
-                            <i data-lucide="user" class="w-8 h-8"></i>
-                        </div>`;
-                }
-
-                return `
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10">
-                    <div class="flex items-center gap-4 mb-6">
-                        ${avatarHtml}
-                        <div>
-                            <h4 class="font-bold text-gray-900">${t.name}</h4>
-                            <p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p>
-                    <div class="mt-4 text-brand-light">
-                        <i data-lucide="quote" class="w-8 h-8 opacity-20"></i>
-                    </div>
-                </div>
-                `;
+                let avatarHtml = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
+                return `<div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${avatarHtml}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
             }).join('');
             lucide.createIcons();
         }
@@ -600,18 +547,13 @@
         function openLegalModal(type) {
             const legal = webseitenInhalt.legal;
             const template = legal.templates[type];
-            
             document.getElementById('legal-modal-title').textContent = template.titel;
             document.getElementById('legal-modal-content').innerHTML = template.getHtml(legal.stammdaten);
-            
-            const modal = document.getElementById('legal-modal');
-            modal.classList.remove('hidden');
+            document.getElementById('legal-modal').classList.remove('hidden');
             lucide.createIcons();
         }
 
-        function closeLegalModal() {
-            document.getElementById('legal-modal').classList.add('hidden');
-        }
+        function closeLegalModal() { document.getElementById('legal-modal').classList.add('hidden'); }
 
         function openModal() {
             const modal = document.getElementById('membership-modal');
@@ -619,17 +561,10 @@
             setTimeout(() => modal.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10);
         }
 
-        function closeModal() {
-            document.getElementById('membership-modal').classList.add('hidden');
-        }
+        function closeModal() { document.getElementById('membership-modal').classList.add('hidden'); }
 
-        document.getElementById('membership-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'membership-modal') closeModal();
-        });
-
-        document.getElementById('legal-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'legal-modal') closeLegalModal();
-        });
+        document.getElementById('membership-modal').addEventListener('click', (e) => { if (e.target.id === 'membership-modal') closeModal(); });
+        document.getElementById('legal-modal').addEventListener('click', (e) => { if (e.target.id === 'legal-modal') closeLegalModal(); });
     </script>
 </body>
 </html>
