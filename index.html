@@ -492,10 +492,21 @@
 
         function renderTestimonials(testimonials) {
             const container = document.getElementById('testimonials-container');
-            container.innerHTML = testimonials.map(t => `
+            container.innerHTML = testimonials.map(t => {
+                let avatarHtml = '';
+                if (t.avatar) {
+                    avatarHtml = `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">`;
+                } else {
+                    avatarHtml = `
+                        <div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green">
+                            <i data-lucide="user" class="w-8 h-8"></i>
+                        </div>`;
+                }
+
+                return `
                 <div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10">
                     <div class="flex items-center gap-4 mb-6">
-                        <img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20">
+                        ${avatarHtml}
                         <div>
                             <h4 class="font-bold text-gray-900">${t.name}</h4>
                             <p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p>
@@ -506,9 +517,10 @@
                         <i data-lucide="quote" class="w-8 h-8 opacity-20"></i>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
+            lucide.createIcons();
         }
-
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });

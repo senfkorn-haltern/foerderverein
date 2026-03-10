@@ -2,6 +2,16 @@
 // --- KONFIGURATION - HIER INHALTE BEARBEITEN ---
 // =================================================================
 
+// AVATAR PRESETS (Abstrakte Illustrationen via DiceBear)
+// Diese können unten in den Testimonials referenziert werden.
+const avatarPresets = {
+    weiblich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Anna&backgroundColor=ffdfbf",
+    weiblich_dunkel: "https://api.dicebear.com/7.x/notionists/svg?seed=Aisha&backgroundColor=ffdfbf",
+    maennlich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=b6e3f4",
+    maennlich_dunkel: "https://api.dicebear.com/7.x/notionists/svg?seed=Jordan&backgroundColor=b6e3f4",
+    neutral: "https://api.dicebear.com/7.x/notionists/svg?seed=Jasper&backgroundColor=c0aede"
+};
+
 const webseitenInhalt = {
     // GRUNDEINSTELLUNGEN
     vereinName: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
@@ -14,7 +24,8 @@ const webseitenInhalt = {
         { label: "Über uns", link: "#ueber-uns" },
         { label: "Projekte", link: "#projekte" },
         { label: "Aktionen", link: "#aktionen" },
-        { label: "Mitglied werden", link: "#mitgliedschaft" },
+        { label: "Elternstimmen", link: "#testimonials" },
+        { label: "Mitglied werden", link: "#mitgliedschaft", highlight: true },
         { label: "Spenden", link: "#spenden", highlight: true }
     ],
 
@@ -59,7 +70,6 @@ const webseitenInhalt = {
         titel: "Projekte & Anschaffungen",
         buttonAlle: "Alle Projekte anzeigen"
     },
-    // Wenn mehr als 3 Projekte eingetragen werden, erscheint ein "Alle anzeigen" Button.
     projekte: [
         {
             titel: "Ausflug zum Maislabyrinth",
@@ -90,7 +100,6 @@ const webseitenInhalt = {
         untertitel: "Gemeinsam aktiv für unsere Kita. Hier treffen wir uns, verkaufen Selbstgemachtes und feiern zusammen.",
         buttonAlle: "Alle Aktionen anzeigen"
     },
-    // Auch hier: Ab dem 4. Eintrag erscheint ein "Mehr anzeigen" Button.
     aktionen: [
         {
             titel: "Waffelverkauf",
@@ -134,19 +143,19 @@ const webseitenInhalt = {
             name: "Sarah M.",
             rolle: "Mama von zwei Kindern",
             text: "Es ist toll zu sehen, wie die Anschaffungen des Fördervereins den Kita-Alltag bereichern. Die Kinder lieben die neue Matschküche!",
-            avatar: "https://i.pravatar.cc/150?u=sarah"
+            avatar: avatarPresets.weiblich_hell
         },
         {
             name: "Christian B.",
             rolle: "Papa eines Sohnes",
             text: "Die Gemeinschaft im Verein ist super. Man lernt andere Eltern kennen und tut gleichzeitig etwas Gutes für die Kleinen.",
-            avatar: "https://i.pravatar.cc/150?u=christian"
+            avatar: avatarPresets.maennlich_hell
         },
         {
             name: "Julia K.",
             rolle: "Mama einer Tochter",
             text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!",
-            avatar: "https://i.pravatar.cc/150?u=julia"
+            avatar: null // Platzhalter wird durch JS eingefügt
         }
     ],
 
@@ -178,8 +187,6 @@ const webseitenInhalt = {
     },
 
     // SPIELERISCHE HINTERGRUND-ELEMENTE (Icons)
-    // Hier kannst du die Icons, ihre Position, Größe, Farbe (Tailwind-Klassen) und Transparenz steuern.
-    // Transparenz wird über Tailwind /Opacity gesteuert (z.B. /20 = 20%).
     dekoElemente: {
         home: [
             { icon: "cloud", pos: "top-24 left-[5%]", color: "text-brand-light/80", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
@@ -190,7 +197,6 @@ const webseitenInhalt = {
             { icon: "sprout", pos: "top-10 right-[5%]", color: "text-brand-green/20", size: "w-24 h-24", anim: "floating" }
         ],
         projekte: [
-
             { icon: "sparkles", pos: "top-20 right-[5%]", color: "text-brand/30", size: "w-24 h-24 sm:w-40 sm:h-40", anim: "floating" },
             { icon: "palette", pos: "bottom-10 left-[2%]", color: "text-brand/20", size: "w-20 h-20", anim: "floating-delayed" }
         ],
@@ -211,7 +217,7 @@ const webseitenInhalt = {
     footer: {
         adresse: [
             "Förderverein des ev. Kindergartens Senfkorn e.V.",
-            "Musterstraße 12",
+            "Marler Straße 22",
             "45721 Haltern am See"
         ],
         email: "kontakt@fv-senfkorn-haltern.de",
