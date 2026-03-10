@@ -35,7 +35,7 @@ const webseitenInhalt = {
         titelZeile1: "Aus kleinen Körnern",
         titelZeile2: "werden starke Bäume.",
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
-        bildUrl: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        bildUrl: "./assets/kind.jpeg"
     },
 
     // ÜBER UNS
