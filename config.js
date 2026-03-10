@@ -262,12 +262,30 @@ const webseitenInhalt = {
             datenschutz: {
                 titel: "Datenschutzerklärung",
                 getHtml: (d) => `
-                    <h4 class="font-bold mb-2 text-gray-800">1. Datenschutz auf einen Blick</h4>
-                    <p class="mb-4 text-sm">Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen.</p>
-                    <h4 class="font-bold mb-2 text-gray-800 text-sm uppercase">Verantwortliche Stelle</h4>
-                    <p class="mb-4 text-sm">Verantwortlich für die Datenverarbeitung ist der ${d.verein} (Anschrift siehe Impressum).</p>
-                    <h4 class="font-bold mb-2 text-gray-800 text-sm uppercase">Ihre Rechte</h4>
-                    <p class="mb-4 text-sm">Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer Daten.</p>
+                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">1. Datenschutz auf einen Blick</h4>
+                    <p class="mb-4 text-sm">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+
+                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">2. Verantwortliche Stelle</h4>
+                    <p class="mb-4 text-sm">Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br>
+                    ${d.verein}<br>${d.strasse}, ${d.plzOrt}<br>
+                    E-Mail: ${d.email}</p>
+
+                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">3. Datenerfassung auf dieser Website</h4>
+                    <p class="mb-2 text-sm"><strong>Hosting durch GitHub Pages:</strong></p>
+                    <p class="mb-4 text-sm">Diese Website wird über GitHub Pages gehostet (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA). Beim Zugriff auf unsere Seiten werden automatisch Informationen in sogenannten Server-Log-Dateien erhoben, die Ihr Browser automatisch an GitHub übermittelt (z.B. IP-Adresse, Datum/Uhrzeit, Browsertyp). Dies ist technisch notwendig, um die Website stabil und sicher anzuzeigen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+                    <p class="mb-2 text-sm"><strong>Externe Schriftarten & Icons:</strong></p>
+                    <p class="mb-4 text-sm">Zur einheitlichen Darstellung von Schriftarten und Symbolen nutzt diese Seite Web Fonts von Google und Icons von Lucide. Beim Aufruf der Seite lädt Ihr Browser die benötigten Dateien in ihren Browsercache. Hierbei wird technisch bedingt Ihre IP-Adresse an die Anbieter übertragen. Wir bemühen uns, diese Dienste so datenschutzfreundlich wie möglich einzubinden.</p>
+
+                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">4. Ihre Rechte</h4>
+                    <p class="mb-4 text-sm">Sie haben jederzeit das Recht:</p>
+                    <ul class="list-disc ml-5 mb-4 text-sm">
+                        <li>Auskunft über Ihre gespeicherten Daten zu erhalten (Art. 15 DSGVO).</li>
+                        <li>Die Berichtigung unrichtiger Daten zu verlangen (Art. 16 DSGVO).</li>
+                        <li>Die Löschung Ihrer Daten zu verlangen (Art. 17 DSGVO).</li>
+                        <li>Widerspruch gegen die Verarbeitung einzulegen (Art. 21 DSGVO).</li>
+                    </ul>
+                    <p class="text-sm">Bei Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer personenbezogenen Daten wenden Sie sich bitte direkt an uns über die oben genannten Kontaktdaten.</p>
                 `
             }
         }
