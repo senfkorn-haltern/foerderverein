@@ -87,6 +87,32 @@
 
         /* Galerie-Effekt */
         .gallery-card:hover img { transform: scale(1.05); }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-placeholder::after {
+            content: "In Arbeit";
+            position: absolute;
+            top: 1.2rem;
+            right: -2.5rem;
+            background: #D97706;
+            color: white;
+            padding: 0.25rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-700 bg-soft-amber flex flex-col min-h-screen">
@@ -448,10 +474,15 @@
 
             // Kita Räume
             const raeumeContainer = document.getElementById('kita-raeume');
-            raeumeContainer.innerHTML = c.kita.raeume.map(r => `
+            raeumeContainer.innerHTML = c.kita.raeume.map(r => {
+                const imgHtml = r.bildUrl 
+                    ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700" alt="${r.titel}">`
+                    : `<div class="w-full h-full image-placeholder text-blue-300"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`;
+                
+                return `
                 <div class="gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border border-white group transition-all duration-500">
                     <div class="h-64 overflow-hidden relative">
-                        <img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700" alt="${r.titel}">
+                        ${imgHtml}
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <p class="text-white text-sm font-medium italic">Senfkorn Entdeckerwelt</p>
                         </div>
@@ -461,10 +492,18 @@
                         <p class="text-gray-600 text-sm leading-relaxed">${r.text}</p>
                     </div>
                 </div>
-            `).join('');
+            `;}).join('');
 
             // Kita Leitung & Kontakt
-            document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl;
+            if (c.kita.leitung.bildUrl) {
+                document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl;
+            } else {
+                document.getElementById('kita-leitung-bild').parentElement.innerHTML = `
+                    <div class="w-full h-full image-placeholder text-blue-300">
+                        <i data-lucide="user" class="w-16 h-16 mb-1"></i>
+                        <p class="text-[10px] font-bold uppercase tracking-tighter">Bild folgt</p>
+                    </div>`;
+            }
             document.getElementById('kita-leitung-titel').textContent = c.kita.leitung.titel;
             document.getElementById('kita-leitung-name').textContent = c.kita.leitung.name;
             document.getElementById('kita-tel').textContent = c.kita.kontakt.tel;

@@ -47,7 +47,7 @@ const webseitenInhalt = {
         leitung: {
             titel: "Kita-Leitung",
             name: "Frau Marie Büning",
-            bildUrl: "./assets/leitung.jpg" // Platzhalter
+            bildUrl: null // Noch kein Bild vorhanden
         },
 
         kontakt: {
@@ -68,39 +68,39 @@ const webseitenInhalt = {
             { 
                 titel: "Das Atelier", 
                 text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.",
-                bildUrl: "./assets/raeume/atelier.jpg"
+                bildUrl: null
             },
             { 
                 titel: "Konstruktionsbereich", 
                 text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.",
-                bildUrl: "./assets/raeume/konstruktion.jpg"
+                bildUrl: null
             },
             { 
                 titel: "Wurzelzwerge (U3)", 
                 text: "Unser geschützter Bereich für die Kleinsten, in dem Geborgenheit an erster Stelle steht.",
-                bildUrl: "./assets/raeume/wurzelzwerge.jpg"
+                bildUrl: null
             },
             { 
                 titel: "Turnraum", 
                 text: "Platz für Bewegung, Toben und gezielte motorische Angebote.",
-                bildUrl: "./assets/raeume/turnen.jpg"
+                bildUrl: null
             },
             { 
                 titel: "Rollenspiel & Puppenecke", 
                 text: "In andere Rollen schlüpfen und den Alltag spielerisch verarbeiten.",
-                bildUrl: "./assets/raeume/spiel.jpg"
+                bildUrl: null
             },
             { 
                 titel: "Vorschul-Raum", 
                 text: "Gezielte Vorbereitung auf den neuen Lebensabschnitt Schule.",
-                bildUrl: "./assets/raeume/vorschule.jpg"
+                bildUrl: null
             }
         ],
 
         aussen: {
             titel: "Unser Außengelände",
             text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.",
-            bildUrl: "./assets/raeume/garten.jpg"
+            bildUrl: null
         }
     },
 
