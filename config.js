@@ -12,7 +12,7 @@
 // Hier definieren wir kleine gezeichnete Bilder für die Elternstimmen.
 // Sie können diese Namen (z.B. avatarPresets.weiblich_hell) weiter unten verwenden.
 const avatarPresets = {
-    weiblich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Anna&backgroundColor=ffdfbf",
+    weiblich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Lara&backgroundColor=ffdfbf",
     weiblich_dunkel: "https://api.dicebear.com/7.x/notionists/svg?seed=Aisha&backgroundColor=ffdfbf",
     maennlich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=b6e3f4",
     maennlich_dunkel: "https://api.dicebear.com/7.x/notionists/svg?seed=Jordan&backgroundColor=b6e3f4",
@@ -85,6 +85,13 @@ const webseitenInhalt = {
     // Kopieren Sie einen Block von { bis }, setzen Sie ein Komma und ändern Sie die Texte.
     projekte: [
         {
+            titel: "Regelmäßige Musikschule",
+            status: "aktiv",
+            statusText: "In Arbeit",
+            bildUrl: "./assets/2026/musikschule.jpeg",
+            beschreibung: "Der Förderverein beteiligt sich an der Finanzierung einer regelmäßigen Musikschule, um den kreativen Ausdruck der Kinder zu fördern.",
+        },
+        {
             titel: "Ausflug zum Maislabyrinth",
             status: "abgeschlossen", // "aktiv", "geplant" oder "abgeschlossen"
             statusText: "Erfolgreich", // Text auf dem kleinen Label am Bild
@@ -97,14 +104,8 @@ const webseitenInhalt = {
             statusText: "Angeschafft",
             bildUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa5u9zINX-nwgk797juZgcFAjXPiP2Ws3GEA&s",
             beschreibung: "Für unsere Kleinsten haben wir einen robusten 6-Sitzer-Schiebewagen finanziert. So sind auch längere Ausflüge rund um Haltern kein Problem mehr.",
-        },
-        {
-            titel: "Matschküche für den Garten",
-            status: "aktiv",
-            statusText: "In Arbeit",
-            bildUrl: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=800&auto=format&fit=crop",
-            beschreibung: "Wasser, Sand und jede Menge Fantasie: Wir finanzieren eine neue Matschküche für den Außenbereich, damit die Kinder nach Herzenslust 'kochen' können.",
         }
+        
     ],
 
     // --- AKTIONEN & TERMINE ---
@@ -121,7 +122,7 @@ const webseitenInhalt = {
             zeitraum: "Regelmäßig", // Kleiner Text oben rechts auf der Karte
             icon: "utensils", // Name des Icons
             text: "Der Duft von frischen Waffeln gehört dazu! Wir verkaufen regelmäßig an Markttagen oder bei Kita-Festen.",
-            bildUrl: "https://images.unsplash.com/photo-1574340530514-610f44358899?q=80&w=800&auto=format&fit=crop",
+            bildUrl: "./assets/2025/Waffel.jpeg",
             textFarbe: "white" // 'white' für helle Texte auf dunklen Bildern
         },
         {
@@ -172,7 +173,7 @@ const webseitenInhalt = {
             name: "Lara B.",
             rolle: "Mama eines Sohnes",
             text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!",
-            avatar: null // Zeigt ein neutrales Personen-Symbol
+            avatar: avatarPresets.weiblich_hell // Zeigt ein neutrales Personen-Symbol
         }
     ],
 
