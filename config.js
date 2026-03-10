@@ -10,7 +10,6 @@
 
 // --- AVATAR-BILDER (VORLAGEN) ---
 // Hier definieren wir kleine gezeichnete Bilder für die Elternstimmen.
-// Sie können diese Namen (z.B. avatarPresets.weiblich_hell) weiter unten verwenden.
 const avatarPresets = {
     weiblich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Lara&backgroundColor=ffdfbf",
     weiblich_dunkel: "https://api.dicebear.com/7.x/notionists/svg?seed=Aisha&backgroundColor=ffdfbf",
@@ -22,13 +21,11 @@ const avatarPresets = {
 const webseitenInhalt = {
     // --- GRUNDEINSTELLUNGEN ---
     vereinName: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
-    vereinNameKurz: "FV Ev. Kiga Senfkorn", // Erscheint oben links in der Ecke
+    vereinNameKurz: "FV Ev. Kiga Senfkorn", 
     stadt: "Haltern am See",
-    logoUrl: "./assets/logo.png", // Offizielles Logo des Vereins
+    logoUrl: "./assets/logo.png", 
     
     // --- NAVIGATION (MENÜ) ---
-    // Hier können Sie die Links oben in der Leiste ändern.
-    // highlight: true macht den Button farbig (wichtig für Spenden).
     menu: [
         { label: "Start", link: "#home" },
         { label: "Über uns", link: "#ueber-uns" },
@@ -41,11 +38,11 @@ const webseitenInhalt = {
 
     // --- STARTSEITE (WILLKOMMEN-BEREICH) ---
     willkommen: {
-        badge: "Gemeinsam für unsere Kleinen", // Kleiner Text über der Überschrift
+        badge: "Gemeinsam für unsere Kleinen", 
         titelZeile1: "Aus kleinen Körnern",
-        titelZeile2: "werden starke Bäume.", // Wird in der Hauptfarbe (Gold/Senf) angezeigt
+        titelZeile2: "werden starke Bäume.", 
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
-        bildUrl: "./assets/kind.jpeg" // Das große Bild auf der Startseite
+        bildUrl: "./assets/kind.jpeg" 
     },
 
     // --- ÜBER UNS (UNSER ANSATZ) ---
@@ -53,11 +50,10 @@ const webseitenInhalt = {
         badge: "Unser Ansatz",
         titel: "Wurzeln schlagen, Welt entdecken",
         text: "Das offene Konzept der Kita Senfkorn stellt das Kind und seine Interessen in den Mittelpunkt. Als Förderverein unterstützen wir genau hier: Wir finanzieren Materialien, die Neugier wecken, und Projekte, die Selbstvertrauen stärken.",
-        // Die 3 kleinen Karten unter dem Text:
         karten: [
             {
-                icon: "sprout", // Name des Icons (von lucide.dev)
-                farbe: "green", // green, yellow oder orange
+                icon: "sprout", 
+                farbe: "green", 
                 titel: "Wachstum fördern",
                 text: "Zusätzliche pädagogische Materialien für die Funktionsräume der Kita."
             },
@@ -78,24 +74,22 @@ const webseitenInhalt = {
 
     // --- PROJEKTE & ANSCHAFFUNGEN ---
     projekteSettings: {
-        titel: "Projekte & Anschaffungen",
-        buttonAlle: "Alle Projekte anzeigen" // Text auf dem Button, wenn es mehr als 3 Projekte gibt
+        titel: "Projekte & Anschaffungen"
     },
     // HIER NEUE PROJEKTE HINZUFÜGEN:
-    // Kopieren Sie einen Block von { bis }, setzen Sie ein Komma und ändern Sie die Texte.
     projekte: [
-        {
-            titel: "Regelmäßige Musikschule",
+         {
+            titel: "Musikschule für die Kita",
             status: "aktiv",
-            statusText: "In Arbeit",
+            statusText: "In Planung",
             bildUrl: "./assets/2026/musikschule.jpeg",
-            beschreibung: "Der Förderverein beteiligt sich an der Finanzierung einer regelmäßigen Musikschule, um den kreativen Ausdruck der Kinder zu fördern.",
+            beschreibung: "Der Förderverein plant die Finanzierung einer Musikschule, die regelmäßig in die Kita kommt. So können die Kinder spielerisch Instrumente entdecken und ihre musikalische Seite entfalten.",
         },
         {
             titel: "Ausflug zum Maislabyrinth",
-            status: "abgeschlossen", // "aktiv", "geplant" oder "abgeschlossen"
-            statusText: "Erfolgreich", // Text auf dem kleinen Label am Bild
-            bildUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfaFNyIcOopdg_3FYiSq7_v6KHeiEsVs_Dfg&s", 
+            status: "abgeschlossen", 
+            statusText: "Erfolgreich", 
+            bildUrl: "./assets/2025/Ausflug_Maislabyrinth.jpg", 
             beschreibung: "Das war ein Riesenspaß! Alle Kinder und Erzieher haben gemeinsam den Weg durchs Labyrinth gesucht. Ein toller Tag in der Natur.",
         },
         {
@@ -105,25 +99,22 @@ const webseitenInhalt = {
             bildUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa5u9zINX-nwgk797juZgcFAjXPiP2Ws3GEA&s",
             beschreibung: "Für unsere Kleinsten haben wir einen robusten 6-Sitzer-Schiebewagen finanziert. So sind auch längere Ausflüge rund um Haltern kein Problem mehr.",
         }
-        
     ],
 
     // --- AKTIONEN & TERMINE ---
     aktionenSettings: {
         titel: "Aktionen & Termine",
-        untertitel: "Gemeinsam aktiv für unsere Kita. Hier treffen wir uns, verkaufen Selbstgemachtes und feiern zusammen.",
-        buttonAlle: "Alle Aktionen anzeigen"
+        untertitel: "Gemeinsam aktiv für unsere Kita."
     },
     // HIER NEUE AKTIONEN HINZUFÜGEN:
-    // Gleiches Prinzip: Block { ... } kopieren, mit Komma trennen.
     aktionen: [
         {
             titel: "Waffelverkauf",
-            zeitraum: "Regelmäßig", // Kleiner Text oben rechts auf der Karte
-            icon: "utensils", // Name des Icons
+            zeitraum: "Regelmäßig", 
+            icon: "utensils", 
             text: "Der Duft von frischen Waffeln gehört dazu! Wir verkaufen regelmäßig an Markttagen oder bei Kita-Festen.",
             bildUrl: "./assets/2025/Waffel.jpeg",
-            textFarbe: "white" // 'white' für helle Texte auf dunklen Bildern
+            textFarbe: "white" 
         },
         {
             titel: "Nikolausnachmittag",
@@ -146,7 +137,14 @@ const webseitenInhalt = {
             zeitraum: "Frühling",
             icon: "shovel",
             text: "Eltern packen an: Gemeinsam machen wir den Garten fit für den Frühling. Mit Hacke, Schaufel und guter Laune.",
-            bildUrl: null // Wenn kein Bild da ist, wird ein farbiger Hintergrund genutzt
+            bildUrl: null 
+        },
+        {
+            titel: "Sommerfest",
+            zeitraum: "Juni",
+            icon: "sun",
+            text: "Spiele, Musik und gute Laune: Unser großes jährliches Sommerfest für alle Familien und Freunde.",
+            bildUrl: null
         }
     ],
 
@@ -155,13 +153,12 @@ const webseitenInhalt = {
         titel: "Warum wir dabei sind",
         untertitel: "Stimmen aus unserer Elternschaft"
     },
-    // HIER STIMMEN ÄNDERN ODER ERGÄNZEN:
     testimonials: [
         {
             name: "Daniel L.",
-            rolle: "Papa von zwei Kindern",
-            text: "Es ist toll zu sehen, wie die Anschaffungen des Fördervereins den Kita-Alltag bereichern. Der Ausflug zum Maislabyrinth war ein Highlight für unsere Kinder!",
-            avatar: avatarPresets.neutral // Nutzt die Vorlage von oben
+            rolle: "Papa von zwei Töchtern",
+            text: "Es ist toll zu sehen, wie die Anschaffungen des Fördervereins den Kita-Alltag bereichern. Der Ausflug ins Maislabyrinth war ein voller Erfolg!",
+            avatar: avatarPresets.neutral 
         },
         {
             name: "Christian D.-B.",
@@ -173,7 +170,7 @@ const webseitenInhalt = {
             name: "Lara B.",
             rolle: "Mama eines Sohnes",
             text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!",
-            avatar: avatarPresets.weiblich_hell // Zeigt ein neutrales Personen-Symbol
+            avatar: null 
         }
     ],
 
@@ -182,7 +179,7 @@ const webseitenInhalt = {
         titel: "Werde ein Senfkorn-Unterstützer!",
         text: "Schon mit einem kleinen Jahresbeitrag hilfst du uns, große Sprünge zu machen.",
         buttonAntrag: "Mitgliedsantrag",
-        dateiNameAntrag: "./assets/documents/Aufnahmeantrag_Förderverein-Senfkorn-Haltern.pdf" // Muss im gleichen Ordner liegen
+        dateiNameAntrag: "./assets/documents/Aufnahmeantrag_Förderverein-Senfkorn-Haltern.pdf" 
     },
 
     // --- BANKDATEN & SPENDEN ---
@@ -195,23 +192,17 @@ const webseitenInhalt = {
         infoText: "Jeder Euro fließt zu 100% in die Projekte für die Kinder. Spendenquittungen stellen wir gerne aus.",
         copyFeedback: "IBAN in die Zwischenablage kopiert!",
         qrInfo: "Scanne den GiroCode mit deiner Bank-App, um alle Daten automatisch zu übernehmen.",
-        standardZweck: "Spende Foerderverein" // Wird im QR-Code als Verwendungszweck eingetragen
+        standardZweck: "Spende Foerderverein" 
     },
 
     // --- TEXTE IM MITGLIEDS-FENSTER (MODAL) ---
     modal: {
         titel: "Mitgliedsantrag",
         text: "Laden Sie das PDF herunter, füllen Sie es aus und werfen Sie es einfach in den Briefkasten der Kita \"Senfkorn\".",
-        buttonDownload: "PDF Herunterladen",
-        buttonSchliessen: "Schließen"
+        buttonDownload: "PDF Herunterladen"
     },
 
     // --- SPIELERISCHE HINTERGRUND-DEKO (ICONS) ---
-    // Hier können Sie Icons im Hintergrund steuern.
-    // pos: Position (top, bottom, left, right)
-    // color: Farbe und Deckkraft (z.B. /30 = 30% sichtbar)
-    // size: Größe (w-16 bis w-64)
-    // anim: Bewegung (floating, floating-delayed, floating-slow)
     dekoElemente: {
         home: [
             { icon: "cloud", pos: "top-24 left-[5%]", color: "text-brand-light/80", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
@@ -239,7 +230,6 @@ const webseitenInhalt = {
     },
 
     // --- RECHTLICHE DATEN (IMPRESSUM & DATENSCHUTZ) ---
-    // Ändern Sie hier nur die Werte rechts vom Doppelpunkt.
     legal: {
         stammdaten: {
             verein: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
@@ -253,9 +243,6 @@ const webseitenInhalt = {
             registernummer: "VR 2763",
             verantwortlich: "Christian Danowski-Buhren"
         },
-        
-        // Diese Vorlagen bauen aus den Stammdaten automatisch das Impressum.
-        // In der Regel müssen Sie hier nichts ändern.
         templates: {
             impressum: {
                 titel: "Impressum",

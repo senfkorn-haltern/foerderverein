@@ -9,13 +9,10 @@
     <script src="config.js"></script>
 
     <!-- Tailwind CSS -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-     <script src="./lib/tailwind_3.4.17.js"></script>
+    <script src="./lib/tailwind_3.4.17.js"></script>
     <!-- Lucide Icons -->
-    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
-     <script src="./lib/lucide_0.577.0.min.js"></script>
+    <script src="./lib/lucide_0.577.0.min.js"></script>
     <!-- Google Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> -->
     <link href="./lib/google_font.css" rel="stylesheet">
 
     <script>
@@ -75,6 +72,24 @@
             66% { transform: translate(-10px, -15px) rotate(-3deg); }
             100% { transform: translate(0px, 0px) rotate(0deg); }
         }
+
+        /* Horizontales Scrollen mit Snap */
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+            padding-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        .scroll-item {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-700 bg-soft-amber flex flex-col min-h-screen">
@@ -85,7 +100,6 @@
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center gap-3">
-                        <!-- Logo -->
                         <img id="nav-logo" src="" alt="Logo" class="h-24 w-auto">
                         <span class="font-display font-bold text-lg sm:text-xl text-gray-800 tracking-tight leading-tight">
                             <span id="nav-title"></span> 
@@ -155,16 +169,14 @@
     <section id="projekte" class="py-20 bg-soft-stone relative overflow-hidden">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex items-center justify-between mb-12">
+            <div class="flex items-center justify-between mb-8">
                 <h2 class="text-3xl font-extrabold text-gray-900 font-display border-l-4 border-brand pl-4" id="projects-title"></h2>
+                <div class="flex gap-2 hidden md:flex">
+                    <button onclick="scrollContainer('projects-container', -1)" class="p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:text-brand transition"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="scrollContainer('projects-container', 1)" class="p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:text-brand transition"><i data-lucide="chevron-right"></i></button>
+                </div>
             </div>
-            <div class="flex flex-col gap-10" id="projects-container"></div>
-            <div id="projects-more-container" class="mt-12 text-center hidden">
-                <button id="projects-more-btn" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition">
-                    <span id="projects-more-text"></span>
-                    <i data-lucide="chevron-down" class="ml-2 -mr-1 h-5 w-5"></i>
-                </button>
-            </div>
+            <div class="scroll-container gap-6" id="projects-container"></div>
         </div>
     </section>
 
@@ -172,17 +184,17 @@
     <section id="aktionen" class="py-20 bg-white relative overflow-hidden">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-4" id="actions-title"></h2>
-                <p class="text-xl text-gray-500 max-w-2xl mx-auto" id="actions-subtitle"></p>
+            <div class="flex items-center justify-between mb-8">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-2" id="actions-title"></h2>
+                    <p class="text-xl text-gray-500" id="actions-subtitle"></p>
+                </div>
+                <div class="flex gap-2 hidden md:flex">
+                    <button onclick="scrollContainer('actions-container', -1)" class="p-2 rounded-full bg-orange-50 shadow-sm border border-orange-100 hover:text-brand transition"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="scrollContainer('actions-container', 1)" class="p-2 rounded-full bg-orange-50 shadow-sm border border-orange-100 hover:text-brand transition"><i data-lucide="chevron-right"></i></button>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="actions-container"></div>
-            <div id="actions-more-container" class="mt-12 text-center hidden">
-                <button id="actions-more-btn" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition">
-                    <span id="actions-more-text"></span>
-                    <i data-lucide="chevron-down" class="ml-2 -mr-1 h-5 w-5"></i>
-                </button>
-            </div>
+            <div class="scroll-container gap-6" id="actions-container"></div>
         </div>
     </section>
 
@@ -259,7 +271,6 @@
                     <!-- GiroCode / QR Section -->
                     <div class="flex flex-col items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                         <div id="qrcode-container" class="bg-white p-2 rounded-xl border border-gray-100 mb-4">
-                            <!-- QR Code wird via JS eingefügt -->
                             <img id="bank-qrcode" src="" alt="GiroCode" class="w-48 h-48">
                         </div>
                         <p class="text-xs text-gray-500 max-w-[200px]" id="qr-info-text"></p>
@@ -270,7 +281,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand">
@@ -295,8 +305,6 @@
                     </div>
                     <p class="text-sm text-gray-400 leading-relaxed text-center" id="footer-about"></p>
                 </div>
-
-
             </div>
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
                 &copy; <span id="current-year"></span> <span id="footer-copyright"></span>
@@ -304,47 +312,32 @@
         </div>
     </footer>
 
-    <!-- Modal Rechtliches (Impressum/Datenschutz) -->
+    <!-- Modals -->
     <div id="legal-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col relative shadow-2xl overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center shrink-0">
                 <h3 class="text-xl font-bold text-gray-900 font-display" id="legal-modal-title"></h3>
-                <button onclick="closeLegalModal()" class="text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
+                <button onclick="closeLegalModal()" class="text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
-            <div class="p-8 overflow-y-auto text-gray-600 leading-relaxed" id="legal-modal-content">
-                <!-- Inhalt kommt via JS -->
-            </div>
-            <div class="p-6 border-t border-gray-100 text-center shrink-0">
-                <button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition">Schließen</button>
-            </div>
+            <div class="p-8 overflow-y-auto text-gray-600 leading-relaxed" id="legal-modal-content"></div>
+            <div class="p-6 border-t border-gray-100 text-center shrink-0"><button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition">Schließen</button></div>
         </div>
     </div>
 
-    <!-- Modal Mitgliedsantrag -->
     <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl transform scale-100 transition-transform duration-300">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             <div class="text-center">
-                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
-                    <i data-lucide="download" class="h-8 w-8 text-green-600"></i>
-                </div>
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"><i data-lucide="download" class="h-8 w-8 text-green-600"></i></div>
                 <h3 class="text-xl leading-6 font-bold text-gray-900 font-display mb-2" id="modal-title"></h3>
                 <p class="text-gray-500 mb-6" id="modal-text"></p>
-                <a id="modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3">
-                    <i data-lucide="file-text" class="w-5 h-5"></i> <span id="modal-btn-text"></span>
-                </a>
+                <a id="modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3"><i data-lucide="file-text" class="w-5 h-5"></i> <span id="modal-btn-text"></span></a>
                 <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline">Schließen</button>
             </div>
         </div>
     </div>
 
     <script>
-        const ITEMS_PER_PAGE = 3;
-
         document.addEventListener('DOMContentLoaded', () => {
             renderContent();
             renderDecorations();
@@ -354,49 +347,37 @@
 
         function renderContent() {
             const c = webseitenInhalt;
-
-            // Nav
             document.getElementById('nav-logo').src = c.logoUrl;
             document.getElementById('nav-title').textContent = c.vereinNameKurz;
             document.getElementById('nav-subtitle').textContent = c.stadt;
             renderMenu(c.menu);
 
-            // Willkommen
             document.getElementById('willkommen-badge').textContent = c.willkommen.badge;
             document.getElementById('willkommen-title-1').textContent = c.willkommen.titelZeile1;
             document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2;
             document.getElementById('willkommen-text').textContent = c.willkommen.text;
             document.getElementById('willkommen-image').src = c.willkommen.bildUrl;
 
-            // Über Uns
             document.getElementById('about-badge').textContent = c.ueberUns.badge;
             document.getElementById('about-title').textContent = c.ueberUns.titel;
             document.getElementById('about-text').textContent = c.ueberUns.text;
             renderFeatures(c.ueberUns.karten);
 
-            // Projekte
             document.getElementById('projects-title').textContent = c.projekteSettings.titel;
-            document.getElementById('projects-more-text').textContent = c.projekteSettings.buttonAlle;
             renderProjects(c.projekte);
 
-            // Aktionen
             document.getElementById('actions-title').textContent = c.aktionenSettings.titel;
             document.getElementById('actions-subtitle').textContent = c.aktionenSettings.untertitel;
-            document.getElementById('actions-more-text').textContent = c.aktionenSettings.buttonAlle;
             renderActions(c.aktionen);
 
-            // Testimonials
             document.getElementById('testimonials-title').textContent = c.testimonialsSettings.titel;
             document.getElementById('testimonials-subtitle').textContent = c.testimonialsSettings.untertitel;
             renderTestimonials(c.testimonials);
 
-            // CTA
             document.getElementById('cta-title').textContent = c.cta.titel;
             document.getElementById('cta-text').textContent = c.cta.text;
             document.getElementById('btn-antrag').textContent = c.cta.buttonAntrag;
-            document.getElementById('modal-download-btn').href = c.cta.dateiNameAntrag;
 
-            // Bank
             document.getElementById('bank-title').textContent = c.bank.titel;
             document.getElementById('donate-text').textContent = c.bank.infoText;
             document.getElementById('bank-recipient').textContent = c.bank.empfaenger;
@@ -405,48 +386,60 @@
             document.getElementById('bic-display').textContent = c.bank.bic;
             document.getElementById('copy-feedback').textContent = c.bank.copyFeedback;
             document.getElementById('qr-info-text').textContent = c.bank.qrInfo;
-            
             renderGiroCode(c.bank);
 
-            // Footer
             document.getElementById('footer-logo').src = c.logoUrl;
-            const addressContainer = document.getElementById('footer-address');
-            addressContainer.innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
-            
+            document.getElementById('footer-address').innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
             const emailEl = document.getElementById('footer-email');
             emailEl.href = `mailto:${c.footer.email}`;
             emailEl.innerHTML = `<i data-lucide="mail" class="w-4 h-4"></i> ${c.footer.email}`;
-
-            const linksContainer = document.getElementById('footer-links');
-            linksContainer.innerHTML = c.footer.links.map(l => {
-                let clickHandler = "";
-                if (l.text === "Impressum") clickHandler = `onclick="openLegalModal('impressum'); return false;"`;
-                if (l.text === "Datenschutz") clickHandler = `onclick="openLegalModal('datenschutz'); return false;"`;
-                
-                return `<li><a href="${l.url}" ${clickHandler} class="hover:text-white transition cursor-pointer">${l.text}</a></li>`;
+            document.getElementById('footer-links').innerHTML = c.footer.links.map(l => {
+                let h = (l.text === "Impressum") ? `onclick="openLegalModal('impressum'); return false;"` : ((l.text === "Datenschutz") ? `onclick="openLegalModal('datenschutz'); return false;"` : "");
+                return `<li><a href="${l.url}" ${h} class="hover:text-white transition cursor-pointer">${l.text}</a></li>`;
             }).join('');
-
             document.getElementById('footer-about').textContent = c.footer.ueberText;
             document.getElementById('footer-copyright').textContent = c.vereinName;
 
-            // Modal
             document.getElementById('modal-title').textContent = c.modal.titel;
             document.getElementById('modal-text').textContent = c.modal.text;
             document.getElementById('modal-btn-text').textContent = c.modal.buttonDownload;
+            document.getElementById('modal-download-btn').href = c.cta.dateiNameAntrag;
+        }
+
+        function renderProjects(projects) {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = projects.map(p => {
+                let sc = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100");
+                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col"><div class="relative h-48 shrink-0"><img class="h-full w-full object-cover" src="${p.bildUrl}" alt="${p.titel}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-gray-900 font-display mb-3">${p.titel}</h3><p class="text-gray-600 text-sm leading-relaxed line-clamp-4">${p.beschreibung}</p></div></div>`;
+            }).join('');
+        }
+
+        function renderActions(actions) {
+            const container = document.getElementById('actions-container');
+            container.innerHTML = actions.map(a => {
+                let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : "";
+                let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900";
+                let dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
+                let ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : "";
+                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border transition h-full flex flex-col relative z-10" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3">${a.text}</p></div></div>`;
+            }).join('');
+        }
+
+        function scrollContainer(id, direction) {
+            const el = document.getElementById(id);
+            const scrollAmount = el.clientWidth * 0.8;
+            el.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
 
         function renderGiroCode(bank) {
-            const lineBreak = "\n";
-            const iban = bank.iban.replace(/\s/g, '');
-            const bic = bank.bic.replace(/\s/g, '');
-            const epcData = ["BCD", "001", "1", "SCT", bic, bank.empfaenger, iban, "", "", "", bank.standardZweck].join(lineBreak);
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(epcData)}`;
-            document.getElementById('bank-qrcode').src = qrUrl;
+            const iban = bank.iban.replace(/\s/g, ''), bic = bank.bic.replace(/\s/g, '');
+            const epcData = ["BCD", "001", "1", "SCT", bic, bank.empfaenger, iban, "", "", "", bank.standardZweck].join("\n");
+            document.getElementById('bank-qrcode').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(epcData)}`;
         }
 
         function copyToClipboard(type) {
-            let text = type === 'iban' ? webseitenInhalt.bank.iban.replace(/\s/g, '') : type;
-            navigator.clipboard.writeText(text).then(() => {
+            let t = type === 'iban' ? webseitenInhalt.bank.iban.replace(/\s/g, '') : type;
+            navigator.clipboard.writeText(t).then(() => {
                 const fb = document.getElementById('copy-feedback');
                 fb.textContent = webseitenInhalt.bank.copyFeedback;
                 fb.classList.remove('opacity-0', 'translate-y-2');
@@ -456,8 +449,8 @@
 
         function copyAllBankData() {
             const b = webseitenInhalt.bank;
-            const allData = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`;
-            navigator.clipboard.writeText(allData).then(() => {
+            const d = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`;
+            navigator.clipboard.writeText(d).then(() => {
                 const fb = document.getElementById('copy-feedback');
                 fb.textContent = "Alle Bankdaten wurden kopiert!";
                 fb.classList.remove('opacity-0', 'translate-y-2');
@@ -465,104 +458,51 @@
             });
         }
 
+        function renderFeatures(cards) {
+            document.getElementById('features-container').innerHTML = cards.map(card => {
+                let cl = card.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (card.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100");
+                return `<div class="text-center p-6 ${cl} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current"><i data-lucide="${card.icon}" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3><p class="text-gray-600 leading-relaxed">${card.text}</p></div>`;
+            }).join('');
+        }
+
+        function renderTestimonials(testimonials) {
+            document.getElementById('testimonials-container').innerHTML = testimonials.map(t => {
+                let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
+                return `<div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
+            }).join('');
+            lucide.createIcons();
+        }
+
         function renderDecorations() {
             const deko = webseitenInhalt.dekoElemente;
-            Object.keys(deko).forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (!section) return;
-                const container = section.querySelector('.section-decorations');
-                if (!container) return;
-                container.innerHTML = deko[sectionId].map(item => `
-                    <div class="absolute ${item.pos} ${item.color} ${item.anim} z-0 pointer-events-none">
-                        <i data-lucide="${item.icon}" class="${item.size}"></i>
-                    </div>
-                `).join('');
+            Object.keys(deko).forEach(sid => {
+                const s = document.getElementById(sid); if (!s) return;
+                const c = s.querySelector('.section-decorations'); if (!c) return;
+                c.innerHTML = deko[sid].map(item => `<div class="absolute ${item.pos} ${item.color} ${item.anim} z-0 pointer-events-none"><i data-lucide="${item.icon}" class="${item.size}"></i></div>`).join('');
             });
         }
 
         function renderMenu(items) {
-            const desktop = document.getElementById('desktop-menu');
-            const mobile = document.getElementById('mobile-menu-items');
-            desktop.innerHTML = ''; mobile.innerHTML = '';
+            const d = document.getElementById('desktop-menu'), m = document.getElementById('mobile-menu-items');
+            d.innerHTML = ''; m.innerHTML = '';
             items.forEach(item => {
-                if(item.highlight) {
-                    desktop.innerHTML += `<a href="${item.link}" class="px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5">${item.label}</a>`;
-                } else {
-                    desktop.innerHTML += `<a href="${item.link}" class="text-gray-600 hover:text-brand font-medium transition">${item.label}</a>`;
-                }
-                mobile.innerHTML += `<a href="${item.link}" class="block px-3 py-2 rounded-md text-base font-medium ${item.highlight ? 'text-brand font-bold bg-orange-50' : 'text-gray-700 hover:text-brand hover:bg-gray-50'}">${item.label}</a>`;
+                let cl = item.highlight ? "px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5" : "text-gray-600 hover:text-brand font-medium transition";
+                d.innerHTML += `<a href="${item.link}" class="${cl}">${item.label}</a>`;
+                m.innerHTML += `<a href="${item.link}" class="block px-3 py-2 rounded-md text-base font-medium ${item.highlight ? 'text-brand font-bold bg-orange-50' : 'text-gray-700 hover:text-brand hover:bg-gray-50'}">${item.label}</a>`;
             });
         }
 
-        function renderFeatures(cards) {
-            const container = document.getElementById('features-container');
-            container.innerHTML = cards.map(card => {
-                let colorClass = card.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (card.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100");
-                return `<div class="text-center p-6 ${colorClass} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current"><i data-lucide="${card.icon}" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3><p class="text-gray-600 leading-relaxed">${card.text}</p></div>`;
-            }).join('');
-        }
-
-        function renderProjects(projects, showAll = false) {
-            const container = document.getElementById('projects-container');
-            const moreContainer = document.getElementById('projects-more-container');
-            const itemsToShow = showAll ? projects : projects.slice(0, ITEMS_PER_PAGE);
-            container.innerHTML = itemsToShow.map(p => {
-                let statusColors = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100");
-                return `<div class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden md:flex transition hover:shadow-md animate-fade-in relative z-10"><div class="md:w-1/3 relative"><img class="h-64 w-full object-cover md:h-full" src="${p.bildUrl}" alt="${p.titel}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${statusColors}">${p.statusText}</div></div><div class="p-8 md:w-2/3 flex flex-col justify-center"><h3 class="block mt-1 text-2xl leading-tight font-bold text-gray-900 font-display">${p.titel}</h3><p class="mt-3 text-gray-600 leading-relaxed">${p.beschreibung}</p></div></div>`;
-            }).join('');
-            projects.length > ITEMS_PER_PAGE && !showAll ? moreContainer.classList.remove('hidden') : moreContainer.classList.add('hidden');
-            document.getElementById('projects-more-btn').onclick = () => renderProjects(projects, true);
-            lucide.createIcons();
-        }
-
-        function renderActions(actions, showAll = false) {
-            const container = document.getElementById('actions-container');
-            const moreContainer = document.getElementById('actions-more-container');
-            const itemsToShow = showAll ? actions : actions.slice(0, ITEMS_PER_PAGE);
-            container.innerHTML = itemsToShow.map(a => {
-                let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : "";
-                let textColor = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900";
-                let descColor = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
-                let overlay = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40 group-hover:bg-black/50' : 'bg-white/60 group-hover:bg-white/70'} transition z-0"></div>` : "";
-                return `<div class="${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10" style="${style}">${overlay}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${textColor} mb-2 font-display">${a.titel}</h3><p class="${descColor} text-sm flex-grow">${a.text}</p></div></div>`;
-            }).join('');
-            actions.length > ITEMS_PER_PAGE && !showAll ? moreContainer.classList.remove('hidden') : moreContainer.classList.add('hidden');
-            document.getElementById('actions-more-btn').onclick = () => renderActions(actions, true);
-            lucide.createIcons();
-        }
-
-        function renderTestimonials(testimonials) {
-            const container = document.getElementById('testimonials-container');
-            container.innerHTML = testimonials.map(t => {
-                let avatarHtml = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
-                return `<div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${avatarHtml}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
-            }).join('');
-            lucide.createIcons();
-        }
-
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         function openLegalModal(type) {
-            const legal = webseitenInhalt.legal;
-            const template = legal.templates[type];
-            document.getElementById('legal-modal-title').textContent = template.titel;
-            document.getElementById('legal-modal-content').innerHTML = template.getHtml(legal.stammdaten);
+            const l = webseitenInhalt.legal, t = l.templates[type];
+            document.getElementById('legal-modal-title').textContent = t.titel;
+            document.getElementById('legal-modal-content').innerHTML = t.getHtml(l.stammdaten);
             document.getElementById('legal-modal').classList.remove('hidden');
             lucide.createIcons();
         }
-
         function closeLegalModal() { document.getElementById('legal-modal').classList.add('hidden'); }
-
-        function openModal() {
-            const modal = document.getElementById('membership-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => modal.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10);
-        }
-
+        function openModal() { const m = document.getElementById('membership-modal'); m.classList.remove('hidden'); setTimeout(() => m.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10); }
         function closeModal() { document.getElementById('membership-modal').classList.add('hidden'); }
-
         document.getElementById('membership-modal').addEventListener('click', (e) => { if (e.target.id === 'membership-modal') closeModal(); });
         document.getElementById('legal-modal').addEventListener('click', (e) => { if (e.target.id === 'legal-modal') closeLegalModal(); });
     </script>
