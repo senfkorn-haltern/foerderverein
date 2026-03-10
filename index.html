@@ -217,40 +217,59 @@
     <!-- Spenden Details -->
     <section id="spenden" class="py-20 bg-white relative overflow-hidden">
         <div class="section-decorations"></div>
-        <div class="max-w-3xl mx-auto px-4 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
             <div class="bg-orange-50/40 border border-orange-100/50 rounded-3xl p-8 sm:p-12 text-center">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6" id="bank-title"></h3>
-                <p class="text-gray-600 mb-8" id="donate-text"></p>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 inline-block w-full max-w-md mx-auto text-left relative">
-                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gray-200/50 rounded-full"></div>
-                    <div class="space-y-4">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                            <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Empfänger</span>
-                            <span class="font-bold text-gray-800 break-words text-right" id="bank-recipient"></span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                            <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Bank</span>
-                            <span class="font-medium text-gray-800 text-right" id="bank-name"></span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                            <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">IBAN</span>
-                            <div class="flex items-center justify-end gap-3 w-full sm:w-auto">
-                                <span class="font-mono font-bold text-brand-dark text-lg break-all" id="iban-display"></span>
-                                <button onclick="copyToClipboard()" class="bg-gray-100 hover:bg-brand hover:text-white p-2 rounded-lg transition shrink-0" title="IBAN Kopieren">
-                                    <i data-lucide="copy" class="w-4 h-4"></i>
-                                </button>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto" id="donate-text"></p>
+
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-10">
+                    <!-- Bank Data Card -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md text-left relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gray-200/50 rounded-full"></div>
+                        <div class="space-y-4">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Empfänger</span>
+                                <span class="font-bold text-gray-800 break-words text-right" id="bank-recipient"></span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Bank</span>
+                                <span class="font-medium text-gray-800 text-right" id="bank-name"></span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">IBAN</span>
+                                <div class="flex items-center justify-end gap-3 w-full sm:w-auto">
+                                    <span class="font-mono font-bold text-brand-dark text-lg break-all" id="iban-display"></span>
+                                    <button onclick="copyToClipboard('iban')" class="bg-gray-100 hover:bg-brand hover:text-white p-2 rounded-lg transition shrink-0" title="IBAN Kopieren">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center pt-1 gap-1">
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">BIC</span>
+                                <span class="font-mono text-gray-800 text-right" id="bic-display"></span>
                             </div>
                         </div>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center pt-1 gap-1">
-                            <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">BIC</span>
-                            <span class="font-mono text-gray-800 text-right" id="bic-display"></span>
+
+                        <button onclick="copyAllBankData()" class="mt-8 w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold rounded-xl border border-gray-200 transition flex items-center justify-center gap-2">
+                            <i data-lucide="copy-check" class="w-5 h-5"></i> Alle Daten kopieren
+                        </button>
+                    </div>
+
+                    <!-- GiroCode / QR Section -->
+                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div id="qrcode-container" class="bg-white p-2 rounded-xl border border-gray-100 mb-4">
+                            <!-- QR Code wird via JS eingefügt -->
+                            <img id="bank-qrcode" src="./assets/Bank_Giro_Code.jpg" alt="GiroCode" class="w-48 h-48">
                         </div>
+                        <p class="text-xs text-gray-500 max-w-[200px]" id="qr-info-text"></p>
                     </div>
                 </div>
-                <div id="copy-feedback" class="h-6 text-sm text-brand font-bold mt-4 opacity-0 transition transform translate-y-2"></div>
+
+                <div id="copy-feedback" class="h-6 text-sm text-brand font-bold mt-6 opacity-0 transition transform translate-y-2"></div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand">
@@ -363,6 +382,7 @@
             document.getElementById('iban-display').textContent = c.bank.iban;
             document.getElementById('bic-display').textContent = c.bank.bic;
             document.getElementById('copy-feedback').textContent = c.bank.copyFeedback;
+            document.getElementById('qr-info-text').textContent = c.bank.qrInfo;
 
             // Footer
             const addressContainer = document.getElementById('footer-address');
@@ -385,16 +405,38 @@
             document.getElementById('modal-close-btn').textContent = c.modal.buttonSchliessen;
         }
 
+        function copyToClipboard(type) {
+            let text = "";
+            if (type === 'iban') text = webseitenInhalt.bank.iban.replace(/\s/g, '');
+            else text = type;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const fb = document.getElementById('copy-feedback');
+                fb.textContent = webseitenInhalt.bank.copyFeedback;
+                fb.classList.remove('opacity-0', 'translate-y-2');
+                setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500);
+            });
+        }
+
+        function copyAllBankData() {
+            const b = webseitenInhalt.bank;
+            const allData = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`;
+            
+            navigator.clipboard.writeText(allData).then(() => {
+                const fb = document.getElementById('copy-feedback');
+                fb.textContent = "Alle Bankdaten wurden kopiert!";
+                fb.classList.remove('opacity-0', 'translate-y-2');
+                setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500);
+            });
+        }
+
         function renderDecorations() {
             const deko = webseitenInhalt.dekoElemente;
-            
             Object.keys(deko).forEach(sectionId => {
                 const section = document.getElementById(sectionId);
                 if (!section) return;
-                
                 const container = section.querySelector('.section-decorations');
                 if (!container) return;
-                
                 container.innerHTML = deko[sectionId].map(item => `
                     <div class="absolute ${item.pos} ${item.color} ${item.anim} z-0 pointer-events-none">
                         <i data-lucide="${item.icon}" class="${item.size}"></i>
@@ -521,18 +563,10 @@
             }).join('');
             lucide.createIcons();
         }
+
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
-
-        function copyToClipboard() {
-            const iban = webseitenInhalt.bank.iban.replace(/\s/g, '');
-            navigator.clipboard.writeText(iban).then(() => {
-                const fb = document.getElementById('copy-feedback');
-                fb.classList.remove('opacity-0', 'translate-y-2');
-                setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500);
-            });
-        }
 
         function openModal() {
             const modal = document.getElementById('membership-modal');

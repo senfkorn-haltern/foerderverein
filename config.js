@@ -170,12 +170,14 @@ const webseitenInhalt = {
     // BANKDATEN
     bank: {
         titel: "Spendenkonto",
-        empfaenger: "Förderverein des ev. Kiga Senfkorn",
-        bankName: "Volksbank Haltern",
-        iban: "DE00 1234 5678 9000 00",
-        bic: "GENODED1HAL",
+        empfaenger: "Förderverein des ev. Kindergartens Senfkorn Haltern",
+        bankName: "Sparkasse Westmünsterland",
+        iban: "DE08 4015 4530 0040 0056 21",
+        bic: "WELADE3WXXX",
         infoText: "Jeder Euro fließt zu 100% in die Projekte für die Kinder. Spendenquittungen stellen wir gerne aus.",
-        copyFeedback: "IBAN in die Zwischenablage kopiert!"
+        copyFeedback: "IBAN in die Zwischenablage kopiert!",
+        qrInfo: "Scanne den GiroCode mit deiner Bank-App, um alle Daten automatisch zu übernehmen.",
+        standardZweck: "Spende Foerderverein"
     },
 
     // MODAL TEXTE
