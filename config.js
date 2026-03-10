@@ -28,13 +28,13 @@ const webseitenInhalt = {
     // --- NAVIGATION (MENÜ) ---
     menu: [
         { label: "Start", link: "#home" },
-        { label: "Unsere Kita", link: "#unsere-kita" }, // NEU: Link zur Kita
         { label: "Über uns", link: "#ueber-uns" },
         { label: "Projekte", link: "#projekte" },
         { label: "Aktionen", link: "#aktionen" },
         { label: "Elternstimmen", link: "#testimonials" },
         { label: "Mitglied werden", link: "#mitgliedschaft", highlight: true },
-        { label: "Spenden", link: "#spenden", highlight: true }
+        { label: "Spenden", link: "#spenden", highlight: true },
+        { label: "Unsere Kita", link: "#unsere-kita", kitaHighlight: true } // Ganz ans Ende und grün markiert
     ],
 
     // --- UNSERE KITA (NEUE GROSSE SEKTION) ---
