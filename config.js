@@ -157,20 +157,20 @@ const webseitenInhalt = {
     // HIER STIMMEN ÄNDERN ODER ERGÄNZEN:
     testimonials: [
         {
-            name: "Sarah M.",
-            rolle: "Mama von zwei Kindern",
-            text: "Es ist toll zu sehen, wie die Anschaffungen des Fördervereins den Kita-Alltag bereichern. Die Kinder lieben die neue Matschküche!",
-            avatar: avatarPresets.weiblich_hell // Nutzt die Vorlage von oben
+            name: "Daniel L.",
+            rolle: "Papa von zwei Kindern",
+            text: "Es ist toll zu sehen, wie die Anschaffungen des Fördervereins den Kita-Alltag bereichern. Der Ausflug zum Maislabyrinth war ein Highlight für unsere Kinder!",
+            avatar: avatarPresets.neutral // Nutzt die Vorlage von oben
         },
         {
-            name: "Christian B.",
-            rolle: "Papa eines Sohnes",
+            name: "Christian D.-B.",
+            rolle: "Papa eines Sohnes und zweier Töchter",
             text: "Die Gemeinschaft im Verein ist super. Man lernt andere Eltern kennen und tut gleichzeitig etwas Gutes für die Kleinen.",
             avatar: avatarPresets.maennlich_hell
         },
         {
-            name: "Julia K.",
-            rolle: "Mama einer Tochter",
+            name: "Lara B.",
+            rolle: "Mama eines Sohnes",
             text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!",
             avatar: null // Zeigt ein neutrales Personen-Symbol
         }
