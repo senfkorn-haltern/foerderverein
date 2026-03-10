@@ -222,7 +222,7 @@ const webseitenInhalt = {
             "Marler Straße 22",
             "45721 Haltern am See"
         ],
-        email: "kontakt@fv-senfkorn-haltern.de",
+        email: "förderverein.sfk@gmail.com",
         links: [
             { text: "Impressum", url: "#" },
             { text: "Datenschutz", url: "#" },
