@@ -109,6 +109,14 @@ const webseitenInhalt = {
     // HIER NEUE AKTIONEN HINZUFÜGEN:
     aktionen: [
         {
+            titel: "Kinderkarneval 2026 - Das Senfkorn feiert!",
+            zeitraum: "Februar 2026", 
+            icon: "venetian-mask", 
+            text: "Der Förderverein sponsorte Kamelle und spaßiges Wurfmaterial für den Kinderkarnevalsumzug <br> (Foto: Blanka Thieme-Dietel und Seestadtjecken)",
+            bildUrl: "./assets/2026/karneval.jpg",
+            textFarbe: "white" 
+        },
+        {
             titel: "Waffelverkauf",
             zeitraum: "Regelmäßig", 
             icon: "utensils", 
