@@ -28,6 +28,7 @@ const webseitenInhalt = {
     // --- NAVIGATION (MENÜ) ---
     menu: [
         { label: "Start", link: "#home" },
+        { label: "Unsere Kita", link: "#unsere-kita" }, // NEU: Link zur Kita
         { label: "Über uns", link: "#ueber-uns" },
         { label: "Projekte", link: "#projekte" },
         { label: "Aktionen", link: "#aktionen" },
@@ -35,6 +36,73 @@ const webseitenInhalt = {
         { label: "Mitglied werden", link: "#mitgliedschaft", highlight: true },
         { label: "Spenden", link: "#spenden", highlight: true }
     ],
+
+    // --- UNSERE KITA (NEUE GROSSE SEKTION) ---
+    kita: {
+        badge: "Herzlich Willkommen",
+        titel: "Ev. Kindergarten Senfkorn",
+        untertitel: "Ein Ort zum Wachsen in den Katharinenhöfen",
+        beschreibung: "In unserem 2024 modern erbauten Kindergarten leben wir ein offenes Konzept. Unsere Kinder sind Entdecker:innen, die sich frei in unseren Funktionsräumen bewegen und von unseren Kita-Begleiter:innen liebevoll unterstützt werden.",
+        
+        leitung: {
+            titel: "Kita-Leitung",
+            name: "Frau Marie Büning",
+            bildUrl: "./assets/leitung.jpg" // Platzhalter
+        },
+
+        kontakt: {
+            tel: "02364 9527024",
+            email: "sfk@egha.de",
+            adresse: "Flaesheimer Str. 3, 45721 Haltern am See",
+            appInfo: "Wir kommunizieren digital über die 'Stay Informed App'."
+        },
+
+        highlights: [
+            { icon: "utensils-cross-over", titel: "BIO-Mittagessen", text: "Täglich frisch in BIO-Qualität von rebional." },
+            { icon: "map-pin", titel: "Top Lage", text: "Ausflüge zum Kanal und nahen Spielplätzen." },
+            { icon: "users", titel: "Gemeinschaft", text: "Regelmäßige Waldtage und Elternabende." }
+        ],
+
+        // Die Räumlichkeiten-Galerie
+        raeume: [
+            { 
+                titel: "Das Atelier", 
+                text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.",
+                bildUrl: "./assets/raeume/atelier.jpg"
+            },
+            { 
+                titel: "Konstruktionsbereich", 
+                text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.",
+                bildUrl: "./assets/raeume/konstruktion.jpg"
+            },
+            { 
+                titel: "Wurzelzwerge (U3)", 
+                text: "Unser geschützter Bereich für die Kleinsten, in dem Geborgenheit an erster Stelle steht.",
+                bildUrl: "./assets/raeume/wurzelzwerge.jpg"
+            },
+            { 
+                titel: "Turnraum", 
+                text: "Platz für Bewegung, Toben und gezielte motorische Angebote.",
+                bildUrl: "./assets/raeume/turnen.jpg"
+            },
+            { 
+                titel: "Rollenspiel & Puppenecke", 
+                text: "In andere Rollen schlüpfen und den Alltag spielerisch verarbeiten.",
+                bildUrl: "./assets/raeume/spiel.jpg"
+            },
+            { 
+                titel: "Vorschul-Raum", 
+                text: "Gezielte Vorbereitung auf den neuen Lebensabschnitt Schule.",
+                bildUrl: "./assets/raeume/vorschule.jpg"
+            }
+        ],
+
+        aussen: {
+            titel: "Unser Außengelände",
+            text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.",
+            bildUrl: "./assets/raeume/garten.jpg"
+        }
+    },
 
     // --- STARTSEITE (WILLKOMMEN-BEREICH) ---
     willkommen: {
