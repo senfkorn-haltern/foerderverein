@@ -58,7 +58,7 @@ const webseitenInhalt = {
         },
 
         highlights: [
-            { icon: "utensils-cross-over", titel: "BIO-Mittagessen", text: "Täglich frisch in BIO-Qualität von rebional." },
+            { icon: "utensils-crossed", titel: "BIO-Mittagessen", text: "Täglich frisch in BIO-Qualität von rebional." },
             { icon: "map-pin", titel: "Top Lage", text: "Ausflüge zum Kanal und nahen Spielplätzen." },
             { icon: "users", titel: "Gemeinschaft", text: "Regelmäßige Waldtage und Elternabende." }
         ],
