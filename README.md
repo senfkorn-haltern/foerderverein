@@ -59,7 +59,11 @@ Hier stehen aktuelle Ereignisse wie Waffelverkäufe oder Gartenaktionen. Sie kö
 Hier teilen Eltern ihre Meinung. Sie können für jede Person einen `avatar` (ein gezeichnetes Symbolbild) aus den Vorlagen am Anfang der Datei wählen oder `null` schreiben, wenn kein Symbol gewünscht ist.
 
 ### Bankdaten & Spenden
-Hier verwalten Sie das Spendenkonto. Die Webseite zeigt einen **QR-Code (GiroCode)**, den Spender einfach mit ihrer Bank-App scannen können. Ändern Sie hier IBAN und BIC nur bei einem Kontowechsel!
+Hier verwalten Sie das Spendenkonto. Die Webseite zeigt einen **GiroCode (QR-Code)**, den Spender einfach mit ihrer Bank-App scannen können. 
+- **Wichtig:** Da der Code nun als Bilddatei eingebunden wird, müssen Sie bei einer Änderung der IBAN/BIC auch ein neues QR-Code Bild im Ordner `assets` hochladen und den Pfad in der `config.js` bei `qrUrl` anpassen.
+
+### WhatsApp-Kanal
+Hier können Sie den Link zu Ihrem WhatsApp-Kanal und den zugehörigen QR-Code zum Scannen hinterlegen. Auch hier gilt: Wenn sich der Link ändert, laden Sie bitte ein neues QR-Code Bild hoch und passen den Pfad in der `config.js` an.
 
 ### Impressum & Datenschutz (Stammdaten)
 Unter `legal: { stammdaten: { ... } }` können Sie Namen von Vorständen, die E-Mail-Adresse oder die Registernummer ändern. Diese Daten werden dann automatisch korrekt in das Impressum und die Datenschutzerklärung eingesetzt.
