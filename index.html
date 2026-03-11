@@ -152,11 +152,9 @@
                     </h1>
                     <p class="mt-4 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" id="willkommen-text"></p>
                     <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
-                        <a href="#ueber-uns" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand hover:bg-brand-dark md:py-4 md:text-lg transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                            Förderverein unterstützen
+                        <a href="#ueber-uns" id="willkommen-btn-verein" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand hover:bg-brand-dark md:py-4 md:text-lg transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                         </a>
-                        <a href="#unsere-kita" class="flex items-center justify-center px-8 py-3 border border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition">
-                            Unsere Kita entdecken
+                        <a href="#unsere-kita" id="willkommen-btn-kita" class="flex items-center justify-center px-8 py-3 border border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition">
                         </a>
                     </div>
                 </div>
@@ -179,6 +177,22 @@
                 <p class="mt-4 max-w-3xl text-xl text-gray-500 mx-auto" id="about-text"></p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="features-container"></div>
+
+            <!-- Gruppenbild Showcase -->
+            <div class="mt-24 relative max-w-4xl mx-auto">
+                <div class="absolute inset-0 bg-brand/10 blob-shape transform -rotate-3 scale-105"></div>
+                <div class="relative bg-white p-4 pb-12 shadow-2xl rounded-[2rem] transform rotate-1 transition-transform hover:rotate-0 duration-500 border border-gray-100">
+                    <div id="group-photo-container" class="aspect-[16/9] rounded-[1.5rem] overflow-hidden bg-gray-50 text-center">
+                        <img id="group-photo" src="" class="w-full h-full object-cover hidden" alt="Unser Förderverein Team">
+                        <div id="group-photo-placeholder" class="w-full h-full image-placeholder text-brand/30">
+                            <i data-lucide="users" class="w-16 h-16 mb-2"></i>
+                            <p class="text-sm font-bold uppercase tracking-widest">Team-Foto folgt</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 right-8 bg-brand-green text-white px-6 py-2 rounded-full shadow-lg font-display font-bold transform -rotate-2" id="group-photo-label">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -243,8 +257,8 @@
                 <button onclick="openModal()" class="bg-white text-brand-green font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition transform hover:scale-105 flex items-center justify-center gap-2">
                     <i data-lucide="file-down" class="w-5 h-5"></i> <span id="btn-antrag"></span>
                 </button>
-                <a href="#spenden" class="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i data-lucide="heart-handshake" class="w-5 h-5"></i> Spendeninfos
+                <a href="#spenden" id="btn-spenden-cta" class="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
+                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
                 </a>
             </div>
         </div>
@@ -262,29 +276,29 @@
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gray-200/50 rounded-full"></div>
                         <div class="space-y-4">
                             <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Empfänger</span>
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-empfaenger"></span>
                                 <span class="font-bold text-gray-800 break-words text-right" id="bank-recipient"></span>
                             </div>
                             <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Bank</span>
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-bank"></span>
                                 <span class="font-medium text-gray-800 text-right" id="bank-name"></span>
                             </div>
                             <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">IBAN</span>
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-iban"></span>
                                 <div class="flex items-center justify-end gap-3 w-full sm:w-auto">
                                     <span class="font-mono font-bold text-brand-dark text-lg break-all" id="iban-display"></span>
-                                    <button onclick="copyToClipboard('iban')" class="bg-gray-100 hover:bg-brand hover:text-white p-2 rounded-lg transition shrink-0" title="IBAN Kopieren">
+                                    <button onclick="copyToClipboard('iban')" id="btn-copy-iban" class="bg-gray-100 hover:bg-brand hover:text-white p-2 rounded-lg transition shrink-0" title="">
                                         <i data-lucide="copy" class="w-4 h-4"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="flex flex-col sm:flex-row justify-between sm:items-center pt-1 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">BIC</span>
+                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-bic"></span>
                                 <span class="font-mono text-gray-800 text-right" id="bic-display"></span>
                             </div>
                         </div>
-                        <button onclick="copyAllBankData()" class="mt-8 w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold rounded-xl border border-gray-200 transition flex items-center justify-center gap-2">
-                            <i data-lucide="copy-check" class="w-5 h-5"></i> Alle Daten kopieren
+                        <button onclick="copyAllBankData()" id="btn-copy-all" class="mt-8 w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold rounded-xl border border-gray-200 transition flex items-center justify-center gap-2">
+                            <i data-lucide="copy-check" class="w-5 h-5"></i> <span></span>
                         </button>
                     </div>
                     <div class="flex flex-col items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
@@ -302,8 +316,7 @@
     <!-- UNSERE KITA -->
     <section id="unsere-kita" class="py-24 bg-gradient-to-b from-kita-warm to-kita-fresh relative overflow-hidden border-y border-orange-100">
         <div class="section-decorations"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 px-6 py-2 bg-brand-green text-white text-xs font-bold uppercase tracking-[0.2em] rounded-b-2xl shadow-sm z-20">
-            Die Einrichtung
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 px-6 py-2 bg-brand-green text-white text-xs font-bold uppercase tracking-[0.2em] rounded-b-2xl shadow-sm z-20" id="kita-section-label">
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20">
@@ -316,7 +329,7 @@
             
             <div class="mb-20">
                 <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-bold text-gray-900 font-display">Einblicke in unsere Räume</h3>
+                    <h3 class="text-3xl font-bold text-gray-900 font-display" id="kita-gallery-title"></h3>
                     <div class="flex gap-2 hidden md:flex">
                         <button onclick="scrollContainer('kita-raeume', -1)" class="p-2 rounded-full bg-white shadow-sm border border-blue-100 hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button>
                         <button onclick="scrollContainer('kita-raeume', 1)" class="p-2 rounded-full bg-white shadow-sm border border-blue-100 hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button>
@@ -341,14 +354,14 @@
                             <div class="flex items-start gap-4">
                                 <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="phone" class="w-6 h-6"></i></div>
                                 <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Telefon</p>
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-tel"></p>
                                     <a id="kita-tel" href="" class="text-lg font-semibold text-gray-800 hover:text-brand transition"></a>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="mail" class="w-6 h-6"></i></div>
                                 <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">E-Mail</p>
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-email"></p>
                                     <a id="kita-email" href="" class="text-lg font-semibold text-gray-800 hover:text-brand transition"></a>
                                 </div>
                             </div>
@@ -357,14 +370,14 @@
                             <div class="flex items-start gap-4">
                                 <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="smartphone" class="w-6 h-6"></i></div>
                                 <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">App-Kommunikation</p>
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-app"></p>
                                     <p class="text-sm text-gray-600" id="kita-app"></p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
                                 <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Adresse</p>
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-adresse"></p>
                                     <p class="text-sm text-gray-600" id="kita-adresse"></p>
                                 </div>
                             </div>
@@ -376,19 +389,19 @@
     </section>
 
     <!-- Footer -->
-    <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand">
+    <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand text-center md:text-left">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div>
+                <div class="flex flex-col items-center md:items-start">
                     <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-brand"></i> Kontakt
+                        <i data-lucide="map-pin" class="w-5 h-5 text-brand"></i> <span id="footer-header-kontakt"></span>
                     </h4>
                     <div id="footer-address" class="space-y-1"></div>
                     <a id="footer-email" href="" class="mt-4 inline-flex items-center gap-2 text-brand hover:text-white transition"></a>
                 </div>
-                <div>
+                <div class="flex flex-col items-center md:items-start">
                     <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
-                        <i data-lucide="scale" class="w-5 h-5 text-brand"></i> Rechtliches
+                        <i data-lucide="scale" class="w-5 h-5 text-brand"></i> <span id="footer-header-legal"></span>
                     </h4>
                     <ul class="space-y-3" id="footer-links"></ul>
                 </div>
@@ -405,7 +418,7 @@
         </div>
     </footer>
 
-    <!-- Modals -->
+    <!-- Modal Rechtliches -->
     <div id="legal-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col relative shadow-2xl overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center shrink-0">
@@ -413,19 +426,22 @@
                 <button onclick="closeLegalModal()" class="text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
             <div class="p-8 overflow-y-auto text-gray-600 leading-relaxed" id="legal-modal-content"></div>
-            <div class="p-6 border-t border-gray-100 text-center shrink-0"><button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition">Schließen</button></div>
+            <div class="p-6 border-t border-gray-100 text-center shrink-0">
+                <button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition modal-close-btn-text"></button>
+            </div>
         </div>
     </div>
 
+    <!-- Modal Mitgliedsantrag -->
     <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl transform scale-100 transition-transform duration-300">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             <div class="text-center">
                 <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"><i data-lucide="download" class="h-8 w-8 text-green-600"></i></div>
-                <h3 class="text-xl leading-6 font-bold text-gray-900 font-display mb-2" id="modal-title"></h3>
-                <p class="text-gray-500 mb-6" id="modal-text"></p>
-                <a id="modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3"><i data-lucide="file-text" class="w-5 h-5"></i> <span id="modal-btn-text"></span></a>
-                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline">Schließen</button>
+                <h3 class="text-xl leading-6 font-bold text-gray-900 font-display mb-2" id="membership-modal-title"></h3>
+                <p class="text-gray-500 mb-6" id="membership-modal-text"></p>
+                <a id="membership-modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3"><i data-lucide="file-text" class="w-5 h-5"></i> <span id="membership-modal-btn-text"></span></a>
+                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline modal-close-btn-text"></button>
             </div>
         </div>
     </div>
@@ -440,34 +456,54 @@
 
         function renderContent() {
             const c = webseitenInhalt;
+            
+            // Nav
             document.getElementById('nav-logo').src = c.logoUrl;
             document.getElementById('nav-title').textContent = c.vereinNameKurz;
             document.getElementById('nav-subtitle').textContent = c.stadt;
             renderMenu(c.menu);
 
+            // Willkommen
             document.getElementById('willkommen-badge').textContent = c.willkommen.badge;
             document.getElementById('willkommen-title-1').textContent = c.willkommen.titelZeile1;
             document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2;
             document.getElementById('willkommen-text').textContent = c.willkommen.text;
             document.getElementById('willkommen-image').src = c.willkommen.bildUrl;
+            document.getElementById('willkommen-btn-verein').textContent = c.willkommen.buttonVerein;
+            document.getElementById('willkommen-btn-kita').textContent = c.willkommen.buttonKita;
 
+            // Über Uns
+            document.getElementById('about-badge').textContent = c.ueberUns.badge;
+            document.getElementById('about-title').textContent = c.ueberUns.titel;
+            document.getElementById('about-text').textContent = c.ueberUns.text;
+            renderFeatures(c.ueberUns.karten);
+
+            // Gruppenbild
+            const groupPhoto = document.getElementById('group-photo');
+            const groupPhotoPlaceholder = document.getElementById('group-photo-placeholder');
+            document.getElementById('group-photo-label').textContent = c.ueberUns.gruppenBildLabel;
+            if (c.ueberUns.gruppenBildUrl) {
+                groupPhoto.src = c.ueberUns.gruppenBildUrl; groupPhoto.classList.remove('hidden');
+                groupPhotoPlaceholder.classList.add('hidden');
+            } else {
+                groupPhoto.classList.add('hidden'); groupPhotoPlaceholder.classList.remove('hidden');
+            }
+
+            // Kita Sektion
+            document.getElementById('kita-section-label').textContent = c.kita.bereichLabel;
             document.getElementById('kita-badge').textContent = c.kita.badge;
             document.getElementById('kita-title').textContent = c.kita.titel;
             document.getElementById('kita-subtitle').textContent = c.kita.untertitel;
             document.getElementById('kita-text').textContent = c.kita.beschreibung;
+            document.getElementById('kita-gallery-title').textContent = c.kita.galleryTitle;
             
-            const highlightsContainer = document.getElementById('kita-highlights');
-            highlightsContainer.innerHTML = c.kita.highlights.map(h => `
+            document.getElementById('kita-highlights').innerHTML = c.kita.highlights.map(h => `
                 <div class="bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white shadow-sm flex items-center gap-4">
                     <div class="p-3 bg-brand-green rounded-2xl text-white shadow-md"><i data-lucide="${h.icon}" class="w-6 h-6"></i></div>
-                    <div>
-                        <h4 class="font-bold text-gray-900">${h.titel}</h4>
-                        <p class="text-sm text-gray-600 leading-snug">${h.text}</p>
-                    </div>
-                </div>
-            `).join('');
+                    <div><h4 class="font-bold text-gray-900">${h.titel}</h4><p class="text-sm text-gray-600 leading-snug">${h.text}</p></div>
+                </div>`).join('');
 
-            renderRaeume(c.kita.raeume);
+            renderRaeume(c.kita.raeume, c.kita.galleryOverlayText);
 
             if (c.kita.leitung.bildUrl) {
                 document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl;
@@ -476,17 +512,18 @@
             }
             document.getElementById('kita-leitung-titel').textContent = c.kita.leitung.titel;
             document.getElementById('kita-leitung-name').textContent = c.kita.leitung.name;
+            document.getElementById('label-kita-tel').textContent = c.kita.kontaktLabels.tel;
             document.getElementById('kita-tel').textContent = c.kita.kontakt.tel;
             document.getElementById('kita-tel').href = `tel:${c.kita.kontakt.tel.replace(/\s/g, '')}`;
+            document.getElementById('label-kita-email').textContent = c.kita.kontaktLabels.email;
             document.getElementById('kita-email').textContent = c.kita.kontakt.email;
             document.getElementById('kita-email').href = `mailto:${c.kita.kontakt.email}`;
+            document.getElementById('label-kita-app').textContent = c.kita.kontaktLabels.app;
             document.getElementById('kita-app').textContent = c.kita.kontakt.appInfo;
+            document.getElementById('label-kita-adresse').textContent = c.kita.kontaktLabels.adresse;
             document.getElementById('kita-adresse').textContent = c.kita.kontakt.adresse;
 
-            document.getElementById('about-badge').textContent = c.ueberUns.badge;
-            document.getElementById('about-title').textContent = c.ueberUns.titel;
-            document.getElementById('about-text').textContent = c.ueberUns.text;
-            renderFeatures(c.ueberUns.karten);
+            // Förderverein Sektionen
             document.getElementById('projects-title').textContent = c.projekteSettings.titel;
             renderProjects(c.projekte);
             document.getElementById('actions-title').textContent = c.aktionenSettings.titel;
@@ -495,19 +532,32 @@
             document.getElementById('testimonials-title').textContent = c.testimonialsSettings.titel;
             document.getElementById('testimonials-subtitle').textContent = c.testimonialsSettings.untertitel;
             renderTestimonials(c.testimonials);
+            
             document.getElementById('cta-title').textContent = c.cta.titel;
             document.getElementById('cta-text').textContent = c.cta.text;
             document.getElementById('btn-antrag').textContent = c.cta.buttonAntrag;
+            const btnSpendenCta = document.getElementById('btn-spenden-cta');
+            btnSpendenCta.innerHTML = `<i data-lucide="heart-handshake" class="w-5 h-5"></i> ${c.cta.buttonSpenden}`;
+
+            // Bank
             document.getElementById('bank-title').textContent = c.bank.titel;
             document.getElementById('donate-text').textContent = c.bank.infoText;
+            document.getElementById('label-empfaenger').textContent = c.bank.labels.empfaenger;
             document.getElementById('bank-recipient').textContent = c.bank.empfaenger;
+            document.getElementById('label-bank').textContent = c.bank.labels.bank;
             document.getElementById('bank-name').textContent = c.bank.bankName;
+            document.getElementById('label-iban').textContent = c.bank.labels.iban;
             document.getElementById('iban-display').textContent = c.bank.iban;
+            document.getElementById('btn-copy-iban').title = c.bank.labels.copyIbanHint;
+            document.getElementById('label-bic').textContent = c.bank.labels.bic;
             document.getElementById('bic-display').textContent = c.bank.bic;
-            document.getElementById('copy-feedback').textContent = c.bank.copyFeedback;
+            document.getElementById('btn-copy-all').querySelector('span').textContent = c.bank.labels.copyAll;
             document.getElementById('qr-info-text').textContent = c.bank.qrInfo;
             renderGiroCode(c.bank);
 
+            // Footer
+            document.getElementById('footer-header-kontakt').textContent = c.legal.footerHeaders.kontakt;
+            document.getElementById('footer-header-legal').textContent = c.legal.footerHeaders.rechtliches;
             document.getElementById('footer-logo').src = c.logoUrl;
             document.getElementById('footer-address').innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
             const emailEl = document.getElementById('footer-email');
@@ -520,44 +570,42 @@
             document.getElementById('footer-about').textContent = c.footer.ueberText;
             document.getElementById('footer-copyright').textContent = c.vereinName;
 
-            document.getElementById('modal-title').textContent = c.modal.titel;
-            document.getElementById('modal-text').textContent = c.modal.text;
-            document.getElementById('modal-btn-text').textContent = c.modal.buttonDownload;
-            document.getElementById('modal-download-btn').href = c.cta.dateiNameAntrag;
+            // UI & Modals
+            document.querySelectorAll('.modal-close-btn-text').forEach(btn => btn.textContent = c.ui.buttonSchliessen);
+            document.getElementById('membership-modal-title').textContent = c.ui.mitgliedschaft.titel;
+            document.getElementById('membership-modal-text').textContent = c.ui.mitgliedschaft.text;
+            document.getElementById('membership-modal-btn-text').textContent = c.modal.buttonDownload;
+            document.getElementById('membership-modal-download-btn').href = c.cta.dateiNameAntrag;
         }
 
-        function renderRaeume(raeume) {
+        function renderRaeume(raeume, overlayText) {
             const container = document.getElementById('kita-raeume');
             container.innerHTML = raeume.map(r => {
                 const imgHtml = r.bildUrl 
                     ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700" alt="${r.titel}">`
                     : `<div class="w-full h-full image-placeholder text-blue-300"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`;
-                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border border-white group transition-all duration-500 relative z-10 flex flex-col"><div class="h-64 overflow-hidden relative">${imgHtml}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"><p class="text-white text-sm font-medium italic">Senfkorn Entdeckerwelt</p></div></div><div class="p-8 flex flex-col flex-grow"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed">${r.text}</p></div></div>`;
+                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border border-white group transition-all duration-500 relative z-10 flex flex-col"><div class="h-64 overflow-hidden relative">${imgHtml}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"><p class="text-white text-sm font-medium italic">${overlayText}</p></div></div><div class="p-8 flex flex-col flex-grow"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed">${r.text}</p></div></div>`;
             }).join('');
         }
 
         function renderProjects(projects) {
-            const container = document.getElementById('projects-container');
-            container.innerHTML = projects.map(p => {
+            document.getElementById('projects-container').innerHTML = projects.map(p => {
                 let sc = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100");
                 return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col"><div class="relative h-48 shrink-0"><img class="h-full w-full object-cover" src="${p.bildUrl}" alt="${p.titel}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-gray-900 font-display mb-3">${p.titel}</h3><p class="text-gray-600 text-sm leading-relaxed line-clamp-4">${p.beschreibung}</p></div></div>`;
             }).join('');
         }
 
         function renderActions(actions) {
-            const container = document.getElementById('actions-container');
-            container.innerHTML = actions.map(a => {
+            document.getElementById('actions-container').innerHTML = actions.map(a => {
                 let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : "";
-                let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900";
-                let dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
+                let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900", dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
                 let ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : "";
                 return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border transition h-full flex flex-col relative z-10" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3">${a.text}</p></div></div>`;
             }).join('');
         }
 
         function renderTestimonials(testimonials) {
-            const container = document.getElementById('testimonials-container');
-            container.innerHTML = testimonials.map(t => {
+            document.getElementById('testimonials-container').innerHTML = testimonials.map(t => {
                 let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
                 return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
             }).join('');
@@ -565,8 +613,7 @@
         }
 
         function scrollContainer(id, direction) {
-            const el = document.getElementById(id);
-            const scrollAmount = el.clientWidth * 0.8;
+            const el = document.getElementById(id); const scrollAmount = el.clientWidth * 0.8;
             el.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
 
@@ -591,7 +638,7 @@
             const d = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`;
             navigator.clipboard.writeText(d).then(() => {
                 const fb = document.getElementById('copy-feedback');
-                fb.textContent = "Alle Bankdaten wurden kopiert!";
+                fb.textContent = b.labels.copySuccess;
                 fb.classList.remove('opacity-0', 'translate-y-2');
                 setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500);
             });
@@ -617,21 +664,14 @@
             const d = document.getElementById('desktop-menu'), m = document.getElementById('mobile-menu-items');
             d.innerHTML = ''; m.innerHTML = '';
             items.forEach(item => {
-                let cl = "text-gray-600 hover:text-brand font-medium transition";
-                let mCl = "text-gray-700 hover:text-brand hover:bg-gray-50";
-                if (item.highlight) {
-                    cl = "px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5";
-                    mCl = "text-brand font-bold bg-orange-50";
-                } else if (item.kitaHighlight) {
-                    cl = "px-5 py-2.5 bg-brand-green text-white rounded-full font-bold hover:bg-green-700 transition shadow-md transform hover:-translate-y-0.5";
-                    mCl = "text-brand-green font-bold bg-green-50";
-                }
+                let cl = "text-gray-600 hover:text-brand font-medium transition", mCl = "text-gray-700 hover:text-brand hover:bg-gray-50";
+                if (item.highlight) { cl = "px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5"; mCl = "text-brand font-bold bg-orange-50"; }
+                else if (item.kitaHighlight) { cl = "px-5 py-2.5 bg-brand-green text-white rounded-full font-bold hover:bg-green-700 transition shadow-md transform hover:-translate-y-0.5"; mCl = "text-brand-green font-bold bg-green-50"; }
                 d.innerHTML += `<a href="${item.link}" class="${cl}">${item.label}</a>`;
                 m.innerHTML += `<a href="${item.link}" class="block px-3 py-2 rounded-md text-base font-medium ${mCl}">${item.label}</a>`;
             });
         }
 
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         function openLegalModal(type) {
             const l = webseitenInhalt.legal, t = l.templates[type];
             document.getElementById('legal-modal-title').textContent = t.titel;
@@ -640,7 +680,7 @@
             lucide.createIcons();
         }
         function closeLegalModal() { document.getElementById('legal-modal').classList.add('hidden'); }
-        function openModal() { const m = document.getElementById('membership-modal'); m.classList.remove('hidden'); setTimeout(() => m.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10); }
+        function openModal() { document.getElementById('membership-modal').classList.remove('hidden'); setTimeout(() => document.getElementById('membership-modal').firstElementChild.classList.remove('scale-95', 'opacity-0'), 10); }
         function closeModal() { document.getElementById('membership-modal').classList.add('hidden'); }
         document.getElementById('membership-modal').addEventListener('click', (e) => { if (e.target.id === 'membership-modal') closeModal(); });
         document.getElementById('legal-modal').addEventListener('click', (e) => { if (e.target.id === 'legal-modal') closeLegalModal(); });
