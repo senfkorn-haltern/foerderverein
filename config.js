@@ -302,6 +302,12 @@ const webseitenInhalt = {
         ],
         spenden: [
             { icon: "piggy-bank", pos: "top-10 right-10", color: "text-brand/20", size: "w-48 h-48 sm:w-64 sm:h-64", anim: "floating-slow" }
+        ],
+        "unsere-kita": [
+            { icon: "sprout", pos: "top-20 left-[10%]", color: "text-brand-green/30", size: "w-24 h-24", anim: "floating" },
+            { icon: "sun", pos: "bottom-40 right-[5%]", color: "text-brand/20", size: "w-32 h-32", anim: "floating-delayed" },
+            { icon: "leaf", pos: "top-1/2 left-[2%]", color: "text-brand-green/20", size: "w-20 h-20", anim: "floating-slow" },
+            { icon: "bird", pos: "top-10 right-[15%]", color: "text-brand-dark/10", size: "w-16 h-16", anim: "floating" }
         ]
     },
 
