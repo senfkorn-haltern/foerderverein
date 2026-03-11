@@ -152,11 +152,14 @@ const webseitenInhalt = {
     // --- SOCIAL MEDIA (WHATSAPP KANAL) ---
     socialMedia: {
         titel: "Immer auf dem Laufenden",
-        untertitel: "Folge unserem WhatsApp-Kanal für schnelle Updates.",
+        untertitel: "Folge unserem WhatsApp-Kanal für schnelle Updates direkt auf dein Handy.",
         whatsapp: {
             name: "Förderverein Senfkorn News",
             link: "https://whatsapp.com/channel/0029VbBFHQUI1rcg606kcY0b", 
             buttonText: "Kanal abonnieren",
+            qrUrl: "./assets/whatsapp_kanal_only_qr.png", // Bilddatei für den WhatsApp QR-Code
+            qrLabel: "Kanal mit dem Handy scannen",
+            qrSubLabel: "Einfach Kamera öffnen und draufhalten",
             features: [
                 "Termine & Erinnerungen",
                 "Fotos von Aktionen",
@@ -181,6 +184,7 @@ const webseitenInhalt = {
         bankName: "Sparkasse Westmünsterland",
         iban: "DE08 4015 4530 0040 0056 21",
         bic: "WELADE3WXXX",
+        qrUrl: "./assets/Bank_Giro_Code.jpg", // Bilddatei für den SEPA/Bank QR-Code
         labels: {
             empfaenger: "Empfänger",
             bank: "Bank",
@@ -294,10 +298,10 @@ const webseitenInhalt = {
             { icon: "piggy-bank", pos: "top-10 right-10", color: "text-brand/20", size: "w-48 h-48 sm:w-64 sm:h-64", anim: "floating-slow" }
         ],
         "unsere-kita": [
-            { icon: "sprout", pos: "top-[22%] left-[5%]", color: "text-brand-green/30", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
-            { icon: "sun", pos: "top-12 right-[5%]", color: "text-brand/20", size: "w-20 h-20 sm:w-32 sm:h-32", anim: "floating-delayed" },
-            { icon: "leaf", pos: "top-[65%] left-[2%]", color: "text-brand-green/20", size: "w-16 h-16 sm:w-20 sm:h-20", anim: "floating-slow" },
-            { icon: "bird", pos: "top-[42%] right-[2%]", color: "text-brand-dark/10", size: "w-12 h-12 sm:w-16 sm:h-16", anim: "floating" }
+            { icon: "sprout", pos: "top-10 left-[5%]", color: "text-brand-green/30", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
+            { icon: "sun", pos: "top-20 right-[5%]", color: "text-brand/20", size: "w-20 h-20 sm:w-32 sm:h-32", anim: "floating-delayed" },
+            { icon: "leaf", pos: "bottom-20 left-[2%]", color: "text-brand-green/20", size: "w-16 h-16 sm:w-20 sm:h-20", anim: "floating-slow" },
+            { icon: "bird", pos: "top-1/2 right-[2%]", color: "text-brand-dark/10", size: "w-12 h-12 sm:w-16 sm:h-16", anim: "floating" }
         ]
     }
 };
