@@ -33,8 +33,8 @@
                             blue: '#F0F9FF'
                         },
                         kita: {
-                            warm: '#FDE68A', // Satteres Bernstein-Gelb (Amber-200)
-                            fresh: '#D9F99D' // Lebendiges Frühlings-Grün (Lime-200)
+                            warm: '#FDE68A', 
+                            fresh: '#D9F99D' 
                         }
                     },
                     fontFamily: {
@@ -219,11 +219,17 @@
     <section id="testimonials" class="py-20 bg-soft-green relative overflow-hidden">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-4" id="testimonials-title"></h2>
-                <p class="text-xl text-gray-500" id="testimonials-subtitle"></p>
+            <div class="flex items-center justify-between mb-16">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-2" id="testimonials-title"></h2>
+                    <p class="text-xl text-gray-500" id="testimonials-subtitle"></p>
+                </div>
+                <div class="flex gap-2 hidden md:flex">
+                    <button onclick="scrollContainer('testimonials-container', -1)" class="p-2 rounded-full bg-white shadow-sm border border-green-100 hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="scrollContainer('testimonials-container', 1)" class="p-2 rounded-full bg-white shadow-sm border border-green-100 hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonials-container"></div>
+            <div class="scroll-container gap-6" id="testimonials-container"></div>
         </div>
     </section>
 
@@ -307,13 +313,18 @@
                 <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed" id="kita-text"></p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24" id="kita-highlights"></div>
+            
             <div class="mb-20">
-                <div class="flex items-center gap-4 mb-10">
+                <div class="flex items-center justify-between mb-10">
                     <h3 class="text-3xl font-bold text-gray-900 font-display">Einblicke in unsere Räume</h3>
-                    <div class="h-px flex-grow bg-white/50"></div>
+                    <div class="flex gap-2 hidden md:flex">
+                        <button onclick="scrollContainer('kita-raeume', -1)" class="p-2 rounded-full bg-white shadow-sm border border-blue-100 hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="scrollContainer('kita-raeume', 1)" class="p-2 rounded-full bg-white shadow-sm border border-blue-100 hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="kita-raeume"></div>
+                <div class="scroll-container gap-6" id="kita-raeume"></div>
             </div>
+
             <div class="bg-white/80 backdrop-blur-md rounded-[3rem] shadow-xl border border-white overflow-hidden lg:flex items-stretch">
                 <div class="lg:w-1/3 bg-white/50 flex flex-col items-center justify-center p-12 text-center border-r border-white/50">
                     <div class="w-40 h-40 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6">
@@ -434,14 +445,12 @@
             document.getElementById('nav-subtitle').textContent = c.stadt;
             renderMenu(c.menu);
 
-            // Willkommen
             document.getElementById('willkommen-badge').textContent = c.willkommen.badge;
             document.getElementById('willkommen-title-1').textContent = c.willkommen.titelZeile1;
             document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2;
             document.getElementById('willkommen-text').textContent = c.willkommen.text;
             document.getElementById('willkommen-image').src = c.willkommen.bildUrl;
 
-            // Kita Sektion
             document.getElementById('kita-badge').textContent = c.kita.badge;
             document.getElementById('kita-title').textContent = c.kita.titel;
             document.getElementById('kita-subtitle').textContent = c.kita.untertitel;
@@ -458,13 +467,7 @@
                 </div>
             `).join('');
 
-            const raeumeContainer = document.getElementById('kita-raeume');
-            raeumeContainer.innerHTML = c.kita.raeume.map(r => {
-                const imgHtml = r.bildUrl 
-                    ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700" alt="${r.titel}">`
-                    : `<div class="w-full h-full image-placeholder text-blue-300"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`;
-                return `<div class="gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border border-white group transition-all duration-500"><div class="h-64 overflow-hidden relative">${imgHtml}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"><p class="text-white text-sm font-medium italic">Senfkorn Entdeckerwelt</p></div></div><div class="p-8"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed">${r.text}</p></div></div>`;
-            }).join('');
+            renderRaeume(c.kita.raeume);
 
             if (c.kita.leitung.bildUrl) {
                 document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl;
@@ -480,7 +483,6 @@
             document.getElementById('kita-app').textContent = c.kita.kontakt.appInfo;
             document.getElementById('kita-adresse').textContent = c.kita.kontakt.adresse;
 
-            // Förderverein Sektionen
             document.getElementById('about-badge').textContent = c.ueberUns.badge;
             document.getElementById('about-title').textContent = c.ueberUns.titel;
             document.getElementById('about-text').textContent = c.ueberUns.text;
@@ -506,7 +508,6 @@
             document.getElementById('qr-info-text').textContent = c.bank.qrInfo;
             renderGiroCode(c.bank);
 
-            // Footer
             document.getElementById('footer-logo').src = c.logoUrl;
             document.getElementById('footer-address').innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
             const emailEl = document.getElementById('footer-email');
@@ -519,11 +520,20 @@
             document.getElementById('footer-about').textContent = c.footer.ueberText;
             document.getElementById('footer-copyright').textContent = c.vereinName;
 
-            // Modal
             document.getElementById('modal-title').textContent = c.modal.titel;
             document.getElementById('modal-text').textContent = c.modal.text;
             document.getElementById('modal-btn-text').textContent = c.modal.buttonDownload;
             document.getElementById('modal-download-btn').href = c.cta.dateiNameAntrag;
+        }
+
+        function renderRaeume(raeume) {
+            const container = document.getElementById('kita-raeume');
+            container.innerHTML = raeume.map(r => {
+                const imgHtml = r.bildUrl 
+                    ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700" alt="${r.titel}">`
+                    : `<div class="w-full h-full image-placeholder text-blue-300"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`;
+                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border border-white group transition-all duration-500 relative z-10 flex flex-col"><div class="h-64 overflow-hidden relative">${imgHtml}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"><p class="text-white text-sm font-medium italic">Senfkorn Entdeckerwelt</p></div></div><div class="p-8 flex flex-col flex-grow"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed">${r.text}</p></div></div>`;
+            }).join('');
         }
 
         function renderProjects(projects) {
@@ -543,6 +553,15 @@
                 let ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : "";
                 return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border transition h-full flex flex-col relative z-10" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3">${a.text}</p></div></div>`;
             }).join('');
+        }
+
+        function renderTestimonials(testimonials) {
+            const container = document.getElementById('testimonials-container');
+            container.innerHTML = testimonials.map(t => {
+                let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
+                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
+            }).join('');
+            lucide.createIcons();
         }
 
         function scrollContainer(id, direction) {
@@ -583,14 +602,6 @@
                 let cl = card.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (card.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100");
                 return `<div class="text-center p-6 ${cl} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current"><i data-lucide="${card.icon}" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3><p class="text-gray-600 leading-relaxed">${card.text}</p></div>`;
             }).join('');
-        }
-
-        function renderTestimonials(testimonials) {
-            document.getElementById('testimonials-container').innerHTML = testimonials.map(t => {
-                let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
-                return `<div class="bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
-            }).join('');
-            lucide.createIcons();
         }
 
         function renderDecorations() {
