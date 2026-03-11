@@ -53,7 +53,7 @@ const webseitenInhalt = {
         kontakt: {
             tel: "02364 9527024",
             email: "sfk@egha.de",
-            adresse: "Flaesheimer Str. 3, 45721 Haltern am See",
+            adresse: "Flaesheimer Str. 1, 45721 Haltern am See",
             appInfo: "Wir kommunizieren digital über die 'Stay Informed App'."
         },
 
@@ -304,10 +304,10 @@ const webseitenInhalt = {
             { icon: "piggy-bank", pos: "top-10 right-10", color: "text-brand/20", size: "w-48 h-48 sm:w-64 sm:h-64", anim: "floating-slow" }
         ],
         "unsere-kita": [
-            { icon: "sprout", pos: "top-20 left-[10%]", color: "text-brand-green/30", size: "w-24 h-24", anim: "floating" },
-            { icon: "sun", pos: "bottom-40 right-[5%]", color: "text-brand/20", size: "w-32 h-32", anim: "floating-delayed" },
-            { icon: "leaf", pos: "top-1/2 left-[2%]", color: "text-brand-green/20", size: "w-20 h-20", anim: "floating-slow" },
-            { icon: "bird", pos: "top-10 right-[15%]", color: "text-brand-dark/10", size: "w-16 h-16", anim: "floating" }
+            { icon: "sprout", pos: "top-10 left-[5%]", color: "text-brand-green/30", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
+            { icon: "sun", pos: "top-20 right-[5%]", color: "text-brand/20", size: "w-20 h-20 sm:w-32 sm:h-32", anim: "floating-delayed" },
+            { icon: "leaf", pos: "bottom-20 left-[2%]", color: "text-brand-green/20", size: "w-16 h-16 sm:w-20 sm:h-20", anim: "floating-slow" },
+            { icon: "bird", pos: "top-1/2 right-[2%]", color: "text-brand-dark/10", size: "w-12 h-12 sm:w-16 sm:h-16", anim: "floating" }
         ]
     },
 
