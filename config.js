@@ -32,7 +32,7 @@ const webseitenInhalt = {
     // label: Der Text im Menü | link: Wohin es springt (ID der Sektion mit #)
     // highlight: true = Oranger Button | kitaHighlight: true = Grüner Button
     menu: [
-        { label: "Start", link: "#home" },
+        { label: "Willkommen", link: "#home" },
         { label: "Über uns", link: "#ueber-uns" },
         { label: "Projekte", link: "#projekte" },
         { label: "Aktionen", link: "#aktionen" },
