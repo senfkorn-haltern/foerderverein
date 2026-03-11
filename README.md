@@ -1,95 +1,81 @@
-# Anleitung zur Pflege der Webseite
+# Handbuch zur Pflege der Webseite (Förderverein Senfkorn)
 
-Herzlich willkommen! Diese Webseite des Fördervereins wurde so gebaut, dass sie auch ohne Programmierkenntnisse einfach gepflegt werden kann. 
-
-### Keine Angst vor Fehlern!
-Das Wichtigste zuerst: **Sie können nichts kaputt machen.** Da wir die Seite über GitHub verwalten, wird jede Änderung gespeichert. Wenn etwas schiefgeht, können wir jederzeit zu einer älteren, funktionierenden Version zurückkehren.
-
-**Notfallkontakt:** Bei Fragen oder Problemen wenden Sie sich bitte an:
-**Christian Danowski-Buhren** (danowski-buhren@gmx.de)
+Herzlich willkommen! Diese Webseite wurde so entwickelt, dass sie vollständig über eine einzige Datei (`config.js`) gesteuert werden kann. Sie benötigen keine Programmierkenntnisse.
 
 ---
 
-## 1. Grundregeln beim Bearbeiten der Inhalte
+## 1. Das Sicherheitsnetz: Keine Angst vor Fehlern!
+**Sie können nichts kaputt machen.** GitHub speichert jede Version der Seite. Wenn die Seite nach einer Änderung nicht mehr lädt:
+1. Klicken Sie bei der Datei `config.js` oben auf **"History"**.
+2. Wählen Sie die letzte funktionierende Version aus.
+3. Stellen Sie diese mit einem Klick wieder her.
 
-Alle Inhalte der Webseite befinden sich in der Datei `config.js`. Diese Datei ist wie ein Rezeptbuch aufgebaut. Damit die Webseite alles richtig versteht, beachten Sie bitte diese drei Regeln:
-
-1.  **Anführungszeichen:** Texte müssen immer in Anführungszeichen stehen, zum Beispiel: `"Hier steht mein Text"`.
-2.  **Kommas:** Nach jedem Eintrag muss ein Komma stehen (außer es ist der absolut letzte Punkt in einer Liste). Wenn die Webseite nicht mehr lädt, fehlt oft nur ein Komma!
-3.  **Bilder ohne Datei:** Wenn Sie für einen Eintrag kein Bild haben, schreiben Sie einfach `null` (ohne Anführungszeichen).
-
----
-
-## 2. So fügen Sie neue Projekte oder Aktionen hinzu
-
-Dies ist der häufigste Fall: Sie möchten ein neues Foto und einen Text für ein Projekt oder eine Aktion ergänzen. Folgen Sie diesen zwei Schritten:
-
-### Schritt 1: Das Bild hochladen
-1. Öffnen Sie auf GitHub den Ordner `assets`.
-2. Laden Sie dort Ihr neues Bild hoch (am besten als `.jpg` oder `.png`).
-3. Merken Sie sich den Dateinamen (z.B. `matschkueche.jpg`).
-
-### Schritt 2: Den Eintrag in `config.js` erstellen
-1. Öffnen Sie die Datei `config.js`.
-2. Suchen Sie den Bereich `projekte:` oder `aktionen:`.
-3. Kopieren Sie einen bestehenden Block (alles von der geschweiften Klammer `{` bis zur schließenden Klammer `},`).
-4. Fügen Sie diesen Block direkt darunter ein.
-5. Passen Sie die Texte an.
-6. Bei `bildUrl:` schreiben Sie den Pfad zu Ihrem Bild hinein, zum Beispiel: `./assets/matschkueche.jpg`.
+**Notfallkontakt:** Christian Danowski-Buhren (danowski-buhren@gmx.de)
 
 ---
 
-## 3. Die Sektionen in der Übersicht
+## 2. Die goldenen Regeln der Bearbeitung
+Alle Inhalte liegen in der Datei `config.js`. Damit die Technik funktioniert, beachten Sie bitte diese Regeln:
 
-Hier ein kurzer Überblick, was Sie in der `config.js` alles ändern können:
-
-### Willkommen (Startseite)
-Hier ändern Sie den großen Begrüßungstext und das Hauptbild der Webseite.
-
-### Über uns
-Hier beschreiben wir den Ansatz des Fördervereins. In der Liste `karten` können Sie die drei Schwerpunkte (z.B. "Wachstum fördern") anpassen.
-
-### Projekte & Anschaffungen
-Hier zeigen wir, was wir für die Kinder erreicht haben. Jedes Projekt braucht einen `titel`, einen `status` ("aktiv" oder "abgeschlossen") und eine `beschreibung`.
-
-### Aktionen & Termine
-Hier stehen aktuelle Ereignisse wie Waffelverkäufe oder Gartenaktionen. Sie können hier ein `icon` festlegen (z.B. "utensils" für Essen oder "gift" für Geschenke).
-
-### Elternstimmen (Testimonials)
-Hier teilen Eltern ihre Meinung. Sie können für jede Person einen `avatar` (ein gezeichnetes Symbolbild) aus den Vorlagen am Anfang der Datei wählen oder `null` schreiben, wenn kein Symbol gewünscht ist.
-
-### Bankdaten & Spenden
-Hier verwalten Sie das Spendenkonto. Die Webseite zeigt einen **GiroCode (QR-Code)**, den Spender einfach mit ihrer Bank-App scannen können. 
-- **Wichtig:** Da der Code nun als Bilddatei eingebunden wird, müssen Sie bei einer Änderung der IBAN/BIC auch ein neues QR-Code Bild im Ordner `assets` hochladen und den Pfad in der `config.js` bei `qrUrl` anpassen.
-
-### WhatsApp-Kanal
-Hier können Sie den Link zu Ihrem WhatsApp-Kanal und den zugehörigen QR-Code zum Scannen hinterlegen. Auch hier gilt: Wenn sich der Link ändert, laden Sie bitte ein neues QR-Code Bild hoch und passen den Pfad in der `config.js` an.
-
-### Impressum & Datenschutz (Stammdaten)
-Unter `legal: { stammdaten: { ... } }` können Sie Namen von Vorständen, die E-Mail-Adresse oder die Registernummer ändern. Diese Daten werden dann automatisch korrekt in das Impressum und die Datenschutzerklärung eingesetzt.
+*   **Anführungszeichen:** Texte müssen immer in `"Anführungszeichen"` stehen.
+*   **Kommas:** Nach jedem Eintrag muss ein Komma `,` stehen.
+*   **Kein Bild?** Wenn Sie kein Foto haben, schreiben Sie `null` (ohne Anführungszeichen). Die Seite zeigt dann automatisch einen schönen Platzhalter ("Foto folgt") an.
+*   **Reihenfolge:** Der **oberste** Eintrag in einer Liste (z.B. bei Projekten) erscheint auf der Webseite als **erster**. Wenn Sie etwas Neues hinzufügen, setzen Sie es also am besten ganz nach oben in die Liste.
 
 ---
 
-## 4. Live-Schaltung: Änderungen im Internet veröffentlichen
+## 3. Schritt-für-Schritt: Einen neuen Eintrag hinzufügen
+Egal ob ein neues Projekt, eine Aktion oder eine Elternstimme – der Ablauf ist immer gleich.
 
-Wenn Sie eine Datei (z.B. `config.js`) auf GitHub bearbeitet und gespeichert haben ("Commit changes"), passiert Folgendes:
+### Beispiel: Ein neues Projekt hinzufügen ("Die Matschküche")
 
-1.  **Automatisches Update:** GitHub erkennt Ihre Änderung und aktualisiert die Webseite im Hintergrund.
-2.  **Dauer:** Es dauert meist ca. **1 bis 2 Minuten**, bis die Änderungen auf der echten Webseite sichtbar sind.
-3.  **Anschauen:** Laden Sie die Webseite in Ihrem Browser neu (ggf. die Seite mit der Taste `F5` oder `Strg + R` "hart" neu laden), um das Ergebnis zu sehen.
+**Schritt 1: Das Bild hochladen**
+1. Gehen Sie auf GitHub in den Ordner `assets` (oder einen Unterordner wie `2026`).
+2. Klicken Sie auf **"Add file"** -> **"Upload files"**.
+3. Laden Sie Ihr Bild hoch (z.B. `matschkueche.jpg`).
+
+**Schritt 2: Den Code in `config.js` vorbereiten**
+1. Öffnen Sie die `config.js`.
+2. Suchen Sie die Liste `projekte: [`.
+3. Kopieren Sie einen bestehenden Block (alles von `{` bis `},`).
+4. Fügen Sie ihn direkt unter der öffnenden Klammer `[` ein (damit er ganz oben steht).
+
+**Schritt 3: Werte anpassen**
+Passen Sie die Texte innerhalb der Anführungszeichen an. Das Ergebnis sieht dann so aus:
+
+```javascript
+{ 
+  titel: "Neue Matschküche", 
+  status: "abgeschlossen", 
+  statusText: "Eingeweiht!", 
+  bildUrl: "./assets/2026/matschkueche.jpg", 
+  beschreibung: "Dank eurer Spenden konnten wir eine neue Matschküche aus massivem Holz anschaffen." 
+},
+```
 
 ---
 
-## 5. Fehler beheben: Eine alte Version wiederherstellen
+## 4. Anleitung für die einzelnen Sektionen
 
-Sollte die Webseite nach einer Änderung nicht mehr laden oder "kaputt" aussehen, können Sie ganz einfach den Stand von gestern (oder von vor einer Stunde) wiederherstellen:
+### A. Unsere Kita (`kita`)
+*   **Funktionsräume (`raeume`):** Hier können Sie Räume hinzufügen. Wenn `bildUrl: null` ist, erscheint ein "In Arbeit"-Banner.
+*   **Kontakt:** Ändern Sie hier Telefonnummer und E-Mail der Kita.
 
-1.  Klicken Sie oben in Ihrem GitHub-Projekt auf den Punkt **"History"** (das kleine Uhr-Symbol rechts über der Dateiliste).
-2.  Dort sehen Sie eine Liste aller vergangenen Änderungen.
-3.  Klicken Sie auf die Version, die zuletzt gut funktioniert hat.
-4.  Klicken Sie rechts oben auf die drei Punkte `...` und wählen Sie **"Revert"** oder kopieren Sie den Inhalt der alten Datei und überschreiben Sie damit die aktuelle `config.js`.
-5.  Speichern Sie die Änderung ("Commit changes"). Die Webseite wird nun wieder mit dem alten Stand neu geladen.
+### B. Projekte & Aktionen (`projekte`, `aktionen`)
+*   **Status bei Projekten:** Nutzen Sie `"aktiv"` (grün), `"geplant"` (orange) oder `"abgeschlossen"` (blau).
+*   **Icons bei Aktionen:** Nutzen Sie Symbole wie `"utensils"` (Essen), `"gift"` (Geschenke) oder `"sun"` (Sommer).
+
+### C. Elternstimmen (`testimonials`)
+*   Hier nutzen wir **Avatare** (gezeichnete Gesichter).
+*   Nutzen Sie die Vorlagen von ganz oben in der Datei, z.B.: `avatar: avatarPresets.weiblich_hell`.
+
+### D. WhatsApp-Kanal (`socialMedia`)
+*   **Link:** Tragen Sie den Einladungs-Link zu Ihrem Kanal ein.
+*   **QR-Code:** Laden Sie ein Bild Ihres Kanal-QR-Codes hoch und verlinken Sie ihn bei `qrUrl`.
 
 ---
 
-Viel Erfolg bei der Pflege der Seite! Gemeinsam machen wir die Kita Senfkorn noch schöner.
+## 5. Änderungen live schalten
+1. Wenn Sie fertig sind, klicken Sie auf GitHub auf den grünen Button **"Commit changes"**.
+2. Warten Sie ca. **1 Minute**.
+3. Laden Sie die Webseite in Ihrem Browser neu (ggf. Taste `F5`). Fertig!

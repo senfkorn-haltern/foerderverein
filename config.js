@@ -3,12 +3,16 @@
 // =================================================================
 // 
 // HINWEIS FÜR DIE BEARBEITUNG:
-// 1. Texte stehen immer in Anführungszeichen: "Mein Text"
-// 2. Nach jedem Eintrag (außer dem letzten in einer Liste) muss ein Komma stehen.
-// 3. Wenn Sie ein Bild nicht haben, schreiben Sie: null (ohne Anführungszeichen).
-// 4. Zeilen mit // sind nur Kommentare und werden von der Webseite ignoriert.
+// 1. TEXTE: Müssen immer in Anführungszeichen stehen: "Mein Text"
+// 2. KOMMAS: Nach jedem Eintrag muss ein Komma stehen (außer am Ende einer Liste).
+// 3. BILDER: Wenn Sie kein Bild haben, schreiben Sie: null (ohne Anführungszeichen).
+//    Beispiel: bildUrl: null,
+// 4. ZEILENUMBRÜCHE: In Texten können Sie <br> für einen Umbruch nutzen.
+// 5. ICONS: Wir nutzen "Lucide Icons". Eine Übersicht aller Namen finden Sie auf:
+//    https://lucide.dev/icons (einfach den Namen in Kleinbuchstaben eintippen).
 
-// --- AVATAR-BILDER (VORLAGEN) ---
+// --- AVATAR-VORLAGEN (Für die Elternstimmen weiter unten) ---
+// Hier können Sie vordefinierte Gesichter wählen, um keine echten Fotos nutzen zu müssen.
 const avatarPresets = {
     weiblich_hell: "https://api.dicebear.com/7.x/notionists/svg?seed=Lara&backgroundColor=ffdfbf",
     weiblich_dunkel: "https://api.dicebear.com/7.x/notionists/svg?seed=Aisha&backgroundColor=ffdfbf",
@@ -18,13 +22,15 @@ const avatarPresets = {
 };
 
 const webseitenInhalt = {
-    // --- GRUNDEINSTELLUNGEN ---
+    // --- ALLGEMEINE DATEN ---
     vereinName: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
-    vereinNameKurz: "FV Ev. Kiga Senfkorn", 
+    vereinNameKurz: "FV Ev. Kiga Senfkorn", // Erscheint oben links in der Ecke
     stadt: "Haltern am See",
-    logoUrl: "./assets/logo.png", 
+    logoUrl: "./assets/logo.png", // Pfad zum Logo-Bild
     
-    // --- NAVIGATION (MENÜ) ---
+    // --- NAVIGATION (MENÜOBEN) ---
+    // label: Der Text im Menü | link: Wohin es springt (ID der Sektion mit #)
+    // highlight: true = Oranger Button | kitaHighlight: true = Grüner Button
     menu: [
         { label: "Start", link: "#home" },
         { label: "Über uns", link: "#ueber-uns" },
@@ -39,23 +45,24 @@ const webseitenInhalt = {
 
     // --- STARTSEITE (WILLKOMMEN-BEREICH) ---
     willkommen: {
-        badge: "Gemeinsam für unsere Kleinen", 
+        badge: "Gemeinsam für unsere Kleinen", // Kleiner Text über der Überschrift
         titelZeile1: "Aus kleinen Körnern",
-        titelZeile2: "werden starke Bäume.", 
+        titelZeile2: "werden starke Bäume.", // Wird in Orange hervorgehoben
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
-        bildUrl: "./assets/kind.jpeg",
+        bildUrl: "./assets/kind.jpeg", // Hauptbild rechts (oder null)
         buttonVerein: "Förderverein unterstützen",
         buttonKita: "Unsere Kita entdecken"
     },
 
-    // --- UNSERE KITA (DIE EINRICHTUNG) ---
+    // --- UNSERE KITA (VORSTELLUNG DER EINRICHTUNG) ---
     kita: {
-        bereichLabel: "Die Einrichtung",
+        bereichLabel: "Die Einrichtung", // Kleines Label ganz oben
         badge: "Herzlich Willkommen",
         titel: "Ev. Kindergarten Senfkorn",
         untertitel: "Ein Ort zum Wachsen in den Katharinenhöfen",
         beschreibung: "In unserem 2024 modern erbauten Kindergarten leben wir ein offenes Konzept. Unsere Kinder sind Entdecker:innen, die sich frei in unseren Funktionsräumen bewegen und von unseren Kita-Begleiter:innen liebevoll unterstützt werden.",
         
+        // Kleine Info-Kärtchen unter der Beschreibung
         highlights: [
             { icon: "utensils-crossed", titel: "BIO-Mittagessen", text: "Täglich frisch in BIO-Qualität von rebional." },
             { icon: "map-pin", titel: "Top Lage", text: "Ausflüge zum Kanal und nahen Spielplätzen." },
@@ -63,8 +70,10 @@ const webseitenInhalt = {
         ],
 
         galleryTitle: "Einblicke in unsere Räume",
-        galleryOverlayText: "Senfkorn Entdeckerwelt",
+        galleryOverlayText: "Senfkorn Entdeckerwelt", // Erscheint beim Drüberfahren mit der Maus
 
+        // Liste der Funktionsräume (Galerie)
+        // bildUrl: null erzeugt automatisch einen Platzhalter mit "Fotos folgen"
         raeume: [
             { titel: "Das Atelier", text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.", bildUrl: null },
             { titel: "Konstruktionsbereich", text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.", bildUrl: null },
@@ -74,18 +83,21 @@ const webseitenInhalt = {
             { titel: "Vorschul-Raum", text: "Gezielte Vorbereitung auf den neuen Lebensabschnitt Schule.", bildUrl: null }
         ],
 
+        // Sektion Außengelände
         aussen: {
             titel: "Unser Außengelände",
             text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.",
             bildUrl: null
         },
 
+        // Kita-Leitung Info
         leitung: {
             titel: "Kita-Leitung",
             name: "Frau Marie Büning",
             bildUrl: null
         },
 
+        // Beschriftungen für den Kontakt-Block
         kontaktLabels: {
             tel: "Telefon",
             email: "E-Mail",
@@ -93,6 +105,7 @@ const webseitenInhalt = {
             adresse: "Adresse"
         },
 
+        // Echte Kontaktdaten der Kita
         kontakt: {
             tel: "02364 9527024",
             email: "sfk@egha.de",
@@ -101,13 +114,15 @@ const webseitenInhalt = {
         }
     },
 
-    // --- ÜBER UNS (FÖRDERVEREIN) ---
+    // --- ÜBER UNS (FÖRDERVEREIN KONZEPT) ---
     ueberUns: {
         badge: "Unser Ansatz",
         titel: "Wurzeln schlagen, Welt entdecken",
         text: "Das offene Konzept der Kita Senfkorn stellt das Kind und seine Interessen in den Mittelpunkt. Als Förderverein unterstützen wir genau hier: Wir finanzieren Materialien, die Neugier wecken, und Projekte, die Selbstvertrauen stärken.",
-        gruppenBildUrl: null, 
-        gruppenBildLabel: "Wir unterstützen unsere Senfkörner!", 
+        gruppenBildUrl: null, // Foto des Vorstands oder Teams
+        gruppenBildLabel: "Wir unterstützen unsere Senfkörner!", // Text auf dem grünen Label am Bild
+        
+        // Drei Fokus-Karten (Icon-Farben: green, yellow, orange)
         karten: [
             { icon: "sprout", farbe: "green", titel: "Wachstum fördern", text: "Zusätzliche pädagogische Materialien für die Funktionsräume der Kita." },
             { icon: "sun", farbe: "yellow", titel: "Freude schenken", text: "Finanzierung von Ausflügen, Theaterbesuchen und Sommerfesten." },
@@ -119,6 +134,9 @@ const webseitenInhalt = {
     projekteSettings: {
         titel: "Projekte & Anschaffungen"
     },
+    // Status-Typen für die Farbkennzeichnung:
+    // status: "aktiv" (Grün), "geplant" (Orange), "abgeschlossen" (Blau)
+    // statusText: Der Text, der auf dem Label steht
     projekte: [
          { titel: "Musikschule für die Kita", status: "aktiv", statusText: "In Planung", bildUrl: "./assets/2026/musikschule.jpeg", beschreibung: "Der Förderverein plant die Finanzierung einer Musikschule, die regelmäßig in die Kita kommt. So können die Kinder spielerisch Instrumente entdecken und ihre musikalische Seite entfalten." },
          { titel: "Ausflug zum Maislabyrinth", status: "abgeschlossen", statusText: "Erfolgreich", bildUrl: "./assets/2025/Ausflug_Maislabyrinth.jpg", beschreibung: "Das war ein Riesenspaß! Alle Kinder und Erzieher haben gemeinsam den Weg durchs Labyrinth gesucht. Ein toller Tag in der Natur." },
@@ -130,24 +148,24 @@ const webseitenInhalt = {
         titel: "Aktionen & Termine",
         untertitel: "Gemeinsam aktiv für unsere Kita."
     },
+    // textFarbe: "white" für helle Texte mit Schatten auf dunklen Bildern
     aktionen: [
-        { titel: "Kinderkarneval 2026 - Das Senfkorn feiert!", zeitraum: "Februar 2026", icon: "venetian-mask", text: "Der Förderverein sponsorte Kamelle und spaßiges Wurfmaterial für den Kinderkarnevalsumzug <br> (Foto: Blanka Thieme-Dietel und Seestadtjecken)", bildUrl: "./assets/2026/karneval.jpg", textFarbe: "white" },
+        { titel: "Kinderkarneval 2026", zeitraum: "Februar 2026", icon: "venetian-mask", text: "Der Förderverein sponsorte Kamelle und spaßiges Wurfmaterial für den Kinderkarnevalsumzug <br> (Foto: Blanka Thieme-Dietel)", bildUrl: "./assets/2026/karneval.jpg", textFarbe: "white" },
         { titel: "Waffelverkauf", zeitraum: "Regelmäßig", icon: "utensils", text: "Der Duft von frischen Waffeln gehört dazu! Wir verkaufen regelmäßig an Markttagen oder bei Kita-Festen.", bildUrl: "./assets/2025/Waffel.jpeg", textFarbe: "white" },
         { titel: "Nikolausnachmittag", zeitraum: "Dezember", icon: "gift", text: "In der Weihnachtszeit organisieren wir einen gemütlichen Nachmittag mit Kakao, Plätzchen und einer kleinen Überraschung.", bildUrl: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=800&auto=format&fit=crop", textFarbe: "white" },
-        { titel: "Grillen für die Handwerker", zeitraum: "Einmalig", icon: "utensils", text: "Ein herzliches Dankeschön an alle fleißigen Helfer! Nach getaner Arbeit gab es Würstchen und Salate.", bildUrl: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop", textFarbe: "white" },
-        { titel: "Gartenaktion", zeitraum: "Frühling", icon: "shovel", text: "Eltern packen an: Gemeinsam machen wir den Garten fit für den Frühling. Mit Hacke, Schaufel und guter Laune.", bildUrl: null },
         { titel: "Sommerfest", zeitraum: "Juni", icon: "sun", text: "Spiele, Musik und gute Laune: Unser großes jährliches Sommerfest für alle Familien und Freunde.", bildUrl: null }
     ],
 
-    // --- TESTIMONIALS (ELTERNSTIMMEN) ---
+    // --- ELTERNSTIMMEN (TESTIMONIALS) ---
     testimonialsSettings: {
         titel: "Warum wir dabei sind",
         untertitel: "Stimmen aus unserer Elternschaft"
     },
+    // avatar: Nutzen Sie hier die avatarPresets von ganz oben (z.B. avatarPresets.neutral)
     testimonials: [
         { name: "Daniel L.", rolle: "Papa von zwei Töchtern", text: "Es ist toll zu sehen, wie die Anschaffungen des Fördervereins den Kita-Alltag bereichern. Der Ausflug ins Maislabyrinth war ein voller Erfolg!", avatar: avatarPresets.neutral },
-        { name: "Christian D.-B.", rolle: "Papa eines Sohnes und zweier Töchter", text: "Die Gemeinschaft im Verein ist super. Man lernt andere Eltern kennen und tut gleichzeitig etwas Gutes für die Kleinen.", avatar: avatarPresets.maennlich_hell },
-        { name: "Lara B.", rolle: "Mama eines Sohnes", text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!", avatar: null }
+        { name: "Christian D.-B.", rolle: "Papa von drei Kindern", text: "Die Gemeinschaft im Verein ist super. Man lernt andere Eltern kennen und tut gleichzeitig etwas Gutes für die Kleinen.", avatar: avatarPresets.maennlich_hell },
+        { name: "Lara B.", rolle: "Mama eines Sohnes", text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!", avatar: avatarPresets.weiblich_hell }
     ],
 
     // --- SOCIAL MEDIA (WHATSAPP KANAL) ---
@@ -158,7 +176,7 @@ const webseitenInhalt = {
             name: "Förderverein Senfkorn News",
             link: "https://whatsapp.com/channel/0029VbBFHQUI1rcg606kcY0b", 
             buttonText: "Kanal abonnieren",
-            qrUrl: "./assets/whatsapp_kanal_only_qr.png", // Bilddatei für den WhatsApp QR-Code
+            qrUrl: "./assets/whatsapp_kanal_only_qr.png", // QR-Code Bilddatei hochladen und hier verknüpfen
             qrLabel: "Kanal mit dem Handy scannen",
             qrSubLabel: "Einfach Kamera öffnen und draufhalten",
             features: [
@@ -175,7 +193,7 @@ const webseitenInhalt = {
         text: "Schon mit einem kleinen Jahresbeitrag hilfst du uns, große Sprünge zu machen.",
         buttonAntrag: "Mitgliedsantrag",
         buttonSpenden: "Spendeninfos",
-        dateiNameAntrag: "./assets/documents/Aufnahmeantrag_Förderverein-Senfkorn-Haltern.pdf" 
+        dateiNameAntrag: "./assets/documents/Aufnahmeantrag_Förderverein-Senfkorn-Haltern.pdf" // Dateiname im Ordner assets/documents
     },
 
     // --- BANKDATEN & SPENDEN ---
@@ -185,7 +203,7 @@ const webseitenInhalt = {
         bankName: "Sparkasse Westmünsterland",
         iban: "DE08 4015 4530 0040 0056 21",
         bic: "WELADE3WXXX",
-        qrUrl: "./assets/Bank_Giro_Code.jpg", // Bilddatei für den SEPA/Bank QR-Code
+        qrUrl: "./assets/Bank_Giro_Code.jpg", // Statisches QR-Code Bild (GiroCode)
         labels: {
             empfaenger: "Empfänger",
             bank: "Bank",
@@ -201,7 +219,8 @@ const webseitenInhalt = {
         standardZweck: "Spende Foerderverein" 
     },
 
-    // --- RECHTLICHE DATEN & TEXTE ---
+    // --- RECHTLICHE DATEN & TEXTE (STAMMDATEN) ---
+    // Diese Daten werden automatisch in das Impressum und den Datenschutz eingesetzt.
     legal: {
         stammdaten: {
             verein: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
@@ -219,6 +238,7 @@ const webseitenInhalt = {
             kontakt: "Kontakt",
             rechtliches: "Rechtliches"
         },
+        // HINWEIS: Die Vorlagen (Templates) müssen normalerweise nicht geändert werden.
         templates: {
             impressum: {
                 titel: "Impressum",
@@ -251,7 +271,7 @@ const webseitenInhalt = {
         }
     },
 
-    // --- MODAL & ALLGEMEIN ---
+    // --- MODAL & BUTTON-TEXTE ---
     ui: {
         buttonSchliessen: "Schließen",
         mitgliedschaft: {
@@ -273,7 +293,9 @@ const webseitenInhalt = {
         ueberText: "Der Förderverein unterstützt die pädagogische Arbeit der Einrichtung in Haltern am See finanziell und ideell."
     },
 
-    // --- SPIELERISCHE HINTERGRUND-DEKO ---
+    // --- DEKO-ELEMENTE (Hintergrund-Icons) ---
+    // Hier können Sie Icons im Hintergrund schweben lassen.
+    // pos: Position (Tailwind Klassen) | color: Farbe/Transparenz | anim: floating, floating-slow, floating-delayed
     dekoElemente: {
         home: [
             { icon: "cloud", pos: "top-24 left-[5%]", color: "text-brand-light/80", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
