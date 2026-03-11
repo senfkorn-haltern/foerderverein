@@ -4,681 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Förderverein Ev. Kindergarten Senfkorn e.V.</title>
-    
-    <!-- Konfiguration -->
     <script src="config.js"></script>
-
-    <!-- Tailwind CSS -->
     <script src="./lib/tailwind_3.4.17.js"></script>
-    <!-- Lucide Icons -->
     <script src="./lib/lucide_0.577.0.min.js"></script>
-    <!-- Google Fonts -->
     <link href="./lib/google_font.css" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            light: '#F3E9E2', 
-                            DEFAULT: '#D97706', 
-                            dark: '#B45309', 
-                            green: '#65A30D' 
-                        },
-                        soft: {
-                            amber: '#FFFBF0', 
-                            green: '#F7FBF2', 
-                            stone: '#FAFAF9',
-                            blue: '#F0F9FF'
-                        },
-                        kita: {
-                            warm: '#FDE68A', 
-                            fresh: '#D9F99D' 
-                        }
+                        brand: { light: '#F3E9E2', DEFAULT: '#D97706', dark: '#B45309', green: '#65A30D' },
+                        soft: { amber: '#FFFBF0', green: '#F7FBF2', stone: '#FAFAF9', blue: '#F0F9FF' },
+                        kita: { warm: '#FDE68A', fresh: '#D9F99D' },
+                        whatsapp: '#25D366'
                     },
-                    fontFamily: {
-                        sans: ['"Open Sans"', 'sans-serif'],
-                        display: ['"Nunito"', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['"Open Sans"', 'sans-serif'], display: ['"Nunito"', 'sans-serif'] }
                 }
             }
         }
     </script>
     <style>
-        .blob-shape {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: morph 8s ease-in-out infinite;
-        }
-        @keyframes morph {
-            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-        }
+        .blob-shape { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation: morph 8s ease-in-out infinite; }
+        @keyframes morph { 0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } }
         .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.7); }
         .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .floating { animation: float 6s ease-in-out infinite; }
         .floating-delayed { animation: float 8s ease-in-out infinite; animation-delay: 2s; }
         .floating-slow { animation: float 12s ease-in-out infinite; animation-delay: 1s; }
-        @keyframes float {
-            0% { transform: translate(0px, 0px) rotate(0deg); }
-            33% { transform: translate(10px, -25px) rotate(3deg); }
-            66% { transform: translate(-10px, -15px) rotate(-3deg); }
-            100% { transform: translate(0px, 0px) rotate(0deg); }
-        }
-        .scroll-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding-bottom: 20px;
-            -webkit-overflow-scrolling: touch;
-        }
+        @keyframes float { 0%, 100% { transform: translate(0,0) rotate(0); } 33% { transform: translate(10px,-25px) rotate(3deg); } 66% { transform: translate(-10px,-15px) rotate(-3deg); } }
+        .scroll-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
         .scroll-container::-webkit-scrollbar { display: none; }
         .scroll-item { scroll-snap-align: start; flex-shrink: 0; }
         .gallery-card:hover img { transform: scale(1.05); }
-        .image-placeholder {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .image-placeholder::after {
-            content: "In Arbeit";
-            position: absolute;
-            top: 1.2rem;
-            right: -2.5rem;
-            background: #D97706;
-            color: white;
-            padding: 0.25rem 3rem;
-            transform: rotate(45deg);
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
+        .image-placeholder { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .image-placeholder::after { content: "In Arbeit"; position: absolute; top: 1.2rem; right: -2.5rem; background: #D97706; color: white; padding: 0.25rem 3rem; transform: rotate(45deg); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; }
     </style>
 </head>
 <body class="font-sans text-gray-700 bg-soft-amber flex flex-col min-h-screen">
-
-    <!-- Navigation -->
     <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50">
         <div class="max-w-[95rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center gap-3 mr-4">
-                        <img id="nav-logo" src="" alt="Logo" class="h-20 w-auto">
-                        <span class="font-display font-bold text-lg sm:text-xl text-gray-800 tracking-tight leading-tight whitespace-nowrap">
-                            <span id="nav-title"></span> 
-                            <span class="block text-xs font-normal text-gray-500" id="nav-subtitle"></span>
-                        </span>
+                        <img id="nav-logo" src="" alt="Logo" class="h-24 w-auto">
+                        <span class="font-display font-bold text-lg sm:text-xl text-gray-800 tracking-tight leading-tight whitespace-nowrap"><span id="nav-title"></span><span class="block text-xs font-normal text-gray-500" id="nav-subtitle"></span></span>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-2 lg:space-x-4 xl:space-x-6" id="desktop-menu"></div>
-                <div class="flex items-center md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand focus:outline-none p-2">
-                        <i data-lucide="menu" class="w-8 h-8"></i>
-                    </button>
-                </div>
+                <div class="flex items-center md:hidden"><button id="mobile-menu-btn" class="text-gray-600 hover:text-brand p-2"><i data-lucide="menu" class="w-8 h-8"></i></button></div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg" id="mobile-menu-items"></div>
-        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100"><div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg" id="mobile-menu-items"></div></div>
     </nav>
-
-    <!-- Willkommen Section -->
-    <section id="home" class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section id="home" class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden text-center lg:text-left">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-brand/20 bg-orange-50/50 text-brand-dark text-sm font-semibold mb-6">
-                        <i data-lucide="heart" class="w-4 h-4 mr-2 text-brand"></i> <span id="willkommen-badge"></span>
-                    </div>
-                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl font-display mb-6">
-                        <span id="willkommen-title-1"></span><br>
-                        <span class="text-brand" id="willkommen-title-2"></span>
-                    </h1>
-                    <p class="mt-4 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" id="willkommen-text"></p>
-                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
-                        <a href="#ueber-uns" id="willkommen-btn-verein" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand hover:bg-brand-dark md:py-4 md:text-lg transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                        </a>
-                        <a href="#unsere-kita" id="willkommen-btn-kita" class="flex items-center justify-center px-8 py-3 border border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg transition">
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6">
-                    <div class="relative mx-auto w-full aspect-square max-w-md blob-shape bg-white shadow-xl overflow-hidden border-4 border-white">
-                        <img id="willkommen-image" class="w-full h-full object-cover" src="" alt="Kita Atmosphäre">
-                    </div>
-                </div>
+                <div class="md:max-w-2xl md:mx-auto lg:col-span-6"><div class="inline-flex items-center px-3 py-1 rounded-full border border-brand/20 bg-orange-50/50 text-brand-dark text-sm font-semibold mb-6"><i data-lucide="heart" class="w-4 h-4 mr-2 text-brand"></i><span id="willkommen-badge"></span></div><h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl font-display mb-6"><span id="willkommen-title-1"></span><br><span class="text-brand" id="willkommen-title-2"></span></h1><p class="mt-4 text-base text-gray-600 sm:text-lg lg:mx-0" id="willkommen-text"></p><div class="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4"><a href="#ueber-uns" id="willkommen-btn-verein" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand hover:bg-brand-dark md:py-4 md:text-lg transition shadow-md transform hover:-translate-y-0.5"></a><a href="#unsere-kita" id="willkommen-btn-kita" class="flex items-center justify-center px-8 py-3 border border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 transition"></a></div></div>
+                <div class="mt-12 relative lg:mt-0 lg:col-span-6"><div class="relative mx-auto w-full aspect-square max-w-md blob-shape bg-white shadow-xl overflow-hidden border-4 border-white"><img id="willkommen-image" class="w-full h-full object-cover" src="" alt="Kita Atmosphäre"></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Über Uns Section (Förderverein) -->
     <section id="ueber-uns" class="py-20 bg-white relative overflow-hidden">
         <div class="section-decorations"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-brand font-semibold tracking-wide uppercase" id="about-badge"></h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 font-display sm:text-4xl" id="about-title"></p>
-                <p class="mt-4 max-w-3xl text-xl text-gray-500 mx-auto" id="about-text"></p>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="mb-16"><h2 class="text-brand font-semibold tracking-wide uppercase" id="about-badge"></h2><p class="mt-2 text-3xl font-extrabold text-gray-900 font-display sm:text-4xl" id="about-title"></p><p class="mt-4 max-w-3xl text-xl text-gray-500 mx-auto" id="about-text"></p></div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="features-container"></div>
-
-            <!-- Gruppenbild Showcase -->
-            <div class="mt-24 relative max-w-4xl mx-auto">
+            <div class="mt-24 relative max-w-4xl mx-auto text-center">
                 <div class="absolute inset-0 bg-brand/10 blob-shape transform -rotate-3 scale-105"></div>
-                <div class="relative bg-white p-4 pb-12 shadow-2xl rounded-[2rem] transform rotate-1 transition-transform hover:rotate-0 duration-500 border border-gray-100">
-                    <div id="group-photo-container" class="aspect-[16/9] rounded-[1.5rem] overflow-hidden bg-gray-50 text-center">
-                        <img id="group-photo" src="" class="w-full h-full object-cover hidden" alt="Unser Förderverein Team">
+                <div class="relative bg-white p-4 pb-12 shadow-2xl rounded-[2rem] transform rotate-1 transition-transform hover:rotate-0 duration-500 border border-gray-100 mx-auto">
+                    <div id="group-photo-container" class="aspect-[16/9] rounded-[1.5rem] overflow-hidden bg-gray-50">
+                        <img id="group-photo" src="" class="w-full h-full object-cover hidden" alt="Team">
                         <div id="group-photo-placeholder" class="w-full h-full image-placeholder text-brand/30">
                             <i data-lucide="users" class="w-16 h-16 mb-2"></i>
                             <p class="text-sm font-bold uppercase tracking-widest">Team-Foto folgt</p>
                         </div>
                     </div>
-                    <div class="absolute -bottom-4 right-8 bg-brand-green text-white px-6 py-2 rounded-full shadow-lg font-display font-bold transform -rotate-2" id="group-photo-label">
-                    </div>
+                    <div class="absolute -bottom-4 right-8 bg-brand-green text-white px-6 py-2 rounded-full shadow-lg font-display font-bold transform -rotate-2" id="group-photo-label"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projekte Section -->
     <section id="projekte" class="py-20 bg-soft-stone relative overflow-hidden">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 font-display border-l-4 border-brand pl-4" id="projects-title"></h2>
-                <div class="flex gap-2 hidden md:flex">
-                    <button onclick="scrollContainer('projects-container', -1)" class="p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:text-brand transition"><i data-lucide="chevron-left"></i></button>
-                    <button onclick="scrollContainer('projects-container', 1)" class="p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:text-brand transition"><i data-lucide="chevron-right"></i></button>
-                </div>
-            </div>
+            <div class="flex items-center justify-between mb-8"><h2 class="text-3xl font-extrabold text-gray-900 font-display border-l-4 border-brand pl-4" id="projects-title"></h2><div class="flex gap-2 hidden md:flex"><button onclick="scrollContainer('projects-container', -1)" class="p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:text-brand transition"><i data-lucide="chevron-left"></i></button><button onclick="scrollContainer('projects-container', 1)" class="p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:text-brand transition"><i data-lucide="chevron-right"></i></button></div></div>
             <div class="scroll-container gap-6" id="projects-container"></div>
         </div>
     </section>
 
-    <!-- Aktionen Section -->
     <section id="aktionen" class="py-20 bg-white relative overflow-hidden">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex items-center justify-between mb-8">
-                <div class="text-center md:text-left">
-                    <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-2" id="actions-title"></h2>
-                    <p class="text-xl text-gray-500" id="actions-subtitle"></p>
-                </div>
-                <div class="flex gap-2 hidden md:flex">
-                    <button onclick="scrollContainer('actions-container', -1)" class="p-2 rounded-full bg-orange-50 shadow-sm border border-orange-100 hover:text-brand transition"><i data-lucide="chevron-left"></i></button>
-                    <button onclick="scrollContainer('actions-container', 1)" class="p-2 rounded-full bg-orange-50 shadow-sm border border-orange-100 hover:text-brand transition"><i data-lucide="chevron-right"></i></button>
-                </div>
-            </div>
+            <div class="flex items-center justify-between mb-8"><div class="text-center md:text-left"><h2 class="text-3xl font-extrabold text-gray-900 font-display mb-2" id="actions-title"></h2><p class="text-xl text-gray-500" id="actions-subtitle"></p></div><div class="flex gap-2 hidden md:flex"><button onclick="scrollContainer('actions-container', -1)" class="p-2 rounded-full bg-orange-50 shadow-sm border border-orange-100 hover:text-brand transition"><i data-lucide="chevron-left"></i></button><button onclick="scrollContainer('actions-container', 1)" class="p-2 rounded-full bg-orange-50 shadow-sm border border-orange-100 hover:text-brand transition"><i data-lucide="chevron-right"></i></button></div></div>
             <div class="scroll-container gap-6" id="actions-container"></div>
         </div>
     </section>
 
-    <!-- Testimonials -->
     <section id="testimonials" class="py-20 bg-soft-green relative overflow-hidden">
         <div class="section-decorations"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex items-center justify-between mb-16">
-                <div class="text-center md:text-left">
-                    <h2 class="text-3xl font-extrabold text-gray-900 font-display mb-2" id="testimonials-title"></h2>
-                    <p class="text-xl text-gray-500" id="testimonials-subtitle"></p>
-                </div>
-                <div class="flex gap-2 hidden md:flex">
-                    <button onclick="scrollContainer('testimonials-container', -1)" class="p-2 rounded-full bg-white shadow-sm border border-green-100 hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button>
-                    <button onclick="scrollContainer('testimonials-container', 1)" class="p-2 rounded-full bg-white shadow-sm border border-green-100 hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button>
-                </div>
-            </div>
+            <div class="flex items-center justify-between mb-16"><div class="text-center md:text-left"><h2 class="text-3xl font-extrabold text-gray-900 font-display mb-2" id="testimonials-title"></h2><p class="text-xl text-gray-500" id="testimonials-subtitle"></p></div><div class="flex gap-2 hidden md:flex"><button onclick="scrollContainer('testimonials-container', -1)" class="p-2 rounded-full bg-white shadow-sm border border-green-100 hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button><button onclick="scrollContainer('testimonials-container', 1)" class="p-2 rounded-full bg-white shadow-sm border border-green-100 hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button></div></div>
             <div class="scroll-container gap-6" id="testimonials-container"></div>
         </div>
     </section>
-
-    <!-- Mitgliedschaft CTA -->
-    <section id="mitgliedschaft" class="py-20 bg-brand-green text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-3xl sm:text-4xl font-extrabold font-display mb-6" id="cta-title"></h2>
-            <p class="text-lg sm:text-xl mb-10 text-green-50" id="cta-text"></p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="openModal()" class="bg-white text-brand-green font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i data-lucide="file-down" class="w-5 h-5"></i> <span id="btn-antrag"></span>
-                </button>
-                <a href="#spenden" id="btn-spenden-cta" class="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
+    <section id="social-media" class="py-20 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center"><div><h2 class="text-3xl font-extrabold text-gray-900 font-display mb-4" id="social-title"></h2><p class="text-xl text-gray-500 mb-8" id="social-subtitle"></p><div class="space-y-4 mb-10 flex flex-col items-center lg:items-start" id="social-features"></div><a id="social-btn-whatsapp" href="#" target="_blank" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-whatsapp text-white font-bold text-lg shadow-lg gap-3"><i data-lucide="message-circle" class="w-6 h-6"></i><span></span></a></div><div class="mt-12 lg:mt-0 flex justify-center"><div class="relative w-72 h-[500px] bg-gray-900 rounded-[3rem] border-8 border-gray-800 shadow-2xl overflow-hidden text-left"><div class="absolute inset-0 bg-[#E5DDD5]"><div class="bg-[#075E54] p-4 pt-8 flex items-center gap-3 text-white"><div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"><i data-lucide="users" class="w-6 h-6"></i></div><div><p class="text-xs font-bold leading-none" id="whatsapp-mock-name"></p><p class="text-[10px] opacity-70 mt-1">Kanal abonnieren</p></div></div><div class="p-4 space-y-4 text-left"><div class="bg-white p-3 rounded-xl shadow-sm text-sm relative text-left"><p>Hallo zusammen! 🥨 Heute beim Waffelverkauf haben wir 250€ gesammelt. Danke! 🥳</p></div><div class="bg-white p-3 rounded-xl shadow-sm text-sm relative text-left"><p>📸 Impressionen vom Kinderkarneval...</p></div></div></div><div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-32 h-32 bg-white p-2 rounded-xl shadow-lg hidden md:block border border-gray-100 text-center"><img id="whatsapp-qr" src="" class="w-full h-full" alt="QR"></div></div></div></div></div>
     </section>
 
-    <!-- Spenden Details -->
-    <section id="spenden" class="py-20 bg-white relative overflow-hidden">
+    <section id="mitgliedschaft" class="py-20 bg-brand-green text-white relative overflow-hidden text-center"><div class="max-w-4xl mx-auto px-4 relative z-10"><h2 class="text-3xl sm:text-4xl font-extrabold font-display mb-6" id="cta-title"></h2><p class="text-lg sm:text-xl mb-10 text-green-50" id="cta-text"></p><div class="flex flex-col sm:flex-row justify-center gap-4"><button onclick="openModal()" class="bg-white text-brand-green font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition transform hover:scale-105 flex items-center justify-center gap-2"><i data-lucide="file-down" class="w-5 h-5"></i><span id="btn-antrag"></span></button><a href="#spenden" id="btn-spenden-cta" class="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2"> <i data-lucide="heart-handshake" class="w-5 h-5"></i></a></div></div></section>
+
+    <section id="spenden" class="py-20 bg-white relative overflow-hidden text-center">
         <div class="section-decorations"></div>
-        <div class="max-w-5xl mx-auto px-4 relative z-10">
-            <div class="bg-orange-50/40 border border-orange-100/50 rounded-3xl p-8 sm:p-12 text-center">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6" id="bank-title"></h3>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto" id="donate-text"></p>
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-10">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md text-left relative">
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-gray-200/50 rounded-full"></div>
-                        <div class="space-y-4">
-                            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-empfaenger"></span>
-                                <span class="font-bold text-gray-800 break-words text-right" id="bank-recipient"></span>
-                            </div>
-                            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-bank"></span>
-                                <span class="font-medium text-gray-800 text-right" id="bank-name"></span>
-                            </div>
-                            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-3 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-iban"></span>
-                                <div class="flex items-center justify-end gap-3 w-full sm:w-auto">
-                                    <span class="font-mono font-bold text-brand-dark text-lg break-all" id="iban-display"></span>
-                                    <button onclick="copyToClipboard('iban')" id="btn-copy-iban" class="bg-gray-100 hover:bg-brand hover:text-white p-2 rounded-lg transition shrink-0" title="">
-                                        <i data-lucide="copy" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row justify-between sm:items-center pt-1 gap-1">
-                                <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" id="label-bic"></span>
-                                <span class="font-mono text-gray-800 text-right" id="bic-display"></span>
-                            </div>
-                        </div>
-                        <button onclick="copyAllBankData()" id="btn-copy-all" class="mt-8 w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold rounded-xl border border-gray-200 transition flex items-center justify-center gap-2">
-                            <i data-lucide="copy-check" class="w-5 h-5"></i> <span></span>
-                        </button>
-                    </div>
-                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div id="qrcode-container" class="bg-white p-2 rounded-xl border border-gray-100 mb-4">
-                            <img id="bank-qrcode" src="" alt="GiroCode" class="w-48 h-48">
-                        </div>
-                        <p class="text-xs text-gray-500 max-w-[200px]" id="qr-info-text"></p>
-                    </div>
-                </div>
-                <div id="copy-feedback" class="h-6 text-sm text-brand font-bold mt-6 opacity-0 transition transform translate-y-2"></div>
-            </div>
-        </div>
+        <div class="max-w-5xl mx-auto px-4 relative z-10"><div class="bg-orange-50/40 border border-orange-100 rounded-3xl p-8 sm:p-12"><h3 class="text-2xl font-bold text-gray-800 mb-6" id="bank-title"></h3><p class="text-gray-600 mb-8 max-w-2xl mx-auto" id="donate-text"></p><div class="flex flex-col lg:flex-row items-center justify-center gap-10 text-left"><div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md relative"><div class="space-y-4 text-center sm:text-left"><div class="flex flex-col sm:flex-row justify-between sm:items-center border-b pb-3 gap-1"><span class="text-gray-500 text-xs font-semibold uppercase" id="label-empfaenger"></span><span class="font-bold text-gray-800 text-right" id="bank-recipient"></span></div><div class="flex flex-col sm:flex-row justify-between sm:items-center border-b pb-3 gap-1"><span class="text-gray-500 text-xs font-semibold uppercase" id="label-bank"></span><span class="font-medium text-gray-800 text-right" id="bank-name"></span></div><div class="flex flex-col sm:flex-row justify-between sm:items-center border-b pb-3 gap-1"><span class="text-gray-500 text-xs font-semibold uppercase" id="label-iban"></span><div class="flex items-center gap-3"><span class="font-mono font-bold text-brand-dark text-lg" id="iban-display"></span><button onclick="copyToClipboard('iban')" id="btn-copy-iban" class="bg-gray-100 p-2 rounded-lg transition"><i data-lucide="copy" class="w-4 h-4"></i></button></div></div><div class="flex flex-col sm:flex-row justify-between sm:items-center pt-1 gap-1"><span class="text-gray-500 text-xs font-semibold uppercase" id="label-bic"></span><span class="font-mono text-gray-800 text-right" id="bic-display"></span></div></div><button onclick="copyAllBankData()" id="btn-copy-all" class="mt-8 w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold rounded-xl border flex items-center justify-center gap-2 text-center"><i data-lucide="copy-check" class="w-5 h-5"></i><span></span></button></div><div class="flex flex-col items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center"><img id="bank-qrcode" src="" alt="GiroCode" class="w-48 h-48 mb-4 text-center"><p class="text-xs text-gray-500 max-w-[200px] text-center" id="qr-info-text"></p></div></div><div id="copy-feedback" class="h-6 text-sm text-brand font-bold mt-6 opacity-0 transition transform translate-y-2"></div></div></div>
     </section>
 
-    <!-- UNSERE KITA -->
-    <section id="unsere-kita" class="py-24 bg-gradient-to-b from-kita-warm to-kita-fresh relative overflow-hidden border-y border-orange-100">
+    <section id="unsere-kita" class="py-24 bg-gradient-to-b from-kita-warm to-kita-fresh relative overflow-hidden border-y border-orange-100 text-center">
         <div class="section-decorations"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 px-6 py-2 bg-brand-green text-white text-xs font-bold uppercase tracking-[0.2em] rounded-b-2xl shadow-sm z-20" id="kita-section-label">
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-20">
-                <span class="text-brand-green font-bold tracking-widest uppercase text-sm" id="kita-badge"></span>
-                <h2 class="mt-2 text-4xl md:text-5xl font-extrabold text-gray-900 font-display" id="kita-title"></h2>
-                <p class="mt-4 text-2xl text-brand-dark font-medium italic" id="kita-subtitle"></p>
-                <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed" id="kita-text"></p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24" id="kita-highlights"></div>
-            
-            <div class="mb-20">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-bold text-gray-900 font-display" id="kita-gallery-title"></h3>
-                    <div class="flex gap-2 hidden md:flex">
-                        <button onclick="scrollContainer('kita-raeume', -1)" class="p-2 rounded-full bg-white shadow-sm border border-blue-100 hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button>
-                        <button onclick="scrollContainer('kita-raeume', 1)" class="p-2 rounded-full bg-white shadow-sm border border-blue-100 hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                </div>
-                <div class="scroll-container gap-6" id="kita-raeume"></div>
-            </div>
-
-            <div class="bg-white/80 backdrop-blur-md rounded-[3rem] shadow-xl border border-white overflow-hidden lg:flex items-stretch">
-                <div class="lg:w-1/3 bg-white/50 flex flex-col items-center justify-center p-12 text-center border-r border-white/50">
-                    <div class="w-40 h-40 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6">
-                        <div id="kita-leitung-bild-container" class="w-full h-full">
-                            <img id="kita-leitung-bild" class="w-full h-full object-cover" src="" alt="Leitung">
-                        </div>
-                    </div>
-                    <h4 class="text-xs font-bold text-brand-green uppercase tracking-widest mb-1" id="kita-leitung-titel"></h4>
-                    <p class="text-2xl font-bold text-gray-900 font-display" id="kita-leitung-name"></p>
-                </div>
-                <div class="lg:w-2/3 p-12 flex flex-col justify-center">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="phone" class="w-6 h-6"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-tel"></p>
-                                    <a id="kita-tel" href="" class="text-lg font-semibold text-gray-800 hover:text-brand transition"></a>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="mail" class="w-6 h-6"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-email"></p>
-                                    <a id="kita-email" href="" class="text-lg font-semibold text-gray-800 hover:text-brand transition"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-6 border-l border-white/50 sm:pl-10">
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="smartphone" class="w-6 h-6"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-app"></p>
-                                    <p class="text-sm text-gray-600" id="kita-app"></p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-white rounded-xl text-brand-green shadow-sm"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-adresse"></p>
-                                    <p class="text-sm text-gray-600" id="kita-adresse"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 px-6 py-2 bg-brand-green text-white text-xs font-bold uppercase tracking-[0.2em] rounded-b-2xl shadow-sm z-20" id="kita-section-label"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="mb-20"><span class="text-brand-green font-bold tracking-widest uppercase text-sm" id="kita-badge"></span><h2 class="mt-2 text-4xl md:text-5xl font-extrabold text-gray-900 font-display" id="kita-title"></h2><p class="mt-4 text-2xl text-brand-dark font-medium italic" id="kita-subtitle"></p><p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed text-center" id="kita-text"></p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 text-left" id="kita-highlights"></div><div class="mb-20 text-left"><div class="flex items-center justify-between mb-10"><h3 class="text-3xl font-bold text-gray-900 font-display" id="kita-gallery-title"></h3><div class="flex gap-2 hidden md:flex"><button onclick="scrollContainer('kita-raeume', -1)" class="p-2 rounded-full bg-white border hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button><button onclick="scrollContainer('kita-raeume', 1)" class="p-2 rounded-full bg-white border hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button></div></div><div class="scroll-container gap-6" id="kita-raeume"></div></div><div class="bg-white/80 backdrop-blur-md rounded-[3rem] shadow-xl border border-white overflow-hidden lg:flex items-stretch text-left"><div class="lg:w-1/3 bg-white/50 flex flex-col items-center justify-center p-12 text-center border-r border-white/50"><div class="w-40 h-40 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6"><div id="kita-leitung-bild-container" class="w-full h-full text-center flex flex-col justify-center"><img id="kita-leitung-bild" class="w-full h-full object-cover" src="" alt="Leitung"></div></div><h4 class="text-xs font-bold text-brand-green uppercase tracking-widest mb-1" id="kita-leitung-titel"></h4><p class="text-2xl font-bold text-gray-900 font-display" id="kita-leitung-name"></p></div><div class="lg:w-2/3 p-12 flex flex-col justify-center"><div class="grid grid-cols-1 sm:grid-cols-2 gap-10"><div class="space-y-6"><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="phone" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-tel"></p><a id="kita-tel" href="" class="text-lg font-semibold hover:text-brand transition text-left"></a></div></div><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="mail" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-email"></p><a id="kita-email" href="" class="text-lg font-semibold hover:text-brand transition text-left"></a></div></div></div><div class="space-y-6 border-l border-white/50 sm:pl-10"><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="smartphone" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-app"></p><p class="text-sm text-gray-600 text-left" id="kita-app"></p></div></div><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="map-pin" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-adresse"></p><p class="text-sm text-gray-600 text-left" id="kita-adresse"></p></div></div></div></div></div></div></div>
     </section>
 
-    <!-- Footer -->
-    <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand text-center md:text-left">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="flex flex-col items-center md:items-start">
-                    <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-brand"></i> <span id="footer-header-kontakt"></span>
-                    </h4>
-                    <div id="footer-address" class="space-y-1"></div>
-                    <a id="footer-email" href="" class="mt-4 inline-flex items-center gap-2 text-brand hover:text-white transition"></a>
-                </div>
-                <div class="flex flex-col items-center md:items-start">
-                    <h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2">
-                        <i data-lucide="scale" class="w-5 h-5 text-brand"></i> <span id="footer-header-legal"></span>
-                    </h4>
-                    <ul class="space-y-3" id="footer-links"></ul>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="mb-6 w-full flex justify-center">
-                        <img id="footer-logo" src="" alt="Logo" class="h-40 w-auto brightness-0 invert opacity-80">
-                    </div>
-                    <p class="text-sm text-gray-400 leading-relaxed text-center" id="footer-about"></p>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
-                &copy; <span id="current-year"></span> <span id="footer-copyright"></span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal Rechtliches -->
-    <div id="legal-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col relative shadow-2xl overflow-hidden">
-            <div class="p-6 border-b border-gray-100 flex justify-between items-center shrink-0">
-                <h3 class="text-xl font-bold text-gray-900 font-display" id="legal-modal-title"></h3>
-                <button onclick="closeLegalModal()" class="text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition"><i data-lucide="x" class="w-6 h-6"></i></button>
-            </div>
-            <div class="p-8 overflow-y-auto text-gray-600 leading-relaxed" id="legal-modal-content"></div>
-            <div class="p-6 border-t border-gray-100 text-center shrink-0">
-                <button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition modal-close-btn-text"></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Mitgliedsantrag -->
-    <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl transform scale-100 transition-transform duration-300">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand bg-gray-50 hover:bg-orange-50 rounded-full p-2 transition"><i data-lucide="x" class="w-6 h-6"></i></button>
-            <div class="text-center">
-                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"><i data-lucide="download" class="h-8 w-8 text-green-600"></i></div>
-                <h3 class="text-xl leading-6 font-bold text-gray-900 font-display mb-2" id="membership-modal-title"></h3>
-                <p class="text-gray-500 mb-6" id="membership-modal-text"></p>
-                <a id="membership-modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3"><i data-lucide="file-text" class="w-5 h-5"></i> <span id="membership-modal-btn-text"></span></a>
-                <button onclick="closeModal()" class="text-sm text-gray-400 hover:text-gray-600 underline modal-close-btn-text"></button>
-            </div>
-        </div>
-    </div>
-
+    <footer id="kontakt" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-brand text-center md:text-left"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-10"><div class="flex flex-col items-center md:items-start text-center md:text-left"><h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2 text-center md:text-left"><i data-lucide="map-pin" class="w-5 h-5 text-brand"></i><span id="footer-header-kontakt"></span></h4><div id="footer-address" class="space-y-1"></div><a id="footer-email" href="" class="mt-4 inline-flex items-center gap-2 text-brand hover:text-white transition"></a></div><div class="flex flex-col items-center md:items-start text-center md:text-left"><h4 class="text-white text-lg font-bold mb-6 font-display flex items-center gap-2 text-center md:text-left"><i data-lucide="scale" class="w-5 h-5 text-brand"></i><span id="footer-header-legal"></span></h4><ul class="space-y-3" id="footer-links"></ul></div><div class="flex flex-col items-center text-center"><div class="mb-6 w-full flex justify-center"><img id="footer-logo" src="" alt="Logo" class="h-40 w-auto brightness-0 invert opacity-80"></div><p class="text-sm text-gray-400 leading-relaxed text-center" id="footer-about"></p></div></div><div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">&copy; <span id="current-year"></span> <span id="footer-copyright"></span></div></div></footer>
+    <div id="legal-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300"><div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col relative shadow-2xl overflow-hidden"><div class="p-6 border-b border-gray-100 flex justify-between items-center shrink-0"><h3 class="text-xl font-bold text-gray-900 font-display" id="legal-modal-title"></h3><button onclick="closeLegalModal()" class="text-gray-400 hover:text-brand bg-gray-50 p-2 rounded-full transition"><i data-lucide="x" class="w-6 h-6"></i></button></div><div class="p-8 overflow-y-auto text-gray-600 leading-relaxed" id="legal-modal-content"></div><div class="p-6 border-t text-center shrink-0"><button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition modal-close-btn-text"></button></div></div></div>
+    <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300"><div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl text-center"><button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand p-2 rounded-full transition"><i data-lucide="x" class="w-6 h-6"></i></button><div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"><i data-lucide="download" class="h-8 w-8 text-green-600"></i></div><h3 class="text-xl font-bold text-gray-900 font-display mb-2" id="membership-modal-title"></h3><p class="text-gray-500 mb-6" id="membership-modal-text"></p><a id="membership-modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3"><i data-lucide="file-text" class="w-5 h-5"></i><span id="membership-modal-btn-text"></span></a><button onclick="closeModal()" class="text-sm text-gray-400 underline modal-close-btn-text"></button></div></div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            renderContent();
-            renderDecorations();
-            lucide.createIcons();
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
-
+        document.addEventListener('DOMContentLoaded', () => { renderContent(); renderDecorations(); lucide.createIcons(); document.getElementById('current-year').textContent = new Date().getFullYear(); });
         function renderContent() {
             const c = webseitenInhalt;
-            
-            // Nav
-            document.getElementById('nav-logo').src = c.logoUrl;
-            document.getElementById('nav-title').textContent = c.vereinNameKurz;
-            document.getElementById('nav-subtitle').textContent = c.stadt;
-            renderMenu(c.menu);
-
-            // Willkommen
-            document.getElementById('willkommen-badge').textContent = c.willkommen.badge;
-            document.getElementById('willkommen-title-1').textContent = c.willkommen.titelZeile1;
-            document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2;
-            document.getElementById('willkommen-text').textContent = c.willkommen.text;
-            document.getElementById('willkommen-image').src = c.willkommen.bildUrl;
-            document.getElementById('willkommen-btn-verein').textContent = c.willkommen.buttonVerein;
-            document.getElementById('willkommen-btn-kita').textContent = c.willkommen.buttonKita;
-
-            // Über Uns
-            document.getElementById('about-badge').textContent = c.ueberUns.badge;
-            document.getElementById('about-title').textContent = c.ueberUns.titel;
-            document.getElementById('about-text').textContent = c.ueberUns.text;
-            renderFeatures(c.ueberUns.karten);
-
-            // Gruppenbild
-            const groupPhoto = document.getElementById('group-photo');
-            const groupPhotoPlaceholder = document.getElementById('group-photo-placeholder');
-            document.getElementById('group-photo-label').textContent = c.ueberUns.gruppenBildLabel;
-            if (c.ueberUns.gruppenBildUrl) {
-                groupPhoto.src = c.ueberUns.gruppenBildUrl; groupPhoto.classList.remove('hidden');
-                groupPhotoPlaceholder.classList.add('hidden');
-            } else {
-                groupPhoto.classList.add('hidden'); groupPhotoPlaceholder.classList.remove('hidden');
-            }
-
-            // Kita Sektion
-            document.getElementById('kita-section-label').textContent = c.kita.bereichLabel;
-            document.getElementById('kita-badge').textContent = c.kita.badge;
-            document.getElementById('kita-title').textContent = c.kita.titel;
-            document.getElementById('kita-subtitle').textContent = c.kita.untertitel;
-            document.getElementById('kita-text').textContent = c.kita.beschreibung;
-            document.getElementById('kita-gallery-title').textContent = c.kita.galleryTitle;
-            
-            document.getElementById('kita-highlights').innerHTML = c.kita.highlights.map(h => `
-                <div class="bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white shadow-sm flex items-center gap-4">
-                    <div class="p-3 bg-brand-green rounded-2xl text-white shadow-md"><i data-lucide="${h.icon}" class="w-6 h-6"></i></div>
-                    <div><h4 class="font-bold text-gray-900">${h.titel}</h4><p class="text-sm text-gray-600 leading-snug">${h.text}</p></div>
-                </div>`).join('');
-
-            renderRaeume(c.kita.raeume, c.kita.galleryOverlayText);
-
-            if (c.kita.leitung.bildUrl) {
-                document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl;
-            } else {
-                document.getElementById('kita-leitung-bild-container').innerHTML = `<div class="w-full h-full image-placeholder text-blue-300"><i data-lucide="user" class="w-16 h-16 mb-1"></i><p class="text-[10px] font-bold uppercase tracking-tighter">Bild folgt</p></div>`;
-            }
-            document.getElementById('kita-leitung-titel').textContent = c.kita.leitung.titel;
-            document.getElementById('kita-leitung-name').textContent = c.kita.leitung.name;
-            document.getElementById('label-kita-tel').textContent = c.kita.kontaktLabels.tel;
-            document.getElementById('kita-tel').textContent = c.kita.kontakt.tel;
-            document.getElementById('kita-tel').href = `tel:${c.kita.kontakt.tel.replace(/\s/g, '')}`;
-            document.getElementById('label-kita-email').textContent = c.kita.kontaktLabels.email;
-            document.getElementById('kita-email').textContent = c.kita.kontakt.email;
-            document.getElementById('kita-email').href = `mailto:${c.kita.kontakt.email}`;
-            document.getElementById('label-kita-app').textContent = c.kita.kontaktLabels.app;
-            document.getElementById('kita-app').textContent = c.kita.kontakt.appInfo;
-            document.getElementById('label-kita-adresse').textContent = c.kita.kontaktLabels.adresse;
-            document.getElementById('kita-adresse').textContent = c.kita.kontakt.adresse;
-
-            // Förderverein Sektionen
-            document.getElementById('projects-title').textContent = c.projekteSettings.titel;
-            renderProjects(c.projekte);
-            document.getElementById('actions-title').textContent = c.aktionenSettings.titel;
-            document.getElementById('actions-subtitle').textContent = c.aktionenSettings.untertitel;
-            renderActions(c.aktionen);
-            document.getElementById('testimonials-title').textContent = c.testimonialsSettings.titel;
-            document.getElementById('testimonials-subtitle').textContent = c.testimonialsSettings.untertitel;
-            renderTestimonials(c.testimonials);
-            
-            document.getElementById('cta-title').textContent = c.cta.titel;
-            document.getElementById('cta-text').textContent = c.cta.text;
-            document.getElementById('btn-antrag').textContent = c.cta.buttonAntrag;
-            const btnSpendenCta = document.getElementById('btn-spenden-cta');
-            btnSpendenCta.innerHTML = `<i data-lucide="heart-handshake" class="w-5 h-5"></i> ${c.cta.buttonSpenden}`;
-
-            // Bank
-            document.getElementById('bank-title').textContent = c.bank.titel;
-            document.getElementById('donate-text').textContent = c.bank.infoText;
-            document.getElementById('label-empfaenger').textContent = c.bank.labels.empfaenger;
-            document.getElementById('bank-recipient').textContent = c.bank.empfaenger;
-            document.getElementById('label-bank').textContent = c.bank.labels.bank;
-            document.getElementById('bank-name').textContent = c.bank.bankName;
-            document.getElementById('label-iban').textContent = c.bank.labels.iban;
-            document.getElementById('iban-display').textContent = c.bank.iban;
-            document.getElementById('btn-copy-iban').title = c.bank.labels.copyIbanHint;
-            document.getElementById('label-bic').textContent = c.bank.labels.bic;
-            document.getElementById('bic-display').textContent = c.bank.bic;
-            document.getElementById('btn-copy-all').querySelector('span').textContent = c.bank.labels.copyAll;
-            document.getElementById('qr-info-text').textContent = c.bank.qrInfo;
-            renderGiroCode(c.bank);
-
-            // Footer
-            document.getElementById('footer-header-kontakt').textContent = c.legal.footerHeaders.kontakt;
-            document.getElementById('footer-header-legal').textContent = c.legal.footerHeaders.rechtliches;
-            document.getElementById('footer-logo').src = c.logoUrl;
-            document.getElementById('footer-address').innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
-            const emailEl = document.getElementById('footer-email');
-            emailEl.href = `mailto:${c.footer.email}`;
-            emailEl.innerHTML = `<i data-lucide="mail" class="w-4 h-4"></i> ${c.footer.email}`;
-            document.getElementById('footer-links').innerHTML = c.footer.links.map(l => {
-                let h = (l.text === "Impressum") ? `onclick="openLegalModal('impressum'); return false;"` : ((l.text === "Datenschutz") ? `onclick="openLegalModal('datenschutz'); return false;"` : "");
-                return `<li><a href="${l.url}" ${h} class="hover:text-white transition cursor-pointer">${l.text}</a></li>`;
-            }).join('');
-            document.getElementById('footer-about').textContent = c.footer.ueberText;
-            document.getElementById('footer-copyright').textContent = c.vereinName;
-
-            // UI & Modals
-            document.querySelectorAll('.modal-close-btn-text').forEach(btn => btn.textContent = c.ui.buttonSchliessen);
-            document.getElementById('membership-modal-title').textContent = c.ui.mitgliedschaft.titel;
-            document.getElementById('membership-modal-text').textContent = c.ui.mitgliedschaft.text;
-            document.getElementById('membership-modal-btn-text').textContent = c.modal.buttonDownload;
-            document.getElementById('membership-modal-download-btn').href = c.cta.dateiNameAntrag;
+            document.getElementById('nav-logo').src = c.logoUrl; document.getElementById('nav-title').textContent = c.vereinNameKurz; document.getElementById('nav-subtitle').textContent = c.stadt; renderMenu(c.menu);
+            document.getElementById('willkommen-badge').textContent = c.willkommen.badge; document.getElementById('willkommen-title-1').textContent = c.willkommen.titelZeile1; document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2; document.getElementById('willkommen-text').textContent = c.willkommen.text; document.getElementById('willkommen-image').src = c.willkommen.bildUrl; document.getElementById('willkommen-btn-verein').textContent = c.willkommen.buttonVerein; document.getElementById('willkommen-btn-kita').textContent = c.willkommen.buttonKita;
+            document.getElementById('about-badge').textContent = c.ueberUns.badge; document.getElementById('about-title').textContent = c.ueberUns.titel; document.getElementById('about-text').textContent = c.ueberUns.text; renderFeatures(c.ueberUns.karten);
+            const gp = document.getElementById('group-photo'), gpp = document.getElementById('group-photo-placeholder'); document.getElementById('group-photo-label').textContent = c.ueberUns.gruppenBildLabel;
+            if (c.ueberUns.gruppenBildUrl) { gp.src = c.ueberUns.gruppenBildUrl; gp.classList.remove('hidden'); gpp.classList.add('hidden'); } else { gp.classList.add('hidden'); gpp.classList.remove('hidden'); }
+            document.getElementById('social-title').textContent = c.socialMedia.titel; document.getElementById('social-subtitle').textContent = c.socialMedia.untertitel; document.getElementById('social-features').innerHTML = c.socialMedia.whatsapp.features.map(f => `<div class="flex items-center gap-3 text-gray-700 font-medium"><div class="w-6 h-6 bg-whatsapp/10 text-whatsapp rounded-full flex items-center justify-center shrink-0"><i data-lucide="check" class="w-4 h-4"></i></div>${f}</div>`).join('');
+            document.getElementById('social-btn-whatsapp').href = c.socialMedia.whatsapp.link; document.getElementById('social-btn-whatsapp').querySelector('span').textContent = c.socialMedia.whatsapp.buttonText; document.getElementById('whatsapp-mock-name').textContent = c.socialMedia.whatsapp.name; document.getElementById('whatsapp-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(c.socialMedia.whatsapp.link)}`;
+            document.getElementById('kita-section-label').textContent = c.kita.bereichLabel; document.getElementById('kita-badge').textContent = c.kita.badge; document.getElementById('kita-title').textContent = c.kita.titel; document.getElementById('kita-subtitle').textContent = c.kita.untertitel; document.getElementById('kita-text').textContent = c.kita.beschreibung; document.getElementById('kita-gallery-title').textContent = c.kita.galleryTitle; renderRaeume(c.kita.raeume, c.kita.galleryOverlayText);
+            if (c.kita.leitung.bildUrl) { document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl; } else { document.getElementById('kita-leitung-bild-container').innerHTML = `<div class="w-full h-full image-placeholder text-blue-300 text-center flex flex-col items-center justify-center"><i data-lucide="user" class="w-16 h-16 mb-1"></i><p class="text-[10px] font-bold uppercase tracking-tighter">Bild folgt</p></div>`; }
+            document.getElementById('kita-leitung-titel').textContent = c.kita.leitung.titel; document.getElementById('kita-leitung-name').textContent = c.kita.leitung.name; document.getElementById('label-kita-tel').textContent = c.kita.kontaktLabels.tel; document.getElementById('kita-tel').textContent = c.kita.kontakt.tel; document.getElementById('kita-tel').href = `tel:${c.kita.kontakt.tel.replace(/\s/g, '')}`; document.getElementById('label-kita-email').textContent = c.kita.kontaktLabels.email; document.getElementById('kita-email').textContent = c.kita.kontakt.email; document.getElementById('kita-email').href = `mailto:${c.kita.kontakt.email}`; document.getElementById('label-kita-app').textContent = c.kita.kontaktLabels.app; document.getElementById('kita-app').textContent = c.kita.kontakt.appInfo; document.getElementById('label-kita-adresse').textContent = c.kita.kontaktLabels.adresse; document.getElementById('kita-adresse').textContent = c.kita.kontakt.adresse;
+            document.getElementById('projects-title').textContent = c.projekteSettings.titel; renderProjects(c.projekte); document.getElementById('actions-title').textContent = c.aktionenSettings.titel; document.getElementById('actions-subtitle').textContent = c.aktionenSettings.untertitel; renderActions(c.aktionen); document.getElementById('testimonials-title').textContent = c.testimonialsSettings.titel; document.getElementById('testimonials-subtitle').textContent = c.testimonialsSettings.untertitel; renderTestimonials(c.testimonials);
+            document.getElementById('cta-title').textContent = c.cta.titel; document.getElementById('cta-text').textContent = c.cta.text; document.getElementById('btn-antrag').textContent = c.cta.buttonAntrag; document.getElementById('btn-spenden-cta').innerHTML = `<i data-lucide="heart-handshake" class="w-5 h-5"></i> ${c.cta.buttonSpenden}`;
+            document.getElementById('bank-title').textContent = c.bank.titel; document.getElementById('donate-text').textContent = c.bank.infoText; document.getElementById('label-empfaenger').textContent = c.bank.labels.empfaenger; document.getElementById('bank-recipient').textContent = c.bank.empfaenger; document.getElementById('label-bank').textContent = c.bank.labels.bank; document.getElementById('bank-name').textContent = c.bank.bankName; document.getElementById('label-iban').textContent = c.bank.labels.iban; document.getElementById('iban-display').textContent = c.bank.iban; document.getElementById('btn-copy-iban').title = c.bank.labels.copyIbanHint; document.getElementById('label-bic').textContent = c.bank.labels.bic; document.getElementById('bic-display').textContent = c.bank.bic; document.getElementById('btn-copy-all').querySelector('span').textContent = c.bank.labels.copyAll; document.getElementById('qr-info-text').textContent = c.bank.qrInfo; renderGiroCode(c.bank);
+            document.getElementById('footer-header-kontakt').textContent = c.legal.footerHeaders.kontakt; document.getElementById('footer-header-legal').textContent = c.legal.footerHeaders.rechtliches; document.getElementById('footer-logo').src = c.logoUrl; document.getElementById('footer-address').innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
+            const em = document.getElementById('footer-email'); em.href = `mailto:${c.footer.email}`; em.innerHTML = `<i data-lucide="mail" class="w-4 h-4"></i> ${c.footer.email}`;
+            document.getElementById('footer-links').innerHTML = c.footer.links.map(l => { let h = (l.text === "Impressum") ? `onclick="openLegalModal('impressum'); return false;"` : ((l.text === "Datenschutz") ? `onclick="openLegalModal('datenschutz'); return false;"` : ""); return `<li><a href="${l.url}" ${h} class="hover:text-white transition cursor-pointer">${l.text}</a></li>`; }).join('');
+            document.getElementById('footer-about').textContent = c.footer.ueberText; document.getElementById('footer-copyright').textContent = c.vereinName; document.querySelectorAll('.modal-close-btn-text').forEach(btn => btn.textContent = c.ui.buttonSchliessen); document.getElementById('membership-modal-title').textContent = c.ui.mitgliedschaft.titel; document.getElementById('membership-modal-text').textContent = c.ui.mitgliedschaft.text; document.getElementById('membership-modal-btn-text').textContent = c.ui.mitgliedschaft.buttonDownload; document.getElementById('membership-modal-download-btn').href = c.cta.dateiNameAntrag;
         }
-
-        function renderRaeume(raeume, overlayText) {
-            const container = document.getElementById('kita-raeume');
-            container.innerHTML = raeume.map(r => {
-                const imgHtml = r.bildUrl 
-                    ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700" alt="${r.titel}">`
-                    : `<div class="w-full h-full image-placeholder text-blue-300"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`;
-                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border border-white group transition-all duration-500 relative z-10 flex flex-col"><div class="h-64 overflow-hidden relative">${imgHtml}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"><p class="text-white text-sm font-medium italic">${overlayText}</p></div></div><div class="p-8 flex flex-col flex-grow"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed">${r.text}</p></div></div>`;
-            }).join('');
-        }
-
-        function renderProjects(projects) {
-            document.getElementById('projects-container').innerHTML = projects.map(p => {
-                let sc = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100");
-                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col"><div class="relative h-48 shrink-0"><img class="h-full w-full object-cover" src="${p.bildUrl}" alt="${p.titel}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold text-gray-900 font-display mb-3">${p.titel}</h3><p class="text-gray-600 text-sm leading-relaxed line-clamp-4">${p.beschreibung}</p></div></div>`;
-            }).join('');
-        }
-
-        function renderActions(actions) {
-            document.getElementById('actions-container').innerHTML = actions.map(a => {
-                let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : "";
-                let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900", dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600";
-                let ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : "";
-                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border transition h-full flex flex-col relative z-10" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3">${a.text}</p></div></div>`;
-            }).join('');
-        }
-
-        function renderTestimonials(testimonials) {
-            document.getElementById('testimonials-container').innerHTML = testimonials.map(t => {
-                let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green"><i data-lucide="user" class="w-8 h-8"></i></div>`;
-                return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl p-8 shadow-sm border border-green-100/50 flex flex-col transition hover:shadow-md relative z-10"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`;
-            }).join('');
-            lucide.createIcons();
-        }
-
-        function scrollContainer(id, direction) {
-            const el = document.getElementById(id); const scrollAmount = el.clientWidth * 0.8;
-            el.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-        }
-
-        function renderGiroCode(bank) {
-            const iban = bank.iban.replace(/\s/g, ''), bic = bank.bic.replace(/\s/g, '');
-            const epcData = ["BCD", "001", "1", "SCT", bic, bank.empfaenger, iban, "", "", "", bank.standardZweck].join("\n");
-            document.getElementById('bank-qrcode').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(epcData)}`;
-        }
-
-        function copyToClipboard(type) {
-            let t = type === 'iban' ? webseitenInhalt.bank.iban.replace(/\s/g, '') : type;
-            navigator.clipboard.writeText(t).then(() => {
-                const fb = document.getElementById('copy-feedback');
-                fb.textContent = webseitenInhalt.bank.copyFeedback;
-                fb.classList.remove('opacity-0', 'translate-y-2');
-                setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500);
-            });
-        }
-
-        function copyAllBankData() {
-            const b = webseitenInhalt.bank;
-            const d = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`;
-            navigator.clipboard.writeText(d).then(() => {
-                const fb = document.getElementById('copy-feedback');
-                fb.textContent = b.labels.copySuccess;
-                fb.classList.remove('opacity-0', 'translate-y-2');
-                setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500);
-            });
-        }
-
-        function renderFeatures(cards) {
-            document.getElementById('features-container').innerHTML = cards.map(card => {
-                let cl = card.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (card.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100");
-                return `<div class="text-center p-6 ${cl} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-current"><i data-lucide="${card.icon}" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${card.titel}</h3><p class="text-gray-600 leading-relaxed">${card.text}</p></div>`;
-            }).join('');
-        }
-
-        function renderDecorations() {
-            const deko = webseitenInhalt.dekoElemente;
-            Object.keys(deko).forEach(sid => {
-                const s = document.getElementById(sid); if (!s) return;
-                const c = s.querySelector('.section-decorations'); if (!c) return;
-                c.innerHTML = deko[sid].map(item => `<div class="absolute ${item.pos} ${item.color} ${item.anim} z-0 pointer-events-none"><i data-lucide="${item.icon}" class="${item.size}"></i></div>`).join('');
-            });
-        }
-
-        function renderMenu(items) {
-            const d = document.getElementById('desktop-menu'), m = document.getElementById('mobile-menu-items');
-            d.innerHTML = ''; m.innerHTML = '';
-            items.forEach(item => {
-                let cl = "text-gray-600 hover:text-brand font-medium transition", mCl = "text-gray-700 hover:text-brand hover:bg-gray-50";
-                if (item.highlight) { cl = "px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5"; mCl = "text-brand font-bold bg-orange-50"; }
-                else if (item.kitaHighlight) { cl = "px-5 py-2.5 bg-brand-green text-white rounded-full font-bold hover:bg-green-700 transition shadow-md transform hover:-translate-y-0.5"; mCl = "text-brand-green font-bold bg-green-50"; }
-                d.innerHTML += `<a href="${item.link}" class="${cl}">${item.label}</a>`;
-                m.innerHTML += `<a href="${item.link}" class="block px-3 py-2 rounded-md text-base font-medium ${mCl}">${item.label}</a>`;
-            });
-        }
-
-        function openLegalModal(type) {
-            const l = webseitenInhalt.legal, t = l.templates[type];
-            document.getElementById('legal-modal-title').textContent = t.titel;
-            document.getElementById('legal-modal-content').innerHTML = t.getHtml(l.stammdaten);
-            document.getElementById('legal-modal').classList.remove('hidden');
-            lucide.createIcons();
-        }
+        function renderFeatures(cards) { document.getElementById('features-container').innerHTML = cards.map(c => { let cl = c.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (c.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100"); return `<div class="text-center p-6 ${cl} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-center flex flex-col justify-center"><i data-lucide="${c.icon}" class="w-8 h-8 mx-auto"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${c.titel}</h3><p class="text-gray-600 leading-relaxed text-left">${c.text}</p></div>`; }).join(''); }
+        function renderRaeume(raeume, overlay) { document.getElementById('kita-raeume').innerHTML = raeume.map(r => { let img = r.bildUrl ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700">` : `<div class="w-full h-full image-placeholder text-blue-300 text-center flex flex-col items-center justify-center"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border group relative z-10 flex flex-col transition-all duration-500"><div class="h-64 overflow-hidden relative">${img}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 text-center"><p class="text-white text-sm font-medium italic">${overlay}</p></div></div><div class="p-8 flex flex-col flex-grow text-center"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed">${r.text}</p></div></div>`; }).join(''); }
+        function renderProjects(projects) { document.getElementById('projects-container').innerHTML = projects.map(p => { let sc = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100"); return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col"><div class="relative h-48 shrink-0"><img class="h-full w-full object-cover" src="${p.bildUrl}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div></div><div class="p-6 flex flex-col flex-grow text-left"><h3 class="text-xl font-bold text-gray-900 font-display mb-3">${p.titel}</h3><p class="text-gray-600 text-sm leading-relaxed line-clamp-4">${p.beschreibung}</p></div></div>`; }).join(''); }
+        function renderActions(actions) { document.getElementById('actions-container').innerHTML = actions.map(a => { let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : ""; let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900", dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600", ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : ""; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10 text-left" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3">${a.text}</p></div></div>`; }).join(''); }
+        function renderTestimonials(testimonials) { document.getElementById('testimonials-container').innerHTML = testimonials.map(t => { let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green text-center flex flex-col justify-center"><i data-lucide="user" class="w-8 h-8 mx-auto"></i></div>`; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl p-8 shadow-sm border flex flex-col transition hover:shadow-md relative z-10 text-left"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`; }).join(''); lucide.createIcons(); }
+        function scrollContainer(id, dir) { const el = document.getElementById(id); const scrollAmount = el.clientWidth * 0.8; el.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' }); }
+        function renderGiroCode(bank) { const iban = bank.iban.replace(/\s/g, ''), bic = bank.bic.replace(/\s/g, ''), epcData = ["BCD", "001", "1", "SCT", bic, bank.empfaenger, iban, "", "", "", bank.standardZweck].join("\n"); document.getElementById('bank-qrcode').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(epcData)}`; }
+        function copyToClipboard(type) { let t = type === 'iban' ? webseitenInhalt.bank.iban.replace(/\s/g, '') : type; navigator.clipboard.writeText(t).then(() => { const fb = document.getElementById('copy-feedback'); fb.textContent = webseitenInhalt.bank.copyFeedback; fb.classList.remove('opacity-0', 'translate-y-2'); setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500); }); }
+        function copyAllBankData() { const b = webseitenInhalt.bank; const d = `Empfänger: ${b.empfaenger}\nIBAN: ${b.iban}\nBIC: ${b.bic}\nVerwendungszweck: ${b.standardZweck}`; navigator.clipboard.writeText(d).then(() => { const fb = document.getElementById('copy-feedback'); fb.textContent = b.labels.copySuccess; fb.classList.remove('opacity-0', 'translate-y-2'); setTimeout(() => fb.classList.add('opacity-0', 'translate-y-2'), 2500); }); }
+        function renderDecorations() { const deko = webseitenInhalt.dekoElemente; Object.keys(deko).forEach(sid => { const s = document.getElementById(sid); if (!s) return; const c = s.querySelector('.section-decorations'); if (!c) return; c.innerHTML = deko[sid].map(item => `<div class="absolute ${item.pos} ${item.color} ${item.anim} z-0 pointer-events-none"><i data-lucide="${item.icon}" class="${item.size}"></i></div>`).join(''); }); }
+        function renderMenu(items) { const d = document.getElementById('desktop-menu'), m = document.getElementById('mobile-menu-items'); d.innerHTML = ''; m.innerHTML = ''; items.forEach(item => { let cl = "text-gray-600 hover:text-brand font-medium transition", mCl = "text-gray-700 hover:text-brand hover:bg-gray-50"; if (item.highlight) { cl = "px-5 py-2.5 bg-brand text-white rounded-full font-bold hover:bg-brand-dark transition shadow-md transform hover:-translate-y-0.5"; mCl = "text-brand font-bold bg-orange-50"; } else if (item.kitaHighlight) { cl = "px-5 py-2.5 bg-brand-green text-white rounded-full font-bold hover:bg-green-700 transition shadow-md transform hover:-translate-y-0.5"; mCl = "text-brand-green font-bold bg-green-50"; } d.innerHTML += `<a href="${item.link}" class="${cl}">${item.label}</a>`; m.innerHTML += `<a href="${item.link}" class="block px-3 py-2 rounded-md text-base font-medium ${mCl}">${item.label}</a>`; }); }
+        function openLegalModal(type) { const l = webseitenInhalt.legal, t = l.templates[type]; document.getElementById('legal-modal-title').textContent = t.titel; document.getElementById('legal-modal-content').innerHTML = t.getHtml(l.stammdaten); document.getElementById('legal-modal').classList.remove('hidden'); lucide.createIcons(); }
         function closeLegalModal() { document.getElementById('legal-modal').classList.add('hidden'); }
         function openModal() { document.getElementById('membership-modal').classList.remove('hidden'); setTimeout(() => document.getElementById('membership-modal').firstElementChild.classList.remove('scale-95', 'opacity-0'), 10); }
         function closeModal() { document.getElementById('membership-modal').classList.add('hidden'); }

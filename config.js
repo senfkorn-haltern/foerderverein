@@ -149,6 +149,22 @@ const webseitenInhalt = {
         { name: "Lara B.", rolle: "Mama eines Sohnes", text: "Schon mit einem kleinen Beitrag können wir Projekte realisieren, die sonst nicht möglich wären. Jedes Senfkorn zählt!", avatar: null }
     ],
 
+    // --- SOCIAL MEDIA (WHATSAPP KANAL) ---
+    socialMedia: {
+        titel: "Immer auf dem Laufenden",
+        untertitel: "Folge unserem WhatsApp-Kanal für schnelle Updates.",
+        whatsapp: {
+            name: "Förderverein Senfkorn News",
+            link: "https://whatsapp.com/channel/0029VbBFHQUI1rcg606kcY0b", 
+            buttonText: "Kanal abonnieren",
+            features: [
+                "Termine & Erinnerungen",
+                "Fotos von Aktionen",
+                "Kurzfristige Infos"
+            ]
+        }
+    },
+
     // --- MITGLIEDSCHAFT & DOWNLOADS ---
     cta: {
         titel: "Werde ein Senfkorn-Unterstützer!",
@@ -235,7 +251,8 @@ const webseitenInhalt = {
         buttonSchliessen: "Schließen",
         mitgliedschaft: {
             titel: "Mitgliedsantrag",
-            text: "Laden Sie das PDF herunter, füllen Sie es aus und werfen Sie es einfach in den Briefkasten der Kita \"Senfkorn\"."
+            text: "Laden Sie das PDF herunter, füllen Sie es aus und werfen Sie es einfach in den Briefkasten der Kita \"Senfkorn\".",
+            buttonDownload: "PDF Herunterladen"
         }
     },
 
