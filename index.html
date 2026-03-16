@@ -245,7 +245,7 @@
         function renderRaeume(raeume, overlay) {
             const container = document.getElementById('kita-raeume');
             const fp = webseitenInhalt.kita.footprints || {};
-            
+
             if (fp.spacingSections) {
                 container.className = fp.spacingSections;
             }
@@ -253,48 +253,53 @@
             container.innerHTML = raeume.map((r, index) => {
                 const bilderHtml = r.bilder && r.bilder.length > 0 
                     ? r.bilder.map((b, bIdx) => {
-                        const rotation = (bIdx % 2 === 0 ? 'rotate-2' : '-rotate-2');
+                        const colCount = 2; 
+                        const row = Math.floor(bIdx / colCount);
+                        const isEvenRow = row % 2 === 0;
                         const isLastInArea = bIdx === r.bilder.length - 1;
-                        
-                        // Pfad-Logik
+
+                        const orderClass = `lg:order-${isEvenRow ? bIdx : (row * colCount + (colCount - 1 - (bIdx % colCount)))}`;
+                        const rotation = (bIdx % 2 === 0 ? 'rotate-2' : '-rotate-2');
+
                         let pathHtml = '';
                         if (!isLastInArea) {
-                            const colCountLg = 3;
-                            const isEndOfRowLg = (bIdx + 1) % colCountLg === 0;
-                            const steps = [0, 1, 2];
+                            const isEndOfRow = (bIdx + 1) % colCount === 0;
+                            const steps = [0, 1, 2, 3, 4];
 
                             pathHtml = `
                                 <div class="absolute inset-0 pointer-events-none z-20">
-                                    <!-- DESKTOP PFAD -->
                                     <div class="hidden lg:block">
                                         ${steps.map(sIdx => {
-                                            const delay = (bIdx * 1.5) + (sIdx * 0.4);
-                                            let pos = "", rot = "";
-                                            if (isEndOfRowLg) {
-                                                if (sIdx === 0) { pos = "top-1/2 -right-12"; rot = "rotate-[170deg]"; }
-                                                if (sIdx === 1) { pos = "-bottom-16 -right-6"; rot = "rotate-[185deg]"; }
-                                                if (sIdx === 2) { pos = "-bottom-24 right-1/2"; rot = "rotate-[175deg]"; }
+                                            const delay = (bIdx * 1.5) + (sIdx * 0.3);
+                                            let style = "";
+                                            if (isEndOfRow) {
+                                                if (isEvenRow) {
+                                                    const x = -1 - Math.sin(sIdx * 0.6) * 3; 
+                                                    const y = 60 + (sIdx * 15);
+                                                    style = `right: ${x}rem; top: ${y}%;`;
+                                                } else {
+                                                    const x = -1 - Math.sin(sIdx * 0.6) * 3; 
+                                                    const y = 60 + (sIdx * 15);
+                                                    style = `left: ${x}rem; top: ${y}%;`;
+                                                }
                                             } else {
-                                                const curve = (bIdx % 2 === 0 ? -10 : 10);
-                                                if (sIdx === 0) { pos = `top-[${45+curve}%] -right-6`; rot = "rotate-[175deg]"; }
-                                                if (sIdx === 1) { pos = `top-[${50+curve*1.2}%] -right-[calc(50%+1rem)]`; rot = "rotate-[185deg]"; }
-                                                if (sIdx === 2) { pos = `top-[${45+curve}%] -right-[calc(100%-1rem)]`; rot = "rotate-[180deg]"; }
+                                                const x = 0.8 + (sIdx * 0.8); 
+                                                const y = 45 + Math.sin(sIdx * 0.8) * 5;
+                                                if (isEvenRow) { style = `right: -${x}rem; top: ${y}%;`; }
+                                                else { style = `left: -${x}rem; top: ${y}%;`; }
                                             }
-                                            return `<div class="absolute ${pos} ${fp.color || 'text-brand'} guided-step" style="animation-delay: ${delay}s"><i data-lucide="footprints" class="w-5 h-5 transform ${rot}"></i></div>`;
+                                            return `<div class="absolute guided-step ${fp.color || 'text-brand'}" style="${style} animation-delay: ${delay}s"><i data-lucide="footprints" class="w-5 h-5 transform rotate-[180deg]"></i></div>`;
                                         }).join('')}
                                     </div>
-                                    
-                                    <!-- MOBILE PFAD -->
                                     <div class="lg:hidden block">
-                                        ${steps.map(sIdx => {
+                                        ${[0, 1, 2].map(sIdx => {
                                             const delay = (bIdx * 1.5) + (sIdx * 0.4);
                                             const side = (bIdx % 2 === 0 ? 'right' : 'left');
-                                            const rot = sIdx % 2 === 0 ? "rotate-[175deg]" : "rotate-[185deg]";
                                             let pos = "";
                                             if (sIdx === 0) pos = `-bottom-6 ${side === 'right' ? '-right-6' : '-left-6'}`;
                                             if (sIdx === 1) pos = `-bottom-14 ${side === 'right' ? '-right-12' : '-left-12'}`;
                                             if (sIdx === 2) pos = `-bottom-22 ${side === 'right' ? '-right-6' : '-left-6'}`;
-                                            return `<div class="absolute ${pos} ${fp.color || 'text-brand'} guided-step" style="animation-delay: ${delay}s"><i data-lucide="footprints" class="w-5 h-5 transform ${rot}"></i></div>`;
+                                            return `<div class="absolute ${pos} ${fp.color || 'text-brand'} guided-step" style="animation-delay: ${delay}s"><i data-lucide="footprints" class="w-5 h-5 transform rotate-[180deg]"></i></div>`;
                                         }).join('')}
                                     </div>
                                 </div>
@@ -302,9 +307,9 @@
                         }
 
                         return `
-                            <div class="relative group">
-                                <div class="bg-white p-3 shadow-xl rounded-2xl transform transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 border border-white/50 ${rotation}">
-                                    <div class="h-48 sm:h-64 w-64 sm:w-80 overflow-hidden rounded-xl relative">
+                            <div class="relative group ${orderClass}">
+                                <div class="bg-white p-3 shadow-xl rounded-2xl transform transition-all duration-500 group-hover:rotate-0 group-hover:scale-110 border border-white/50 ${rotation} z-10 hover:z-30">
+                                    <div class="h-48 sm:h-72 lg:h-[22rem] w-64 sm:w-96 lg:w-[30rem] overflow-hidden rounded-xl relative">
                                         <img src="${b}" class="w-full h-full object-cover">
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                             <p class="text-white text-xs font-medium italic">${overlay}</p>
@@ -342,6 +347,7 @@
             }).join('');
             lucide.createIcons();
         }
+                    
         function renderProjects(projects) { document.getElementById('projects-container').innerHTML = projects.map(p => { let sc = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100"); return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col"><div class="relative h-48 shrink-0"><img class="h-full w-full object-cover" src="${p.bildUrl}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div></div><div class="p-6 flex flex-col flex-grow text-left"><h3 class="text-xl font-bold text-gray-900 font-display mb-3">${p.titel}</h3><p class="text-gray-600 text-sm leading-relaxed line-clamp-4 text-center sm:text-left">${p.beschreibung}</p></div></div>`; }).join(''); }
         function renderActions(actions) { document.getElementById('actions-container').innerHTML = actions.map(a => { let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : ""; let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900", dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600", ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : ""; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10 text-left" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3 text-center sm:text-left">${a.text}</p></div></div>`; }).join(''); }
         function renderTestimonials(testimonials) { document.getElementById('testimonials-container').innerHTML = testimonials.map(t => { let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green text-center flex flex-col justify-center"><i data-lucide="user" class="w-8 h-8 mx-auto"></i></div>`; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl p-8 shadow-sm border flex flex-col transition hover:shadow-md relative z-10 text-left"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`; }).join(''); lucide.createIcons(); }
