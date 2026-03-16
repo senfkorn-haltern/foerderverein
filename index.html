@@ -39,6 +39,22 @@
         .gallery-card:hover img { transform: scale(1.05); }
         .image-placeholder { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .image-placeholder::after { content: "In Arbeit"; position: absolute; top: 1.2rem; right: -2.5rem; background: #D97706; color: white; padding: 0.25rem 3rem; transform: rotate(45deg); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; }
+        
+        /* Verspielte Fußspur-Animation */
+        @keyframes footprint-walk {
+            0%, 100% { transform: scale(1) translateY(0); opacity: var(--tw-opacity); }
+            50% { transform: scale(1.15) translateY(-3px); opacity: 0.8; }
+        }
+        
+        /* Neuer geführter Spaziergang: Einblenden und Pulsieren nacheinander */
+        @keyframes guided-walk {
+            0% { opacity: 0; transform: scale(0.8) translateY(5px); }
+            10%, 30% { opacity: 0.6; transform: scale(1.1) translateY(0); }
+            40%, 100% { opacity: 0.2; transform: scale(1) translateY(0); }
+        }
+        .footprint-step { animation: footprint-walk 3s ease-in-out infinite; }
+        .footprint-step-delayed { animation: footprint-walk 3s ease-in-out infinite; animation-delay: 1.5s; }
+        .guided-step { animation: guided-walk 8s infinite; opacity: 0; }
     </style>
 </head>
 <body class="font-sans text-gray-700 bg-soft-amber flex flex-col min-h-screen">
@@ -167,7 +183,12 @@
     <section id="unsere-kita" class="py-24 bg-gradient-to-b from-kita-warm to-kita-fresh relative overflow-hidden border-y border-orange-100 text-center">
         <div class="section-decorations"></div>
         <div class="absolute top-0 left-1/2 -translate-x-1/2 px-6 py-2 bg-brand-green text-white text-xs font-bold uppercase tracking-[0.2em] rounded-b-2xl shadow-sm z-20" id="kita-section-label"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="mb-20 text-center"><span class="text-brand-green font-bold tracking-widest uppercase text-sm" id="kita-badge"></span><h2 class="mt-2 text-4xl md:text-5xl font-extrabold text-gray-900 font-display" id="kita-title"></h2><p class="mt-4 text-2xl text-brand-dark font-medium italic" id="kita-subtitle"></p><p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed text-center" id="kita-text"></p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 text-left" id="kita-highlights"></div><div class="mb-20 text-left"><div class="flex items-center justify-between mb-10"><h3 class="text-3xl font-bold text-gray-900 font-display" id="kita-gallery-title"></h3><div class="flex gap-2 hidden md:flex"><button onclick="scrollContainer('kita-raeume', -1)" class="p-2 rounded-full bg-white border hover:text-brand-green transition"><i data-lucide="chevron-left"></i></button><button onclick="scrollContainer('kita-raeume', 1)" class="p-2 rounded-full bg-white border hover:text-brand-green transition"><i data-lucide="chevron-right"></i></button></div></div><div class="scroll-container gap-6" id="kita-raeume"></div></div><div class="bg-white/80 backdrop-blur-md rounded-[3rem] shadow-xl border border-white overflow-hidden lg:flex items-stretch text-left"><div class="lg:w-1/3 bg-white/50 flex flex-col items-center justify-center p-12 text-center border-r border-white/50"><div class="w-40 h-40 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6"><div id="kita-leitung-bild-container" class="w-full h-full text-center flex flex-col justify-center"><img id="kita-leitung-bild" class="w-full h-full object-cover" src="" alt="Leitung"></div></div><h4 class="text-xs font-bold text-brand-green uppercase tracking-widest mb-1" id="kita-leitung-titel"></h4><p class="text-2xl font-bold text-gray-900 font-display" id="kita-leitung-name"></p></div><div class="lg:w-2/3 p-12 flex flex-col justify-center"><div class="grid grid-cols-1 sm:grid-cols-2 gap-10"><div class="space-y-6"><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="phone" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-tel"></p><a id="kita-tel" href="" class="text-lg font-semibold hover:text-brand transition text-left"></a></div></div><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="mail" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-email"></p><a id="kita-email" href="" class="text-lg font-semibold hover:text-brand transition text-left"></a></div></div></div><div class="space-y-6 border-l border-white/50 sm:pl-10"><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="smartphone" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-app"></p><p class="text-sm text-gray-600 text-left" id="kita-app"></p></div></div><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="map-pin" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-adresse"></p><p class="text-sm text-gray-600 text-left" id="kita-adresse"></p></div></div></div></div></div></div></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"><div class="mb-20 text-center"><span class="text-brand-green font-bold tracking-widest uppercase text-sm" id="kita-badge"></span><h2 class="mt-2 text-4xl md:text-5xl font-extrabold text-gray-900 font-display" id="kita-title"></h2><p class="mt-4 text-2xl text-brand-dark font-medium italic" id="kita-subtitle"></p><p class="mt-6 max-w-3xl mx-auto text-xl text-gray-600 leading-relaxed text-center" id="kita-text"></p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 text-left" id="kita-highlights"></div>        <div class="mb-20">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold text-gray-900 font-display" id="kita-gallery-title"></h3>
+            </div>
+            <div id="kita-raeume" class="space-y-16"></div>
+        </div><div class="bg-white/80 backdrop-blur-md rounded-[3rem] shadow-xl border border-white overflow-hidden lg:flex items-stretch text-left"><div class="lg:w-1/3 bg-white/50 flex flex-col items-center justify-center p-12 text-center border-r border-white/50"><div class="w-40 h-40 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6"><div id="kita-leitung-bild-container" class="w-full h-full text-center flex flex-col justify-center"><img id="kita-leitung-bild" class="w-full h-full object-cover" src="" alt="Leitung"></div></div><h4 class="text-xs font-bold text-brand-green uppercase tracking-widest mb-1" id="kita-leitung-titel"></h4><p class="text-2xl font-bold text-gray-900 font-display" id="kita-leitung-name"></p></div><div class="lg:w-2/3 p-12 flex flex-col justify-center"><div class="grid grid-cols-1 sm:grid-cols-2 gap-10"><div class="space-y-6"><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="phone" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-tel"></p><a id="kita-tel" href="" class="text-lg font-semibold hover:text-brand transition text-left"></a></div></div><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="mail" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-email"></p><a id="kita-email" href="" class="text-lg font-semibold hover:text-brand transition text-left"></a></div></div></div><div class="space-y-6 border-l border-white/50 sm:pl-10"><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="smartphone" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-app"></p><p class="text-sm text-gray-600 text-left" id="kita-app"></p></div></div><div class="flex items-start gap-4"><div class="p-3 bg-white rounded-xl text-brand-green shadow-sm text-center"><i data-lucide="map-pin" class="w-6 h-6 mx-auto"></i></div><div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1" id="label-kita-adresse"></p><p class="text-sm text-gray-600 text-left" id="kita-adresse"></p></div></div></div></div></div></div></div>
     </section>
 
     <!-- Footer -->
@@ -221,7 +242,106 @@
             document.getElementById('footer-about').textContent = c.footer.ueberText; document.getElementById('footer-copyright').textContent = c.vereinName; document.querySelectorAll('.modal-close-btn-text').forEach(btn => btn.textContent = c.ui.buttonSchliessen); document.getElementById('membership-modal-title').textContent = c.ui.mitgliedschaft.titel; document.getElementById('membership-modal-text').textContent = c.ui.mitgliedschaft.text; document.getElementById('membership-modal-btn-text').textContent = c.ui.mitgliedschaft.buttonDownload; document.getElementById('membership-modal-download-btn').href = c.cta.dateiNameAntrag;
         }
         function renderFeatures(cards) { document.getElementById('features-container').innerHTML = cards.map(c => { let cl = c.farbe === "yellow" ? "bg-yellow-50 text-yellow-600 border-yellow-100" : (c.farbe === "orange" ? "bg-orange-50 text-orange-600 border-orange-100" : "bg-green-50 text-brand-green border-green-100"); return `<div class="text-center p-6 ${cl} bg-opacity-50 rounded-2xl border transition hover:shadow-lg"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-center flex flex-col justify-center"><i data-lucide="${c.icon}" class="w-8 h-8 mx-auto"></i></div><h3 class="text-xl font-bold text-gray-900 mb-2 font-display">${c.titel}</h3><p class="text-gray-600 leading-relaxed text-center sm:text-left">${c.text}</p></div>`; }).join(''); }
-        function renderRaeume(raeume, overlay) { document.getElementById('kita-raeume').innerHTML = raeume.map(r => { let img = r.bildUrl ? `<img src="${r.bildUrl}" class="w-full h-full object-cover transition-transform duration-700">` : `<div class="w-full h-full image-placeholder text-blue-300 text-center flex flex-col items-center justify-center"><i data-lucide="camera" class="w-12 h-12 mb-2"></i><p class="text-xs font-bold uppercase tracking-wider">Fotos folgen</p></div>`; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] gallery-card bg-white rounded-[2rem] overflow-hidden shadow-md border group relative z-10 flex flex-col transition-all duration-500"><div class="h-64 overflow-hidden relative">${img}<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 text-center"><p class="text-white text-sm font-medium italic">${overlay}</p></div></div><div class="p-8 flex flex-col flex-grow text-center"><h4 class="text-xl font-bold text-gray-900 font-display mb-3">${r.titel}</h4><p class="text-gray-600 text-sm leading-relaxed text-center sm:text-left">${r.text}</p></div></div>`; }).join(''); }
+        function renderRaeume(raeume, overlay) {
+            const container = document.getElementById('kita-raeume');
+            const fp = webseitenInhalt.kita.footprints || {};
+            
+            if (fp.spacingSections) {
+                container.className = fp.spacingSections;
+            }
+
+            container.innerHTML = raeume.map((r, index) => {
+                const bilderHtml = r.bilder && r.bilder.length > 0 
+                    ? r.bilder.map((b, bIdx) => {
+                        const rotation = (bIdx % 2 === 0 ? 'rotate-2' : '-rotate-2');
+                        const isLastInArea = bIdx === r.bilder.length - 1;
+                        
+                        // Pfad-Logik
+                        let pathHtml = '';
+                        if (!isLastInArea) {
+                            const colCountLg = 3;
+                            const isEndOfRowLg = (bIdx + 1) % colCountLg === 0;
+                            const steps = [0, 1, 2];
+
+                            pathHtml = `
+                                <div class="absolute inset-0 pointer-events-none z-20">
+                                    <!-- DESKTOP PFAD -->
+                                    <div class="hidden lg:block">
+                                        ${steps.map(sIdx => {
+                                            const delay = (bIdx * 1.5) + (sIdx * 0.4);
+                                            let pos = "", rot = "";
+                                            if (isEndOfRowLg) {
+                                                if (sIdx === 0) { pos = "top-1/2 -right-12"; rot = "rotate-[170deg]"; }
+                                                if (sIdx === 1) { pos = "-bottom-16 -right-6"; rot = "rotate-[185deg]"; }
+                                                if (sIdx === 2) { pos = "-bottom-24 right-1/2"; rot = "rotate-[175deg]"; }
+                                            } else {
+                                                const curve = (bIdx % 2 === 0 ? -10 : 10);
+                                                if (sIdx === 0) { pos = `top-[${45+curve}%] -right-6`; rot = "rotate-[175deg]"; }
+                                                if (sIdx === 1) { pos = `top-[${50+curve*1.2}%] -right-[calc(50%+1rem)]`; rot = "rotate-[185deg]"; }
+                                                if (sIdx === 2) { pos = `top-[${45+curve}%] -right-[calc(100%-1rem)]`; rot = "rotate-[180deg]"; }
+                                            }
+                                            return `<div class="absolute ${pos} ${fp.color || 'text-brand'} guided-step" style="animation-delay: ${delay}s"><i data-lucide="footprints" class="w-5 h-5 transform ${rot}"></i></div>`;
+                                        }).join('')}
+                                    </div>
+                                    
+                                    <!-- MOBILE PFAD -->
+                                    <div class="lg:hidden block">
+                                        ${steps.map(sIdx => {
+                                            const delay = (bIdx * 1.5) + (sIdx * 0.4);
+                                            const side = (bIdx % 2 === 0 ? 'right' : 'left');
+                                            const rot = sIdx % 2 === 0 ? "rotate-[175deg]" : "rotate-[185deg]";
+                                            let pos = "";
+                                            if (sIdx === 0) pos = `-bottom-6 ${side === 'right' ? '-right-6' : '-left-6'}`;
+                                            if (sIdx === 1) pos = `-bottom-14 ${side === 'right' ? '-right-12' : '-left-12'}`;
+                                            if (sIdx === 2) pos = `-bottom-22 ${side === 'right' ? '-right-6' : '-left-6'}`;
+                                            return `<div class="absolute ${pos} ${fp.color || 'text-brand'} guided-step" style="animation-delay: ${delay}s"><i data-lucide="footprints" class="w-5 h-5 transform ${rot}"></i></div>`;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        return `
+                            <div class="relative group">
+                                <div class="bg-white p-3 shadow-xl rounded-2xl transform transition-all duration-500 group-hover:rotate-0 group-hover:scale-105 border border-white/50 ${rotation}">
+                                    <div class="h-48 sm:h-64 w-64 sm:w-80 overflow-hidden rounded-xl relative">
+                                        <img src="${b}" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                            <p class="text-white text-xs font-medium italic">${overlay}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                ${pathHtml}
+                            </div>
+                        `;
+                    }).join('')
+                    : `<div class="w-full image-placeholder text-blue-300 text-center p-12 rounded-[2rem]"><i data-lucide="camera" class="w-16 h-16 mb-4"></i><p class="text-sm font-bold uppercase">Fotos folgen bald</p></div>`;
+
+                return `
+                    <div class="area-block">
+                        <div class="max-w-3xl mx-auto text-center mb-8 px-4">
+                            <h4 class="text-3xl font-bold text-gray-900 font-display mb-4 relative inline-block">
+                                ${r.titel}
+                                <div class="absolute -bottom-2 left-0 w-full h-1 bg-brand-green/30 rounded-full"></div>
+                            </h4>
+                            <p class="text-gray-600 text-lg leading-relaxed">${r.text}</p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-12 lg:gap-16 px-4 relative">
+                            ${bilderHtml}
+                        </div>
+                        ${index < raeume.length - 1 ? `
+                            <div class="flex justify-center mt-8 mb-4 ${fp.color || 'text-brand'} ${fp.opacityLarge || 'opacity-10'}">
+                                <div class="flex gap-6 transform rotate-180 scale-75 sm:scale-100">
+                                    <i data-lucide="footprints" class="${fp.sizeLarge || 'w-12 h-12'} ${fp.animLarge1 || ''}"></i>
+                                    <i data-lucide="footprints" class="${fp.sizeLarge || 'w-12 h-12'} mt-12 ${fp.animLarge2 || ''}"></i>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
         function renderProjects(projects) { document.getElementById('projects-container').innerHTML = projects.map(p => { let sc = p.status === "aktiv" ? "text-brand-green bg-green-100" : (p.status === "geplant" ? "text-brand bg-orange-100" : "text-blue-600 bg-blue-100"); return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col"><div class="relative h-48 shrink-0"><img class="h-full w-full object-cover" src="${p.bildUrl}"><div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div></div><div class="p-6 flex flex-col flex-grow text-left"><h3 class="text-xl font-bold text-gray-900 font-display mb-3">${p.titel}</h3><p class="text-gray-600 text-sm leading-relaxed line-clamp-4 text-center sm:text-left">${p.beschreibung}</p></div></div>`; }).join(''); }
         function renderActions(actions) { document.getElementById('actions-container').innerHTML = actions.map(a => { let style = a.bildUrl ? `background-image: url('${a.bildUrl}'); background-size: cover; background-position: center;` : ""; let tc = a.textFarbe === 'white' ? "text-white text-shadow" : "text-gray-900", dc = a.textFarbe === 'white' ? "text-gray-100 text-shadow" : "text-gray-600", ov = a.bildUrl ? `<div class="absolute inset-0 ${a.textFarbe === 'white' ? 'bg-black/40' : 'bg-white/60'} transition z-0"></div>` : ""; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] ${a.bildUrl ? 'border-transparent relative overflow-hidden group' : 'bg-orange-50 border-orange-100'} rounded-2xl p-6 border hover:shadow-lg transition h-full flex flex-col relative z-10 text-left" style="${style}">${ov}<div class="relative z-10 flex flex-col h-full"><div class="flex items-center justify-between mb-4"><div class="p-3 bg-white rounded-full text-brand shadow-sm shrink-0"><i data-lucide="${a.icon}" class="w-6 h-6"></i></div><span class="text-xs font-bold uppercase tracking-wider text-brand-dark bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-sm">${a.zeitraum}</span></div><h3 class="text-lg font-bold ${tc} mb-2 font-display">${a.titel}</h3><p class="${dc} text-sm flex-grow line-clamp-3 text-center sm:text-left">${a.text}</p></div></div>`; }).join(''); }
         function renderTestimonials(testimonials) { document.getElementById('testimonials-container').innerHTML = testimonials.map(t => { let av = t.avatar ? `<img src="${t.avatar}" alt="${t.name}" class="w-14 h-14 rounded-full border-2 border-brand-green/20 object-cover">` : `<div class="w-14 h-14 rounded-full bg-soft-green border-2 border-brand-green/20 flex items-center justify-center text-brand-green text-center flex flex-col justify-center"><i data-lucide="user" class="w-8 h-8 mx-auto"></i></div>`; return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl p-8 shadow-sm border flex flex-col transition hover:shadow-md relative z-10 text-left"><div class="flex items-center gap-4 mb-6">${av}<div><h4 class="font-bold text-gray-900">${t.name}</h4><p class="text-xs text-brand-green font-semibold uppercase tracking-wider">${t.rolle}</p></div></div><p class="text-gray-600 italic leading-relaxed flex-grow">"${t.text}"</p><div class="mt-4 text-brand-light"><i data-lucide="quote" class="w-8 h-8 opacity-20"></i></div></div>`; }).join(''); lucide.createIcons(); }

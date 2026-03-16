@@ -72,16 +72,52 @@ const webseitenInhalt = {
         galleryTitle: "Einblicke in unsere Räume",
         galleryOverlayText: "Senfkorn Entdeckerwelt", // Erscheint beim Drüberfahren mit der Maus
 
+        // Konfiguration für die verspielten Fußspuren in der Galerie
+        footprints: {
+            sizeSmall: "w-10 h-10 sm:w-12 sm:h-12", // Größe zwischen den Bildern
+            sizeLarge: "w-12 h-12",               // Größe der Trenner zwischen den Sektionen
+            opacitySmall: "opacity-30",           // Transparenz zwischen den Bildern
+            opacityLarge: "opacity-40",           // Transparenz der Trenner
+            color: "text-brand",                  // Farbe (Tailwind-Klasse)
+            spacingSections: "space-y-16",        // Vertikaler Abstand zwischen den Bereichen
+            animSmall: "footprint-step",          // Animation zwischen Bildern
+            animLarge1: "footprint-step",         // Erste Animation Trenner
+            animLarge2: "footprint-step-delayed"  // Zweite Animation Trenner (verzögert)
+            },
+
         // Liste der Funktionsräume (Galerie)
-        // bildUrl: null erzeugt automatisch einen Platzhalter mit "Fotos folgen"
+        // bilder: Array von Bildpfaden. Ein leeres Array erzeugt automatisch einen Platzhalter.
         raeume: [
-            { titel: "Das Atelier", text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.", bildUrl: "./assets/kita/atelier2.jpg" },
-            { titel: "Konstruktionsbereich", text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.", bildUrl: "./assets/kita/Konstruktion.jpg" },
-            { titel: "Wurzelzwerge (U3)", text: "Unser geschützter Bereich für die Kleinsten, in dem Geborgenheit an erster Stelle steht.", bildUrl: "./assets/kita/Wurzelzwerge_U3.jpg" },
-            { titel: "Turnraum", text: "Platz für Bewegung, Toben und gezielte motorische Angebote.", bildUrl: "./assets/kita/Bewegungsraum.jpg" },
-            { titel: "Rollenspiel & Puppenecke", text: "In andere Rollen schlüpfen und den Alltag spielerisch verarbeiten.", bildUrl: "./assets/kita/Rollenspiel2.jpg" },
-            { titel: "Cafeteria", text: "Ein Ort zum gemeinsamen Essen und Austausch.", bildUrl: "./assets/kita/Cafeteria2.jpg" },
-            { titel: "Unser Außengelände", text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.", bildUrl: "./assets/kita/Aussenbereich.jpg" }
+            { 
+                titel: "Das Atelier", 
+                text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.", 
+                bilder: ["./assets/kita/Atelier.jpg", "./assets/kita/Atelier2.jpg", "./assets/kita/Atelier_Nebenraum.jpg"] 
+            },
+            { 
+                titel: "Konstruktionsbereich", 
+                text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.", 
+                bilder: ["./assets/kita/Konstruktion.jpg", "./assets/kita/Konstruktion2.jpg", "./assets/kita/Konstruktion_Nebenraum.jpg"] 
+            },
+            { 
+                titel: "Wurzelzwerge (U3)", 
+                text: "Unser geschützter Bereich für die Kleinsten, in dem Geborgenheit an erster Stelle steht.", 
+                bilder: ["./assets/kita/Wurzelzwerge_U3.jpg", "./assets/kita/Gruppenraum_Wurzelzwerge.jpg", "./assets/kita/Nebenraum_Wurzelzwerge.jpg", "./assets/kita/Wurzelzwerge_Nebenraum2.jpg"] 
+            },
+            { 
+                titel: "Bewegung & Spiel", 
+                text: "Platz für Bewegung, Toben und gezielte motorische Angebote im Turnraum oder Rollenspiele in der Puppenecke.", 
+                bilder: ["./assets/kita/Bewegungsraum.jpg", "./assets/kita/Rollenspiel2.jpg"] 
+            },
+            { 
+                titel: "Essen & Gemeinschaft", 
+                text: "In unserer Cafeteria kommen alle zusammen. Auch unsere Flure bieten Platz für Begegnungen.", 
+                bilder: ["./assets/kita/Cafeteria.jpg", "./assets/kita/Cafeteria2.jpg", "./assets/kita/Flur.jpg", "./assets/kita/Flur2.jpg"] 
+            },
+            { 
+                titel: "Unser Außengelände", 
+                text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.", 
+                bilder: ["./assets/kita/Aussenbereich.jpg", "./assets/kita/Aussenbereich2.jpg", "./assets/kita/Sandkasten_Wurzelzwerge.jpg", "./assets/kita/Aussenbereich3.jpg", "./assets/kita/Aussenbereich4.jpg"] 
+            }
         ],
 
         // Kita-Leitung Info
