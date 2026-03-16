@@ -75,20 +75,14 @@ const webseitenInhalt = {
         // Liste der Funktionsräume (Galerie)
         // bildUrl: null erzeugt automatisch einen Platzhalter mit "Fotos folgen"
         raeume: [
-            { titel: "Das Atelier", text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.", bildUrl: null },
-            { titel: "Konstruktionsbereich", text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.", bildUrl: null },
-            { titel: "Wurzelzwerge (U3)", text: "Unser geschützter Bereich für die Kleinsten, in dem Geborgenheit an erster Stelle steht.", bildUrl: null },
-            { titel: "Turnraum", text: "Platz für Bewegung, Toben und gezielte motorische Angebote.", bildUrl: null },
-            { titel: "Rollenspiel & Puppenecke", text: "In andere Rollen schlüpfen und den Alltag spielerisch verarbeiten.", bildUrl: null },
-            { titel: "Vorschul-Raum", text: "Gezielte Vorbereitung auf den neuen Lebensabschnitt Schule.", bildUrl: null }
+            { titel: "Das Atelier", text: "Ein Raum für kleine Künstler:innen. Hier wird gemalt, gebastelt und mit Farben experimentiert.", bildUrl: "./assets/kita/atelier2.jpg" },
+            { titel: "Konstruktionsbereich", text: "Kreatives Bauen mit verschiedensten Materialien fördert das räumliche Vorstellungsvermögen.", bildUrl: "./assets/kita/Konstruktion.jpg" },
+            { titel: "Wurzelzwerge (U3)", text: "Unser geschützter Bereich für die Kleinsten, in dem Geborgenheit an erster Stelle steht.", bildUrl: "./assets/kita/Wurzelzwerge_U3.jpg" },
+            { titel: "Turnraum", text: "Platz für Bewegung, Toben und gezielte motorische Angebote.", bildUrl: "./assets/kita/Bewegungsraum.jpg" },
+            { titel: "Rollenspiel & Puppenecke", text: "In andere Rollen schlüpfen und den Alltag spielerisch verarbeiten.", bildUrl: "./assets/kita/Rollenspiel2.jpg" },
+            { titel: "Cafeteria", text: "Ein Ort zum gemeinsamen Essen und Austausch.", bildUrl: "./assets/kita/Cafeteria2.jpg" },
+            { titel: "Unser Außengelände", text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.", bildUrl: "./assets/kita/Aussenbereich.jpg" }
         ],
-
-        // Sektion Außengelände
-        aussen: {
-            titel: "Unser Außengelände",
-            text: "Ein Paradies zum Spielen: Mit Rutsche, Kletterhaus, großen Sandkästen, Netzschaukel und einem Matsch- & Wasserspielbereich.",
-            bildUrl: null
-        },
 
         // Kita-Leitung Info
         leitung: {
