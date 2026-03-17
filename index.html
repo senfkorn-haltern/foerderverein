@@ -264,7 +264,13 @@
                         let pathHtml = '';
                         if (!isLastInArea) {
                             const isEndOfRow = (bIdx + 1) % colCount === 0;
-                            const steps = [0, 1, 2, 3, 4];
+                            // 6 Schritte mit Abstand - gedacht für vertikale Verbindung
+                            let steps = [0, 1, 2, 3, 4, 5];
+                            if (! isEndOfRow){
+                                // horizontal nur drei Schritte mit Abstand
+                                steps = [0, 2, 4];
+                            }
+                            
 
                             pathHtml = `
                                 <div class="absolute inset-0 pointer-events-none z-20">
@@ -283,6 +289,7 @@
                                                     style = `left: ${x}rem; top: ${y}%;`;
                                                 }
                                             } else {
+                                                // between pictures in a row
                                                 const x = 0.8 + (sIdx * 0.8); 
                                                 const y = 45 + Math.sin(sIdx * 0.8) * 5;
                                                 if (isEvenRow) { style = `right: -${x}rem; top: ${y}%;`; }
