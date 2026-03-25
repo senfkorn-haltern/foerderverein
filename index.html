@@ -55,6 +55,10 @@
         .footprint-step { animation: footprint-walk 3s ease-in-out infinite; }
         .footprint-step-delayed { animation: footprint-walk 3s ease-in-out infinite; animation-delay: 1.5s; }
         .guided-step { animation: guided-walk 8s infinite; opacity: 0; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 20px; border: 2px solid transparent; background-clip: content-box; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #D1D5DB; border-radius: 20px; border: 2px solid transparent; background-clip: content-box; }
     </style>
 </head>
 <body class="font-sans text-gray-700 bg-soft-amber flex flex-col min-h-screen">
@@ -95,6 +99,10 @@
             <div class="mt-24 relative max-w-4xl mx-auto text-center">
                 <div class="absolute inset-0 bg-brand/10 blob-shape transform -rotate-3 scale-105"></div>
                 <div class="relative bg-white p-4 pb-12 shadow-2xl rounded-[2rem] transform rotate-1 transition-transform hover:rotate-0 duration-500 border border-gray-100 mx-auto">
+                    <button onclick="openVorstandModal()" class="absolute -top-6 left-8 bg-white border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white px-6 py-2 rounded-full shadow-lg font-display font-bold transition transform rotate-1 hover:rotate-0 hover:scale-105 flex items-center gap-2 z-20 whitespace-nowrap">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                        <span id="btn-vorstand"></span>
+                    </button>
                     <div id="group-photo-container" class="aspect-[16/9] rounded-[1.5rem] overflow-hidden bg-gray-50">
                         <img id="group-photo" src="" class="w-full h-full object-cover hidden" alt="Team">
                         <div id="group-photo-placeholder" class="w-full h-full image-placeholder text-brand/30"><i data-lucide="users" class="w-16 h-16 mb-2"></i><p class="text-sm font-bold uppercase tracking-widest">Team-Foto folgt</p></div>
@@ -197,6 +205,29 @@
     <!-- Modals -->
     <div id="legal-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300"><div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col relative shadow-2xl overflow-hidden text-center sm:text-left"><div class="p-6 border-b border-gray-100 flex justify-between items-center shrink-0"><h3 class="text-xl font-bold text-gray-900 font-display" id="legal-modal-title"></h3><button onclick="closeLegalModal()" class="text-gray-400 hover:text-brand bg-gray-50 p-2 rounded-full transition"><i data-lucide="x" class="w-6 h-6"></i></button></div><div class="p-8 overflow-y-auto text-gray-600 leading-relaxed text-left" id="legal-modal-content"></div><div class="p-6 border-t text-center shrink-0"><button onclick="closeLegalModal()" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition modal-close-btn-text"></button></div></div></div>
     <div id="membership-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300"><div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl text-center"><button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-brand p-2 rounded-full transition"><i data-lucide="x" class="w-6 h-6"></i></button><div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"><i data-lucide="download" class="h-8 w-8 text-green-600"></i></div><h3 class="text-xl font-bold text-gray-900 font-display mb-2" id="membership-modal-title"></h3><p class="text-gray-500 mb-6" id="membership-modal-text"></p><a id="membership-modal-download-btn" href="#" target="_blank" class="block w-full rounded-xl bg-brand text-white font-bold px-4 py-4 hover:bg-brand-dark transition shadow-md flex items-center justify-center gap-2 mb-3"><i data-lucide="file-text" class="w-5 h-5"></i><span id="membership-modal-btn-text"></span></a><button onclick="closeModal()" class="text-sm text-gray-400 underline modal-close-btn-text"></button></div></div>
+    
+    <div id="vorstand-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-[2rem] max-w-5xl w-full max-h-[90vh] flex flex-col relative shadow-2xl overflow-hidden">
+            <div class="p-8 border-b border-gray-100 flex justify-between items-start shrink-0 bg-soft-amber">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 font-display" id="vorstand-modal-title"></h3>
+                    <p class="text-brand-dark mt-2 font-medium" id="vorstand-modal-subtitle"></p>
+                </div>
+                <button onclick="closeVorstandModal()" class="text-gray-400 hover:text-brand bg-white p-2 rounded-full transition shadow-sm border border-gray-100">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-8 overflow-y-auto bg-soft-stone custom-scrollbar">
+                 <div class="max-w-3xl mx-auto text-center mb-10">
+                    <p class="text-gray-600 text-lg" id="vorstand-modal-text"></p>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vorstand-grid"></div>
+            </div>
+            <div class="p-6 border-t bg-white text-center shrink-0">
+                <button onclick="closeVorstandModal()" class="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full transition modal-close-btn-text"></button>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => { 
@@ -223,6 +254,11 @@
             document.getElementById('nav-logo').src = c.logoUrl; document.getElementById('nav-title').textContent = c.vereinNameKurz; document.getElementById('nav-subtitle').textContent = c.stadt; renderMenu(c.menu);
             document.getElementById('willkommen-badge').textContent = c.willkommen.badge; document.getElementById('willkommen-title-1').textContent = c.willkommen.titelZeile1; document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2; document.getElementById('willkommen-text').textContent = c.willkommen.text; document.getElementById('willkommen-image').src = c.willkommen.bildUrl; document.getElementById('willkommen-btn-verein').textContent = c.willkommen.buttonVerein; document.getElementById('willkommen-btn-kita').textContent = c.willkommen.buttonKita;
             document.getElementById('about-badge').textContent = c.ueberUns.badge; document.getElementById('about-title').textContent = c.ueberUns.titel; document.getElementById('about-text').textContent = c.ueberUns.text; renderFeatures(c.ueberUns.karten);
+            document.getElementById('btn-vorstand').textContent = c.vorstand.buttonLabel;
+            document.getElementById('vorstand-modal-title').textContent = c.vorstand.modalTitel;
+            document.getElementById('vorstand-modal-subtitle').textContent = c.vorstand.modalUntertitel;
+            document.getElementById('vorstand-modal-text').textContent = c.vorstand.modalText;
+            renderVorstand(c.vorstand.mitglieder);
             const gp = document.getElementById('group-photo'), gpp = document.getElementById('group-photo-placeholder'); document.getElementById('group-photo-label').textContent = c.ueberUns.gruppenBildLabel;
             if (c.ueberUns.gruppenBildUrl) { gp.src = c.ueberUns.gruppenBildUrl; gp.classList.remove('hidden'); gpp.classList.add('hidden'); } else { gp.classList.add('hidden'); gpp.classList.remove('hidden'); }
             document.getElementById('social-title').textContent = c.socialMedia.titel; document.getElementById('social-subtitle').textContent = c.socialMedia.untertitel; document.getElementById('social-features').innerHTML = c.socialMedia.whatsapp.features.map(f => `<div class="flex items-center gap-3 text-gray-700 font-medium"><div class="w-6 h-6 bg-whatsapp/10 text-whatsapp rounded-full flex items-center justify-center shrink-0"><i data-lucide="check" class="w-4 h-4"></i></div>${f}</div>`).join('');
@@ -367,6 +403,36 @@
         function closeModal() { document.getElementById('membership-modal').classList.add('hidden'); }
         document.getElementById('membership-modal').addEventListener('click', (e) => { if (e.target.id === 'membership-modal') closeModal(); });
         document.getElementById('legal-modal').addEventListener('click', (e) => { if (e.target.id === 'legal-modal') closeLegalModal(); });
+        document.getElementById('vorstand-modal').addEventListener('click', (e) => { if (e.target.id === 'vorstand-modal') closeVorstandModal(); });
+
+        function renderVorstand(mitglieder) {
+            document.getElementById('vorstand-grid').innerHTML = mitglieder.map(m => {
+                let imgHtml = m.bildUrl 
+                    ? `<img src="${m.bildUrl}" class="w-full h-full object-cover">`
+                    : `<div class="w-full h-full image-placeholder text-brand/20"><i data-lucide="user" class="w-12 h-12"></i></div>`;
+                return `
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center transition hover:shadow-md">
+                        <div class="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-soft-amber shadow-sm shrink-0">
+                            ${imgHtml}
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 font-display">${m.name}</h4>
+                        <p class="text-brand font-semibold text-sm uppercase tracking-wider mb-3">${m.rolle}</p>
+                        <p class="text-gray-500 text-sm leading-relaxed text-center">${m.beschreibung}</p>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function openVorstandModal() {
+            const m = document.getElementById('vorstand-modal');
+            m.classList.remove('hidden');
+            setTimeout(() => m.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10);
+        }
+
+        function closeVorstandModal() {
+            document.getElementById('vorstand-modal').classList.add('hidden');
+        }
     </script>
 </body>
 </html>

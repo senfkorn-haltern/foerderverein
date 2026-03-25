@@ -160,6 +160,52 @@ const webseitenInhalt = {
         ]
     },
 
+    // --- VORSTAND (TEAM VORSTELLUNG) ---
+    vorstand: {
+        buttonLabel: "Vorstand kennenlernen",
+        modalTitel: "Der Vorstand",
+        modalUntertitel: "Wir setzen uns für die Kita ein",
+        modalText: "Wir sind ein Team aus engagierten Eltern und Erziehern, die sich ehrenamtlich für die Belange der Kita einsetzen. Sprechen Sie uns gerne an, wenn Sie Ideen oder Fragen haben!",
+        mitglieder: [
+            {
+                name: "Lara Bennemann",
+                rolle: "1. Vorsitzende",
+                bildUrl: null, 
+                beschreibung: "Koordination, Organisation und Kontakt zur Kita-Leitung."
+            },
+            {
+                name: "Daniel Langer",
+                rolle: "2. Vorsitzender",
+                bildUrl: null,
+                beschreibung: "Koordination, Organisation und Kontakt zur Kita-Leitung."
+            },
+            {
+                name: "Lydia Balzer",
+                rolle: "Kassenwart",
+                bildUrl: null,
+                beschreibung: "Finanzen und Mitgliederverwaltung."
+            },
+            {
+                name: "Antonia Brinkert",
+                rolle: "Schriftführerin",
+                bildUrl: null,
+                beschreibung: "Protokolle und Dokumentation."
+            }
+            //  {
+            //     name: "Anne Kuhlmann",
+            //     rolle: "Beisitzerin",
+            //     bildUrl: null,
+            //     beschreibung: "Unterstützung bei Aktionen."
+            // },
+            // {
+            //     name: "Anne Kuhlmann",
+            //     rolle: "Beisitzerin",
+            //     bildUrl: null,
+            //     beschreibung: "Unterstützung bei Aktionen."
+            // }
+        ]
+    },
+
     // --- PROJEKTE & ANSCHAFFUNGEN ---
     projekteSettings: {
         titel: "Projekte & Anschaffungen"
@@ -168,9 +214,9 @@ const webseitenInhalt = {
     // status: "aktiv" (Grün), "geplant" (Orange), "abgeschlossen" (Blau)
     // statusText: Der Text, der auf dem Label steht
     projekte: [
-         { titel: "Musikschule für die Kita", status: "aktiv", statusText: "In Planung", bildUrl: "./assets/2026/musikschule.jpeg", beschreibung: "Der Förderverein plant die Finanzierung einer Musikschule, die regelmäßig in die Kita kommt. So können die Kinder spielerisch Instrumente entdecken und ihre musikalische Seite entfalten." },
+         { titel: "Musikschule für die Kita", status: "aktiv", statusText: "In Planung", bildUrl: "./assets/2026/musikschule.jpeg", beschreibung: "Der Förderverein plant eine finanzielle Beteiligung für ein Musikschulangebot, das regelmäßig in der Kita stattfinden soll. So können die Kinder spielerisch Instrumente entdecken und ihre musikalische Seite entfalten." },
          { titel: "Ausflug zum Maislabyrinth", status: "abgeschlossen", statusText: "Erfolgreich", bildUrl: "./assets/2025/Ausflug_Maislabyrinth.jpg", beschreibung: "Das war ein Riesenspaß! Alle Kinder und Erzieher haben gemeinsam den Weg durchs Labyrinth gesucht. Ein toller Tag in der Natur." },
-         { titel: "Neuer Schiebewagen", status: "abgeschlossen", statusText: "Angeschafft", bildUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa5u9zINX-nwgk797juZgcFAjXPiP2Ws3GEA&s", beschreibung: "Für unsere Kleinsten haben wir einen robusten 6-Sitzer-Schiebewagen finanziert. So sind auch längere Ausflüge rund um Haltern kein Problem mehr." }
+         { titel: "Neuer Schiebewagen", status: "abgeschlossen", statusText: "Angeschafft", bildUrl: "./assets/2025/Bollerwagen.jpg", beschreibung: "Für unsere Kleinsten haben wir einen Bollerwagen finanziert. So sind auch längere Ausflüge rund um Haltern kein Problem mehr." }
     ],
 
     // --- AKTIONEN & TERMINE ---
