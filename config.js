@@ -27,6 +27,7 @@ const webseitenInhalt = {
     vereinNameKurz: "FV Ev. Kiga Senfkorn", // Erscheint oben links in der Ecke
     stadt: "Haltern am See",
     logoUrl: "./assets/logo.svg", // Pfad zum Logo-Bild
+    logoUrlFooter: "./assets/logo_grau_transparent.svg", // Pfad zum Logo-Bild für Footer - als PNG, damit Farben umgekehrt werden können (helles Logo auf dunklem Hintergrund)
     
     // --- NAVIGATION (MENÜOBEN) ---
     // label: Der Text im Menü | link: Wohin es springt (ID der Sektion mit #)
