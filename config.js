@@ -46,9 +46,9 @@ const webseitenInhalt = {
 
     // --- STARTSEITE (WILLKOMMEN-BEREICH) ---
     willkommen: {
-        badge: "Gemeinsam für unsere Kleinen", // Kleiner Text über der Überschrift
-        titelZeile1: "Aus kleinen Körnern",
-        titelZeile2: "werden starke Bäume.", // Wird in Orange hervorgehoben
+        badge: "Gemeinsam wachsen - von Anfang an", // Kleiner Text über der Überschrift
+        titelZeile1: "Weil jedes kleine Senfkorn",
+        titelZeile2: "Großes in sich trägt.", // Wird in Orange hervorgehoben
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
         bildUrl: "./assets/logo.svg", // Hauptbild rechts (oder null)
         buttonVerein: "Förderverein unterstützen",
@@ -163,10 +163,10 @@ const webseitenInhalt = {
 
     // --- VORSTAND (TEAM VORSTELLUNG) ---
     vorstand: {
-        buttonLabel: "Vorstand kennenlernen",
+        buttonLabel: "Ansprechpartner kennenlernen",
         modalTitel: "Der Vorstand",
         modalUntertitel: "Wir setzen uns für die Kita ein",
-        modalText: "Wir sind ein Team aus engagierten Eltern und Erziehern, die sich ehrenamtlich für die Belange der Kita einsetzen. Sprechen Sie uns gerne an, wenn Sie Ideen oder Fragen haben!",
+        modalText: "Wir sind ein Team aus engagierten Eltern, die sich ehrenamtlich für die Belange der Kita einsetzen. Sprechen Sie uns gerne an, wenn Sie Ideen oder Fragen haben!",
         mitglieder: [
             {
                 name: "Lara Bennemann",
@@ -290,7 +290,7 @@ const webseitenInhalt = {
             copyIbanHint: "IBAN Kopieren",
             copySuccess: "Alle Bankdaten wurden kopiert!"
         },
-        infoText: "Jeder Euro fließt zu 100% in die Projekte für die Kinder. Spendenquittungen stellen wir gerne aus.",
+        infoText: "Jeder Euro fließt zu 100% in die Förderung des Kindergartens. Spendenquittungen stellen wir gerne aus.",
         copyFeedback: "IBAN in die Zwischenablage kopiert!",
         qrInfo: "Scanne den GiroCode mit deiner Bank-App, um alle Daten automatisch zu übernehmen.",
         standardZweck: "Spende Foerderverein" 
