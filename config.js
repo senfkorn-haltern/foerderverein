@@ -26,7 +26,7 @@ const webseitenInhalt = {
     vereinName: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
     vereinNameKurz: "FV Ev. Kiga Senfkorn", // Erscheint oben links in der Ecke
     stadt: "Haltern am See",
-    logoUrl: "./assets/logo.png", // Pfad zum Logo-Bild
+    logoUrl: "./assets/logo.svg", // Pfad zum Logo-Bild
     
     // --- NAVIGATION (MENÜOBEN) ---
     // label: Der Text im Menü | link: Wohin es springt (ID der Sektion mit #)
@@ -49,7 +49,7 @@ const webseitenInhalt = {
         titelZeile1: "Aus kleinen Körnern",
         titelZeile2: "werden starke Bäume.", // Wird in Orange hervorgehoben
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
-        bildUrl: "./assets/logo.png", // Hauptbild rechts (oder null)
+        bildUrl: "./assets/logo.svg", // Hauptbild rechts (oder null)
         buttonVerein: "Förderverein unterstützen",
         buttonKita: "Unsere Kita entdecken"
     },
