@@ -334,14 +334,64 @@ const webseitenInhalt = {
             datenschutz: {
                 titel: "Datenschutzerklärung",
                 getHtml: (d) => `
-                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">1. Datenschutz auf einen Blick</h4>
-                    <p class="mb-4 text-sm">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
-                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">2. Verantwortliche Stelle</h4>
-                    <p class="mb-4 text-sm">${d.verein}<br>${d.strasse}, ${d.plzOrt}<br>E-Mail: ${d.email}</p>
-                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">3. Datenerfassung</h4>
-                    <p class="mb-4 text-sm">Diese Website wird über GitHub Pages gehostet. GitHub erhebt technisch notwendige Log-Dateien.</p>
-                    <h4 class="font-bold mb-2 text-gray-800 uppercase text-sm">4. Ihre Rechte</h4>
-                    <p class="mb-4 text-sm">Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer Daten.</p>
+                    <div class="space-y-6 text-sm text-gray-600">
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">1. Datenschutz auf einen Blick</h4>
+                            <p class="mb-2 font-semibold">Allgemeine Hinweise</p>
+                            <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">2. Verantwortliche Stelle</h4>
+                            <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+                            <p class="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                                <strong>${d.verein}</strong><br>
+                                ${d.strasse}<br>
+                                ${d.plzOrt}<br><br>
+                                E-Mail: ${d.email}
+                            </p>
+                            <p class="mt-2 text-xs italic">Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">3. Datenerfassung auf dieser Website</h4>
+                            <p class="font-semibold mb-1">Hosting durch GitHub</p>
+                            <p>Wir hosten unsere Website bei GitHub Pages. Anbieter ist die GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA. Wenn Sie unsere Website aufrufen, erhebt GitHub personenbezogene Daten, darunter die IP-Adresse Ihres Endgeräts. Details finden Sie in der Datenschutzerklärung von GitHub: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" class="text-brand underline">GitHub Privacy Statement</a>.</p>
+                            <p class="mt-2">Die Verwendung von GitHub Pages erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website.</p>
+                            
+                            <p class="font-semibold mb-1 mt-4">SSL- bzw. TLS-Verschlüsselung</p>
+                            <p>Diese Seite nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">4. Plugins und Tools</h4>
+                            <p class="font-semibold mb-1">Google Web Fonts</p>
+                            <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Web Fonts von Google. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.</p>
+                            <p>Hierzu muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse unsere Website aufgerufen wurde. Die Nutzung von Google Web Fonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der einheitlichen Darstellung des Schriftbildes seiner Website.</p>
+                            <p>Weitere Informationen finden Sie unter <a href="https://developers.google.com/fonts/faq" target="_blank" class="text-brand underline">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google: <a href="https://www.google.com/policies/privacy/" target="_blank" class="text-brand underline">https://www.google.com/policies/privacy/</a>.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">5. Soziale Medien</h4>
+                            <p class="font-semibold mb-1">WhatsApp Kanal</p>
+                            <p>Auf unserer Website finden Sie Links zu unserem WhatsApp-Kanal. Anbieter ist die WhatsApp Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland. Wenn Sie auf den Link klicken oder den QR-Code scannen, verlassen Sie unsere Website. WhatsApp erhebt und verarbeitet dann Ihre Daten gemäß deren Richtlinien.</p>
+                            <p>Details zur Datenverarbeitung durch WhatsApp finden Sie hier: <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" class="text-brand underline">WhatsApp Datenschutzrichtlinie</a>.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">6. Ihre Rechte</h4>
+                            <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li><strong>Auskunft</strong> über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO).</li>
+                                <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO).</li>
+                                <li><strong>Löschung</strong> Ihrer Daten (Art. 17 DSGVO).</li>
+                                <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO).</li>
+                                <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO).</li>
+                                <li><strong>Widerruf</strong> Ihrer Einwilligung (Art. 7 Abs. 3 DSGVO).</li>
+                            </ul>
+                            <p class="mt-4">Zudem haben Sie ein <strong>Beschwerderecht bei der zuständigen Aufsichtsbehörde</strong> (Art. 77 DSGVO), wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt.</p>
+                        </section>
+                    </div>
                 `
             }
         }
