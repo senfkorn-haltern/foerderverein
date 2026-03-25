@@ -49,7 +49,7 @@ const webseitenInhalt = {
         titelZeile1: "Aus kleinen Körnern",
         titelZeile2: "werden starke Bäume.", // Wird in Orange hervorgehoben
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
-        bildUrl: "./assets/kind.jpeg", // Hauptbild rechts (oder null)
+        bildUrl: "./assets/logo.png", // Hauptbild rechts (oder null)
         buttonVerein: "Förderverein unterstützen",
         buttonKita: "Unsere Kita entdecken"
     },
@@ -302,13 +302,14 @@ const webseitenInhalt = {
             verein: "Förderverein des ev. Kindergartens Senfkorn Haltern am See e.V.",
             strasse: "Flaesheimer Str. 1",
             plzOrt: "45721 Haltern am See",
-            vorstand1: "Lara Bennemann",
-            vorstand2: "Daniel Langer",
+            vorstand1: "Lara Bennemann (1. Vorsitzende)",
+            vorstand2: "Daniel Langer (2. Vorsitzender)",
             email: "förderverein.sfk@gmail.com",
-            webseite: "https://senfkorn-haltern.github.io/foerderverein",
+            tel: "", // Falls vorhanden: "0123 456789"
+            webseite: "https://foerderverein-kindergarten-senfkorn.de/",
             registergericht: "Amtsgericht Gelsenkirchen",
             registernummer: "VR 2763",
-            verantwortlich: "Christian Danowski-Buhren"
+            verantwortlich: "Christian Danowski-Buhren (Anschrift wie oben)"
         },
         footerHeaders: {
             kontakt: "Kontakt",
@@ -319,16 +320,55 @@ const webseitenInhalt = {
             impressum: {
                 titel: "Impressum",
                 getHtml: (d) => `
-                    <h4 class="font-bold mb-2 text-gray-800">Angaben gemäß § 5 TMG</h4>
-                    <p class="mb-4">${d.verein}<br>${d.strasse}<br>${d.plzOrt}</p>
-                    <h4 class="font-bold mb-2 text-gray-800">Vertreten durch den Vorstand</h4>
-                    <p class="mb-4">${d.vorstand1}<br>${d.vorstand2}</p>
-                    <h4 class="font-bold mb-2 text-gray-800">Kontakt</h4>
-                    <p class="mb-4">E-Mail: ${d.email}<br>Webseite: ${d.webseite}</p>
-                    <h4 class="font-bold mb-2 text-gray-800">Registereintrag</h4>
-                    <p class="mb-4">Registergericht: ${d.registergericht}<br>Registernummer: ${d.registernummer}</p>
-                    <h4 class="font-bold mb-2 text-gray-800">Redaktionell verantwortlich</h4>
-                    <p class="mb-4">${d.verantwortlich}</p>
+                    <div class="space-y-6 text-sm text-gray-600">
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">Angaben gemäß § 5 TMG</h4>
+                            <p class="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                                <strong>${d.verein}</strong><br>
+                                ${d.strasse}<br>
+                                ${d.plzOrt}
+                            </p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">Vertreten durch den Vorstand</h4>
+                            <p>${d.vorstand1}<br>${d.vorstand2}</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">Kontakt</h4>
+                            <p>E-Mail: <a href="mailto:${d.email}" class="text-brand underline">${d.email}</a><br>
+                            ${d.tel ? `Telefon: ${d.tel}<br>` : ''}
+                            Webseite: <a href="${d.webseite}" target="_blank" class="text-brand underline">${d.webseite}</a></p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">Registereintrag</h4>
+                            <p>Eintragung im Vereinsregister.<br>
+                            Registergericht: ${d.registergericht}<br>
+                            Registernummer: ${d.registernummer}</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h4>
+                            <p>${d.verantwortlich}</p>
+                        </section>
+
+                        <section class="pt-4 border-t border-gray-100">
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">EU-Streitbeilegung</h4>
+                            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" class="text-brand underline">https://ec.europa.eu/consumers/odr/</a>.<br>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">Verbraucherstreitbeilegung/ Universalschlichtungsstelle</h4>
+                            <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+                        </section>
+
+                        <section class="text-[10px] leading-tight text-gray-400">
+                            <p><strong>Haftung für Inhalte:</strong> Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+                            <p class="mt-1"><strong>Haftung für Links:</strong> Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.</p>
+                        </section>
+                    </div>
                 `
             },
             datenschutz: {
