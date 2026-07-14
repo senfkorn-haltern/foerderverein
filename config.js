@@ -413,14 +413,22 @@ const webseitenInhalt = {
                         </section>
 
                         <section>
-                            <h4 class="font-bold mb-2 text-gray-800 uppercase">5. Soziale Medien</h4>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">5. Besucherstatistik</h4>
+                            <p class="font-semibold mb-1">GoatCounter</p>
+                            <p>Wir nutzen GoatCounter zur anonymen Erfassung der Website-Besucherstatistik. GoatCounter ist ein datenschutzfreundliches Analytics-Tool, das keine Cookies verwendet und keine personenbezogenen Daten erfasst.</p>
+                            <p>Die IP-Adressen werden von GoatCounter nicht gespeichert, und es werden keine Nutzerprofile erstellt. Es werden ausschließlich anonyme Statistiken über die Gesamtzahl der Besucher und grundlegende Informationen wie Seitenaufrufe erfasst.</p>
+                            <p>Weitere Informationen finden Sie in der <a href="https://goatcounter.com/privacy" target="_blank" class="text-brand underline">GoatCounter Datenschutzrichtlinie</a>.</p>
+                        </section>
+
+                        <section>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">6. Soziale Medien</h4>
                             <p class="font-semibold mb-1">WhatsApp Kanal</p>
                             <p>Auf unserer Website finden Sie Links zu unserem WhatsApp-Kanal. Anbieter ist die WhatsApp Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland. Wenn Sie auf den Link klicken oder den QR-Code scannen, verlassen Sie unsere Website. WhatsApp erhebt und verarbeitet dann Ihre Daten gemäß deren Richtlinien.</p>
                             <p>Details zur Datenverarbeitung durch WhatsApp finden Sie hier: <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" class="text-brand underline">WhatsApp Datenschutzrichtlinie</a>.</p>
                         </section>
 
                         <section>
-                            <h4 class="font-bold mb-2 text-gray-800 uppercase">6. Ihre Rechte</h4>
+                            <h4 class="font-bold mb-2 text-gray-800 uppercase">7. Ihre Rechte</h4>
                             <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
                             <ul class="list-disc pl-5 mt-2 space-y-1">
                                 <li><strong>Auskunft</strong> über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO).</li>
