@@ -208,7 +208,7 @@
                 <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
                 <span>Besucherstatistik anzeigen</span>
             </button>
-            <p class="text-[10px] text-gray-500">Seitdem: <span id="visitor-counter" class="font-medium">...</span> Besucher</p>
+            <p class="text-[10px] text-gray-500">Seitdem: <span id="visitor-counter" class="font-medium">...</span> Besucher<span id="adblocker-hint" class="hidden"> • bitte deaktivieren</span></p>
         </div>
         <div class="text-xs text-gray-500 mt-2">&copy; <span id="current-year"></span> <span id="footer-copyright"></span></div>
     </div></footer>
@@ -266,6 +266,7 @@
                         <span>Vollständige Statistik öffnen</span>
                     </a>
                     <p class="text-xs text-gray-500 mt-4">Öffnet die GoatCounter Dashboard-Übersicht in einem neuen Tab</p>
+                    <p class="text-xs text-gray-400 mt-2">Hinweis: Wenn "Durch Ad Blocker blockiert" angezeigt wird, deaktivieren Sie bitte Ihren Werbeblocker für diese Seite.</p>
                 </div>
             </div>
             <div class="p-6 border-t bg-white text-center shrink-0">
@@ -496,9 +497,9 @@
 
         // Load and display visitor count from GoatCounter
         function loadVisitorCount() {
-            // GoatCounter API endpoint for getting total count
-            // Note: May need to enable CORS in your GoatCounter settings
-            fetch('https://senfkorn-haltern.goatcounter.com/counter//.json')
+            // Attempt to fetch from GoatCounter API
+            // Note: This will be blocked by ad blockers - tracking still works via script tag
+            fetch('https://senfkorn-haltern.goatcounter.com/counter.json')
                 .then(response => {
                     if (!response.ok) throw new Error('No count data');
                     return response.json();
@@ -508,17 +509,36 @@
                         updateVisitorDisplay(data.count);
                     }
                 })
-                .catch(() => {
-                    // Tracking still works via the script tag
-                    // Count will appear in dashboard before showing on page
+                .catch((error) => {
+                    // Check if this looks like ad blocker interference
+                    // Ad blockers typically cause "TypeError: Failed to fetch" or network errors
+                    if (error.message && (error.message.includes('fetch') || error.name === 'TypeError')) {
+                        setBlockedByAdblocker();
+                    }
+                    // Otherwise, just keep the placeholder - count will appear in dashboard later
                 });
+        }
+
+        // Display message when blocked by ad blocker
+        function setBlockedByAdblocker() {
+            const msg = 'Durch Ad Blocker blockiert';
+            const elem1 = document.getElementById('visitor-counter');
+            const elem2 = document.getElementById('visitor-counter-modal');
+            const hint = document.getElementById('adblocker-hint');
+            if (elem1) elem1.textContent = msg;
+            if (elem2) elem2.textContent = msg;
+            if (hint) hint.classList.remove('hidden');
         }
 
         // Update both counter displays with the count
         function updateVisitorDisplay(count) {
             const formatted = count.toLocaleString('de-DE');
-            document.getElementById('visitor-counter').textContent = formatted;
-            document.getElementById('visitor-counter-modal').textContent = formatted;
+            const elem1 = document.getElementById('visitor-counter');
+            const elem2 = document.getElementById('visitor-counter-modal');
+            const hint = document.getElementById('adblocker-hint');
+            if (elem1) elem1.textContent = formatted;
+            if (elem2) elem2.textContent = formatted;
+            if (hint) hint.classList.add('hidden'); // Hide hint when count loads successfully
         }
     </script>
     <!-- Visitor Counter -->
