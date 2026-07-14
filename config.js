@@ -150,7 +150,7 @@ const webseitenInhalt = {
         badge: "Unser Ansatz",
         titel: "Wurzeln schlagen, Welt entdecken",
         text: "Das offene Konzept der Kita Senfkorn stellt das Kind und seine Interessen in den Mittelpunkt. Als Förderverein unterstützen wir genau hier: Wir finanzieren Materialien, die Neugier wecken, und Projekte, die Selbstvertrauen stärken.",
-        gruppenBildUrl: null, // Foto des Vorstands oder Teams
+        gruppenBildUrl: "./assets/2026/team_parts_july.jpg", // Foto des Vorstands oder Teams
         gruppenBildLabel: "Wir unterstützen unsere Senfkörner!", // Text auf dem grünen Label am Bild
         
         // Drei Fokus-Karten (Icon-Farben: green, yellow, orange)
@@ -215,7 +215,7 @@ const webseitenInhalt = {
     // status: "aktiv" (Grün), "geplant" (Orange), "abgeschlossen" (Blau)
     // statusText: Der Text, der auf dem Label steht
     projekte: [
-         { titel: "Musikschule für die Kita", status: "aktiv", statusText: "In Planung", bildUrl: "./assets/2026/musikschule.jpeg", beschreibung: "Der Förderverein plant eine finanzielle Beteiligung für ein Musikschulangebot, das regelmäßig in der Kita stattfinden soll. So können die Kinder spielerisch Instrumente entdecken und ihre musikalische Seite entfalten." },
+         { titel: "Musikschule für die Kita", status: "aktiv", statusText: "In Planung", bildUrl: "./assets/2026/musikschule.jpeg", beschreibung: "Der Förderverein plant eine finanzielle Beteiligung für ein Musikschulangebot, das regelmäßig in der Kita stattfinden soll. So können die Kinder spielerisch Instrumente entdecken und ihre musikalische Seite entfalten." },         
          { titel: "Ausflug zum Maislabyrinth", status: "abgeschlossen", statusText: "Erfolgreich", bildUrl: "./assets/2025/Ausflug_Maislabyrinth.jpg", beschreibung: "Das war ein Riesenspaß! Alle Kinder und Erzieher haben gemeinsam den Weg durchs Labyrinth gesucht. Ein toller Tag in der Natur." },
          { titel: "Neuer Schiebewagen", status: "abgeschlossen", statusText: "Angeschafft", bildUrl: "./assets/2025/Bollerwagen.jpg", beschreibung: "Für unsere Kleinsten haben wir einen Bollerwagen finanziert. So sind auch längere Ausflüge rund um Haltern kein Problem mehr." }
     ],
@@ -227,6 +227,8 @@ const webseitenInhalt = {
     },
     // textFarbe: "white" für helle Texte mit Schatten auf dunklen Bildern
     aktionen: [
+        { titel: "Hüpfburgen zum Sommerfest", zeitraum: "Juli 2026", icon: "sun", text: "Zum Sommerfest wurden Hüpfburgen aufgestellt, die den Kindern großen Spaß bereitet haben.", bildUrl: "./assets/2026/sommerfest-huepfburgen.jpg", textFarbe: "white" },
+        { titel: "Spende der Seeborussen", zeitraum: "Juli 2026", icon: "hand-coins", text: "Die Seeborussen haben eine großartige Spende in Höhe von 309€ für unseren Förderverein überreicht.", bildUrl: "./assets/2026/spende_seeborussen.jpg", textFarbe: "white" },
         { titel: "Kinderkarneval 2026", zeitraum: "Februar 2026", icon: "venetian-mask", text: "Der Förderverein sponsorte Kamelle und spaßiges Wurfmaterial für den Kinderkarnevalsumzug <br> (Foto: Blanka Thieme-Dietel)", bildUrl: "./assets/2026/karneval.jpg", textFarbe: "white" },
         { titel: "Waffelverkauf", zeitraum: "Regelmäßig", icon: "utensils", text: "Der Duft von frischen Waffeln gehört dazu! Wir verkaufen regelmäßig an Markttagen oder bei Kita-Festen.", bildUrl: "./assets/2025/Waffel.jpeg", textFarbe: "white" },
         { titel: "Nikolausnachmittag", zeitraum: "Dezember", icon: "gift", text: "In der Weihnachtszeit organisieren wir einen gemütlichen Nachmittag mit Kakao, Plätzchen und einer kleinen Überraschung.", bildUrl: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=800&auto=format&fit=crop", textFarbe: "white" },
