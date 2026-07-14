@@ -275,11 +275,12 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => { 
-            renderContent(); 
-            renderDecorations(); 
-            lucide.createIcons(); 
-            document.getElementById('current-year').textContent = new Date().getFullYear(); 
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContent();
+            renderDecorations();
+            lucide.createIcons();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            loadVisitorCount(); // Load visitor counter on page load 
             
             // Mobile Menu Logik - Robuster Event Listener
             const menuBtn = document.getElementById('mobile-menu-btn');
@@ -483,6 +484,7 @@
 
         // Visitor Stats Modal Functions
         function openVisitorStatsModal() {
+            loadVisitorCount(); // Refresh count when opening modal
             const m = document.getElementById('visitor-stats-modal');
             m.classList.remove('hidden');
             setTimeout(() => m.firstElementChild.classList.remove('scale-95', 'opacity-0'), 10);
@@ -491,8 +493,34 @@
         function closeVisitorStatsModal() {
             document.getElementById('visitor-stats-modal').classList.add('hidden');
         }
+
+        // Load and display visitor count from GoatCounter
+        function loadVisitorCount() {
+            // GoatCounter API endpoint for getting total count
+            // Note: May need to enable CORS in your GoatCounter settings
+            fetch('https://senfkorn-haltern.goatcounter.com/counter//.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('No count data');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.count !== undefined) {
+                        updateVisitorDisplay(data.count);
+                    }
+                })
+                .catch(() => {
+                    // Tracking still works via the script tag
+                    // Count will appear in dashboard before showing on page
+                });
+        }
+
+        // Update both counter displays with the count
+        function updateVisitorDisplay(count) {
+            const formatted = count.toLocaleString('de-DE');
+            document.getElementById('visitor-counter').textContent = formatted;
+            document.getElementById('visitor-counter-modal').textContent = formatted;
+        }
     </script>
-    <!-- Visitor Counter - Replace [your-site] with your actual GoatCounter site code -->
-    <script data-goatcounter="https://senfkorn-haltern.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-</body>
+    <!-- Visitor Counter -->
+    <script data-goatcounter="https://senfkorn-haltern.goatcounter.com/count" async src="./lib/count.js"></script>
 </html>
