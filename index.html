@@ -10,13 +10,18 @@
     <link href="./lib/google_font.css" rel="stylesheet">
     <link rel="stylesheet" href="app.css">
     <script>
+        /* Tailwind theme customization - custom colors for the Förderverein Senfkorn website */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
+                        /* Brand colors: orange theme for main elements, green for success/highlights */
                         brand: { light: '#F3E9E2', DEFAULT: '#D97706', dark: '#B45309', green: '#65A30D' },
+                        /* Soft background colors for section backgrounds */
                         soft: { amber: '#FFFBF0', green: '#F7FBF2', stone: '#FAFAF9', blue: '#F0F9FF' },
+                        /* Kita-specific gradient colors for the kita section */
                         kita: { warm: '#FDE68A', fresh: '#D9F99D' },
+                        /* WhatsApp brand green for the social media section */
                         whatsapp: '#25D366'
                     },
                     fontFamily: { sans: ['"Open Sans"', 'sans-serif'], display: ['"Nunito"', 'sans-serif'] }
