@@ -75,7 +75,32 @@ Passen Sie die Texte innerhalb der Anführungszeichen an. Das Ergebnis sieht dan
 
 ---
 
-## 5. Änderungen live schalten
+## 5. Besucherstatistik (GoatCounter)
+
+Am unteren Ende der Webseite sehen Sie einen Besucherzähler mit der Frage "Wie viele Besucher hat unsere Seite?" Hinter dieser Zählung steht **GoatCounter** – ein kostenloses, datenschutzfreundliches Tool.
+
+### Was ist GoatCounter?
+GoatCounter ist ein Dienst, der anonym zählt, wie oft Ihre Webseite besucht wird. Es ist:
+- **Komplett kostenlos** für gemeinnützige Vereine wie unseren
+- **Datenschutzkonform** – es werden keine Namen, E-Mail-Adressen oder ähnliche persönliche Daten gespeichert
+- **Ohne Cookies** – keine kleinen Datenspeicher auf Ihrem Computer
+- **Transparent** – jeder kann sich die Auszahldaten auf der GoatCounter-Website ansehen
+
+### Wie funktioniert es?
+1. Wenn jemand die Seite aufruft, registriert GoatCounter diesen Besuch
+2. Die Besucherzahl wird automatisch aktualisiert und auf der Seite angezeigt
+3. Bei manchen Besuchern mit Werbeblockern (wie AdBlock) kann die Anzeige blockiert werden – in diesem Fall steht "Durch Ad Blocker blockiert"
+
+### Wo sehe ich die Statistik?
+- **Kurzansicht:** Klicken Sie unten auf "Besucherstatistik anzeigen"
+- **Vollständige Statistik:** Klicken Sie im Popup auf "Vollständige Statistik öffnen" – das öffnet die umfassende Auswertung in einem neuen Tab
+
+### Wichtig für technisch Interessierte
+Das GoatCounter-Skript ist bereits in die Webseite eingebaut. Sie müssen sich **nichts weiter** schicken – es läuft automatisch!
+
+---
+
+## 6. Änderungen live schalten
 1. Wenn Sie fertig sind, klicken Sie auf GitHub auf den grünen Button **"Commit changes"**.
 2. Warten Sie ca. **1 Minute**.
 3. Laden Sie die Webseite in Ihrem Browser neu (ggf. Taste `F5`). Fertig!
