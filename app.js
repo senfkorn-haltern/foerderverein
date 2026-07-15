@@ -501,7 +501,7 @@ function closeVisitorStatsModal() {
 function loadVisitorCount() {
     // Fetch visitor count from GoatCounter API
     // Note: This may be blocked by ad blockers, but tracking still works via script tag
-    fetch('https://senfkorn-haltern.goatcounter.com/counter.json')
+    fetch('https://senfkorn-haltern.goatcounter.com/counter//.json')
         .then(response => {
             if (!response.ok) throw new Error('No count data');
             return response.json();
