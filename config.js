@@ -150,7 +150,7 @@ const webseitenInhalt = {
         badge: "Unser Ansatz",
         titel: "Wurzeln schlagen, Welt entdecken",
         text: "Das offene Konzept der Kita Senfkorn stellt das Kind und seine Interessen in den Mittelpunkt. Als Förderverein unterstützen wir genau hier: Wir finanzieren Materialien, die Neugier wecken, und Projekte, die Selbstvertrauen stärken.",
-        gruppenBildUrl: "./assets/2026/team_parts_july.jpg", // Foto des Vorstands oder Teams
+        gruppenBildUrl: "./assets/team/team_parts_july.jpg", // Foto des Vorstands oder Teams
         gruppenBildLabel: "Wir unterstützen unsere Senfkörner!", // Text auf dem grünen Label am Bild
         
         // Drei Fokus-Karten (Icon-Farben: green, yellow, orange)
@@ -171,13 +171,13 @@ const webseitenInhalt = {
             {
                 name: "Lara Bennemann",
                 rolle: "1. Vorsitzende",
-                bildUrl: null, 
+                bildUrl: "./assets/team/bennemann.jpg", 
                 beschreibung: "Koordination, Organisation und Kontakt zur Kita-Leitung."
             },
             {
                 name: "Daniel Langer",
                 rolle: "2. Vorsitzender",
-                bildUrl: null,
+                bildUrl: "./assets/team/langer.jpg",
                 beschreibung: "Koordination, Organisation und Kontakt zur Kita-Leitung."
             },
             {
@@ -189,21 +189,27 @@ const webseitenInhalt = {
             {
                 name: "Antonia Brinkert",
                 rolle: "Schriftführerin",
-                bildUrl: null,
+                bildUrl: "./assets/team/brinkert.jpg",
                 beschreibung: "Protokolle und Dokumentation."
+            },
+             {
+                name: "Anne Kuhlmann",
+                rolle: "Kassenprüferin",
+                bildUrl: null,
+                beschreibung: "Jährliche Prüfung der Finanzen."
+            },
+             {
+                name: "Ila Leugers",
+                rolle: "Kassenprüferin",
+                bildUrl: "./assets/team/leugers.jpg",
+                beschreibung: "Jährliche Prüfung der Finanzen."
+            },
+            {
+                name: "Anke Czekalla",
+                rolle: "Beisitzerin",
+                bildUrl: "./assets/team/czekalla.jpg",
+                beschreibung: "Unterstützung bei Aktionen."
             }
-            //  {
-            //     name: "Anne Kuhlmann",
-            //     rolle: "Beisitzerin",
-            //     bildUrl: null,
-            //     beschreibung: "Unterstützung bei Aktionen."
-            // },
-            // {
-            //     name: "Anne Kuhlmann",
-            //     rolle: "Beisitzerin",
-            //     bildUrl: null,
-            //     beschreibung: "Unterstützung bei Aktionen."
-            // }
         ]
     },
 
