@@ -27,6 +27,7 @@ const webseitenInhalt = {
     vereinNameKurz: "FV Ev. Kiga Senfkorn", // Erscheint oben links in der Ecke
     stadt: "Haltern am See",
     logoUrl: "./assets/logo.svg", // Pfad zum Logo-Bild
+    logoAlt: "Förderverein Kindergarten Senfkorn Haltern - Logo",
     logoUrlFooter: "./assets/logo_grau_transparent.svg", // Pfad zum Logo-Bild für Footer - als PNG, damit Farben umgekehrt werden können (helles Logo auf dunklem Hintergrund)
     
     // --- NAVIGATION (MENÜOBEN) ---

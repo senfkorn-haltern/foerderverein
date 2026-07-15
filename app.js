@@ -45,6 +45,7 @@ function renderContent() {
 
     // Navigation section
     document.getElementById('nav-logo').src = c.logoUrl;
+    document.getElementById('nav-logo').alt = c.logoAlt || (c.vereinNameKurz + ' Logo');
     document.getElementById('nav-title').textContent = c.vereinNameKurz;
     document.getElementById('nav-subtitle').textContent = c.stadt;
     renderMenu(c.menu);  // Build navigation menu items
@@ -55,6 +56,7 @@ function renderContent() {
     document.getElementById('willkommen-title-2').textContent = c.willkommen.titelZeile2;
     document.getElementById('willkommen-text').textContent = c.willkommen.text;
     document.getElementById('willkommen-image').src = c.willkommen.bildUrl;
+    document.getElementById('willkommen-image').alt = 'Förderverein Senfkorn Haltern - Logo';
     document.getElementById('willkommen-btn-verein').textContent = c.willkommen.buttonVerein;
     document.getElementById('willkommen-btn-kita').textContent = c.willkommen.buttonKita;
 
@@ -74,6 +76,7 @@ function renderContent() {
     document.getElementById('group-photo-label').textContent = c.ueberUns.gruppenBildLabel;
     if (c.ueberUns.gruppenBildUrl) {
         gp.src = c.ueberUns.gruppenBildUrl;
+        gp.alt = 'Vorstand Förderverein Senfkorn Haltern am See';
         gp.classList.remove('hidden');
         gpp.classList.add('hidden');
     } else {
@@ -94,6 +97,7 @@ function renderContent() {
     document.getElementById('social-btn-whatsapp').querySelector('span').textContent = c.socialMedia.whatsapp.buttonText;
     document.getElementById('whatsapp-mock-name').textContent = c.socialMedia.whatsapp.name;
     document.getElementById('whatsapp-mock-logo').src = c.logoUrl;
+    document.getElementById('whatsapp-mock-logo').alt = 'Förderverein Senfkorn Logo';
     document.getElementById('whatsapp-qr-label').textContent = c.socialMedia.whatsapp.qrLabel;
     document.getElementById('whatsapp-qr-sublabel').textContent = c.socialMedia.whatsapp.qrSubLabel;
     if (c.socialMedia.whatsapp.qrUrl) document.getElementById('whatsapp-qr').src = c.socialMedia.whatsapp.qrUrl;
@@ -107,8 +111,10 @@ function renderContent() {
     document.getElementById('kita-gallery-title').textContent = c.kita.galleryTitle;
     renderRaeume(c.kita.raeume, c.kita.galleryOverlayText);  // Render room gallery
     // Handle leadership image with placeholder fallback
+    const leitungBild = document.getElementById('kita-leitung-bild');
     if (c.kita.leitung.bildUrl) {
-        document.getElementById('kita-leitung-bild').src = c.kita.leitung.bildUrl;
+        leitungBild.src = c.kita.leitung.bildUrl;
+        leitungBild.alt = `${c.kita.leitung.name} - ${c.kita.leitung.titel} Kita Senfkorn Haltern`;
     } else {
         document.getElementById('kita-leitung-bild-container').innerHTML =
             `<div class="w-full h-full image-placeholder text-blue-300 text-center flex flex-col items-center justify-center">
@@ -163,6 +169,7 @@ function renderContent() {
 
     // Footer section
     document.getElementById('footer-header-kontakt').textContent = c.legal.footerHeaders.kontakt;
+    document.getElementById('footer-logo').alt = 'Förderverein Kindergarten Senfkorn Haltern - Footer Logo';
     document.getElementById('footer-header-legal').textContent = c.legal.footerHeaders.rechtliches;
     document.getElementById('footer-logo').src = c.logoUrlFooter;
     document.getElementById('footer-address').innerHTML = c.footer.adresse.map(line => `<p>${line}</p>`).join('');
@@ -244,7 +251,7 @@ function renderRaeume(raeume, overlay) {
                 return `<div class="relative group ${orderClass}">
                     <div class="bg-white p-3 shadow-xl rounded-2xl transform transition-all duration-500 group-hover:rotate-0 group-hover:scale-110 border border-white/50 ${rotation} z-10 hover:z-30">
                         <div class="h-48 sm:h-72 lg:h-[22rem] w-64 sm:w-96 lg:w-[30rem] overflow-hidden rounded-xl relative">
-                            <img src="${b}" class="w-full h-full object-cover">
+                            <img src="${b}" class="w-full h-full object-cover" alt="${r.titel} - Kita Senfkorn Haltern am See">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <p class="text-white text-xs font-medium italic">${overlay}</p>
                             </div>
@@ -293,7 +300,7 @@ function renderProjects(projects) {
 
         return `<div class="scroll-item w-[85%] md:w-[calc(33.33%-1rem)] bg-white rounded-3xl shadow-sm border overflow-hidden transition hover:shadow-md animate-fade-in relative z-10 flex flex-col">
             <div class="relative h-48 shrink-0">
-                <img class="h-full w-full object-cover" src="${p.bildUrl}">
+                <img class="h-full w-full object-cover" src="${p.bildUrl}" alt="${p.titel} - Projekt des Fördervereins Senfkorn">
                 <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${sc}">${p.statusText}</div>
             </div>
             <div class="p-6 flex flex-col flex-grow text-left">
@@ -457,7 +464,7 @@ function renderVorstand(mitglieder) {
     document.getElementById('vorstand-grid').innerHTML = mitglieder.map(m => {
         // Use provided image or show placeholder
         let imgHtml = m.bildUrl
-            ? `<img src="${m.bildUrl}" class="w-full h-full object-cover">`
+            ? `<img src="${m.bildUrl}" class="w-full h-full object-cover" alt="${m.name} - ${m.rolle} Förderverein Senfkorn">`
             : `<div class="w-full h-full image-placeholder text-brand/20"><i data-lucide="user" class="w-12 h-12"></i></div>`;
 
         return `<div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center transition hover:shadow-md">
