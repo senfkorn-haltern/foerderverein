@@ -57,6 +57,11 @@ function renderContent() {
     document.getElementById('willkommen-text').textContent = c.willkommen.text;
     document.getElementById('willkommen-image').src = c.willkommen.bildUrl;
     document.getElementById('willkommen-image').alt = 'Förderverein Senfkorn Haltern - Logo';
+    // Set background image on home section from config
+    if (c.willkommen.bgBildUrl) {
+        const homeSection = document.getElementById('home');
+        homeSection.style.backgroundImage = `url('${c.willkommen.bgBildUrl}')`;
+    }
     document.getElementById('willkommen-btn-verein').textContent = c.willkommen.buttonVerein;
     document.getElementById('willkommen-btn-kita').textContent = c.willkommen.buttonKita;
 

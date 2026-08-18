@@ -52,6 +52,7 @@ const webseitenInhalt = {
         titelZeile2: "Großes in sich trägt.", // Wird in Orange hervorgehoben
         text: "Willkommen beim Förderverein des Ev. Kindergartens Senfkorn. Wir unterstützen das offene Konzept unserer Kita in Haltern am See und schaffen Räume zum Wachsen.",
         bildUrl: "./assets/logo.svg", // Hauptbild rechts (oder null)
+        bgBildUrl: "./assets/kita/Aussenbereich2.jpg", // Hintergrundbild der Startseite (dezenter Overlay-Effekt)
         buttonVerein: "Förderverein unterstützen",
         buttonKita: "Unsere Kita entdecken"
     },
@@ -482,8 +483,8 @@ const webseitenInhalt = {
     // pos: Position (Tailwind Klassen) | color: Farbe/Transparenz | anim: floating, floating-slow, floating-delayed
     dekoElemente: {
         home: [
-            { icon: "cloud", pos: "top-24 left-[5%]", color: "text-brand-light/80", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
-            { icon: "sun", pos: "top-32 right-[10%]", color: "text-brand-light/70", size: "w-20 h-20 sm:w-32 sm:h-32", anim: "floating-delayed" }
+            { icon: "cloud", pos: "top-24 left-[5%]", color: "text-white/50", size: "w-16 h-16 sm:w-24 sm:h-24", anim: "floating" },
+            { icon: "sun", pos: "top-32 right-[10%]", color: "text-white/40", size: "w-20 h-20 sm:w-32 sm:h-32", anim: "floating-delayed" }
         ],
         "ueber-uns": [
             { icon: "leaf", pos: "bottom-10 left-[5%]", color: "text-brand-green/30", size: "w-32 h-32 sm:w-48 sm:h-48", anim: "floating-slow" },
