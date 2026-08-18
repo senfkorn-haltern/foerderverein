@@ -126,7 +126,7 @@ const webseitenInhalt = {
         leitung: {
             titel: "Kita-Leitung",
             name: "Frau Marie Büning",
-            bildUrl: null
+            bildUrl: "./assets/leitung_website.jpg"
         },
 
         // Beschriftungen für den Kontakt-Block
