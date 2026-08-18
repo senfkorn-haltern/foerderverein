@@ -131,7 +131,11 @@
                         /* WhatsApp brand green for the social media section */
                         whatsapp: '#25D366'
                     },
-                    fontFamily: { sans: ['"Open Sans"', 'sans-serif'], display: ['"Nunito"', 'sans-serif'] }
+                    fontFamily: { sans: ['"Open Sans"', 'sans-serif'], display: ['"Nunito"', 'sans-serif'] },
+                    /* Custom breakpoint: full desktop nav needs >1350px to avoid element overlap */
+                    screens: {
+                        'nav': '1360px'
+                    }
                 }
             }
         }
@@ -148,11 +152,11 @@
                         <span class="font-display font-bold text-lg sm:text-xl text-gray-800 tracking-tight leading-tight whitespace-nowrap"><span id="nav-title"></span><span class="block text-xs font-normal text-gray-500" id="nav-subtitle"></span></span>
                     </div>
                 </div>
-                <div class="hidden md:flex items-center space-x-2 lg:space-x-4 xl:space-x-6" id="desktop-menu"></div>
-                <div class="flex items-center md:hidden"><button id="mobile-menu-btn" class="text-gray-600 hover:text-brand p-2"><i data-lucide="menu" class="w-8 h-8"></i></button></div>
+                <div class="hidden nav:flex items-center space-x-2 lg:space-x-4 xl:space-x-6" id="desktop-menu"></div>
+                <div class="flex items-center nav:hidden"><button id="mobile-menu-btn" class="text-gray-600 hover:text-brand p-2"><i data-lucide="menu" class="w-8 h-8"></i></button></div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100"><div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg" id="mobile-menu-items"></div></div>
+        <div id="mobile-menu" class="hidden nav:hidden bg-white border-t border-gray-100"><div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg" id="mobile-menu-items"></div></div>
     </nav>
 
     <!-- Willkommen Section -->
