@@ -352,3 +352,95 @@ Das GoatCounter-Skript ist bereits in die Webseite eingebaut. Du musst dich **ni
 1. Wenn du fertig bist, klickst du auf GitHub auf den grünen Button **"Commit changes"**.
 2. Warte ca. **1 Minute**.
 3. Lade die Webseite in deinem Browser neu (ggf. Taste `F5`). Fertig!
+
+---
+
+## 8. Syntax-Validierung vor dem Commit
+
+Bevor du deine Änderungen speicherst, solltest du die `config.js`-Datei auf **Syntaxfehler** prüfen. Das klingt kompliziert – ist es aber nicht! Eine "Syntax" ist einfach die **Regel, wie der Code aufgebaut sein muss**, damit der Webbrowser ihn versteht. Wenn eine Regel verletzt wird (zum Beispiel ein fehlendes Komma oder eine vergessene Klammer), dann lädt die Seite nicht mehr richtig.
+
+> **Merke:** Es gibt nichts Schlimmes am Prüfen! Wenn ein Fehler angezeigt wird, hast du die Chance, ihn **noch zu korrigieren** – bevor die ganze Welt eine kaputtere Webseite sieht.
+
+### Warum ist das wichtig?
+
+Stell dir vor, du schreibst einen Text, aber plötzlich fehlt ein Komma. Der Satz ist zwar fast richtig – aber genug, um ihn missverständlich zu machen. Genauso funktioniert die `config.js`: Ein einziges fehlendes Komma, eine vergessene Klammer oder ein falsch gesetztes Anführungszeichen kann die ganze Seite zum Einfrieren bringen. Die Syntax-Validierung ist wie ein **automatischer Rechtschreibungs-Checker** – nur für den Code.
+
+### Schritt-für-Schritt: So funktioniert die Validierung
+
+#### Schritt 1: Öffne die Validierungs-Website
+
+1. Öffne deinen Webbrowser (Chrome, Firefox, Edge – irgendeinen).
+2. Gib in die Adresszeile ein: [https://esprima.org/demo/validate.html](https://esprima.org/demo/validate.html)
+3. Drücke **Enter**. Die Seite lädt – sie zeigt ein großes weißes Textfeld in der Mitte.
+
+![Esprima Validator](https://placehold.co/800x200/cccccc/666666?text=Esprima+Demo+–+Validate+JavaScript+Syntax)
+
+#### Schritt 2: Den Inhalt der `config.js` kopieren
+
+1. Gehe in GitHub zur Datei `config.js`.
+2. Klicke auf den grünen Button **"Raw"** (das ist der Button, der dir den reinen Text ohne Formatierung anzeigt).
+3. Drücke `Strg + A` (markiert alles) und dann `Strg + C` (kopiert alles).
+
+> **Tipp:** Wenn du keinen "Raw"-Button siehst, scrolle ein Stück nach unten – manchmal ist er etwas versteckt.
+
+#### Schritt 3: Den Code einfügen und prüfen
+
+1. Wechsel zurück zur Esprima-Website.
+2. Klicke in das große weiße Textfeld.
+3. Drücke `Strg + V` (füge den kopierten Inhalt ein).
+4. Klicke auf den orangenen Button **"Validate"**.
+
+#### Schritt 4: Das Ergebnis lesen
+
+Die Website zeigt dir dann eine von zwei möglichen Meldungen:
+
+- **Grün (okay):** Wenn alles richtig ist, siehst du eine grüne Meldung wie **"Valid JavaScript"** oder **"No syntax errors"**. Das bedeutet: **Dein Code ist fehlerfrei!** Du kannst beruhigt speichern.
+
+- **Rot (Achtung!):** Wenn es einen Fehler gibt, erscheint eine **rote Fehlermeldung** mit einer Zeilennummer. Zum Beispiel:
+  ```
+  SyntaxError: Unexpected token } (15:3)
+  ```
+  Das bedeutet: **"Unerwartetes Zeichen `}` in Zeile 15, Spalte 3"**. 
+
+#### Schritt 5: Fehler korrigieren
+
+Wenn du einen Fehler bekommst:
+
+1. **Schau genau hin:** Die Fehlermeldung sagt dir, **in welcher Zeile** das Problem ist. Zähle diese Zeile in deiner `config.js` ab.
+2. **Prüfe die Regeln aus Abschnitt 2:**
+   - Steht der Text in richtigen `"Anführungszeichen"`?
+   - Ist nach jedem Eintrag ein Komma `,` gesetzt?
+   - Sind alle Klammern `)` und `}` korrekt gepaart?
+3. **Korrigiere den Fehler** in GitHub direkt in der `config.js`.
+4. **Wiederhole den Vorgang:** Kopiere den neuen Inhalt erneut und validiere ihn erneut.
+
+> **Beispiel-Fehler:** Du hast versehentlich ein Komma vergessen:
+> ```javascript
+> {
+>     titel: "Neues Projekt"
+>     status: "aktiv"
+> }
+> ```
+> **Fehlermeldung:** `SyntaxError: Unexpected identifier (2:5)`
+> **Korrektur:** Ein Komma nach `"Neues Projekt"` hinzufügen:
+> ```javascript
+> {
+>     titel: "Neues Projekt",
+>     status: "aktiv"
+> }
+> ```
+
+### Noch ein Sicherheits-Tipp
+
+Bevor du auf **"Commit changes"** klickst, lies die Änderungen in GitHub noch einmal **durch**. GitHub zeigt dir eine **Vergleichs-Anzeige** (Diff), in der du genau siehst, was sich geändert hat. So kannst du Fehler noch vor dem Speichern entdecken – ähnlich wie der Syntax-Prüfung, aber mit deinen eigenen Augen.
+
+---
+
+## 9. Noch Fragen?
+
+Wenn etwas nicht klappt oder du unsicher bist:
+
+- **Per E-Mail:** Christian Danowski-Buhren (danowski-buhren@gmx.de) – ich helfe dir gern weiter!
+- **GitHub Issues:** Du kannst auch direkt auf GitHub ein **Issue** erstellen. Klick dazu im Repository oben auf **"Issues"** und dann auf **"New issue"**. Beschreibe kurz, was nicht funktioniert – ich melde mich dann.
+
+Keine Sorge: **Nichts ist so kompliziert, dass es nicht zu verstehen ist.** Jeder hat mal angefangen. 🌱
