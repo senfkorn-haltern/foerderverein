@@ -235,6 +235,7 @@ const webseitenInhalt = {
     },
     // textFarbe: "white" für helle Texte mit Schatten auf dunklen Bildern
     aktionen: [
+        { titel: "Waffelverkauf beim Feierabendmarkt", zeitraum: "September 2026", icon: "hand-coins", text: "Beim Feierabendmarkt haben wir viel Spaß beim Waffelverkauf gehabt. Danke an alle, die mitgewirkt haben.", bildUrl: "./assets/2026/Waffeln_Feierabendmarkt_2026-09.jpg", textFarbe: "white" },    
         { titel: "Hüpfburgen zum Sommerfest", zeitraum: "Juli 2026", icon: "sun", text: "Zum Sommerfest wurden Hüpfburgen aufgestellt, die den Kindern großen Spaß bereitet haben.", bildUrl: "./assets/2026/sommerfest-huepfburgen.jpg", textFarbe: "white" },
         { titel: "Spende der Seeborussen", zeitraum: "Juli 2026", icon: "hand-coins", text: "Die Seeborussen haben eine großartige Spende in Höhe von 309€ für unseren Förderverein überreicht.", bildUrl: "./assets/2026/spende_seeborussen.jpg", textFarbe: "white" },
         { titel: "Kinderkarneval 2026", zeitraum: "Februar 2026", icon: "venetian-mask", text: "Der Förderverein sponsorte Kamelle und spaßiges Wurfmaterial für den Kinderkarnevalsumzug <br> (Foto: Blanka Thieme-Dietel)", bildUrl: "./assets/2026/karneval.jpg", textFarbe: "white" },
