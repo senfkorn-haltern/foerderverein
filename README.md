@@ -1,15 +1,15 @@
 # Handbuch zur Pflege der Webseite (Förderverein Senfkorn)
 
-Herzlich willkommen! Diese Webseite wurde so entwickelt, dass sie vollständig über eine einzige Datei (`config.js`) gesteuert werden kann. Sie benötigen keine Programmierkenntnisse.
+Herzlich willkommen! Diese Webseite wurde so entwickelt, dass sie vollständig über eine einzige Datei (`config.js`) gesteuert werden kann. Du benötigst keine Programmierkenntnisse.
 
 ---
 
 ## 1. Das Sicherheitsnetz: Keine Angst vor Fehlern!
 
-**Sie können nichts kaputt machen.** GitHub speichert jede Version der Seite. Wenn die Seite nach einer Änderung nicht mehr lädt:
-1. Klicken Sie bei der Datei `config.js` oben auf **"History"**.
-2. Wählen Sie die letzte funktionierende Version aus.
-3. Stellen Sie diese mit einem Klick wieder her.
+**Du kannst nichts kaputt machen.** GitHub speichert jede Version der Seite. Wenn die Seite nach einer Änderung nicht mehr lädt:
+1. Klick bei der Datei `config.js` oben auf **"History"**.
+2. Wähle die letzte funktionierende Version aus.
+3. Stelle sie mit einem Klick wieder her.
 
 **Notfallkontakt:** Christian Danowski-Buhren (danowski-buhren@gmx.de)
 
@@ -17,14 +17,14 @@ Herzlich willkommen! Diese Webseite wurde so entwickelt, dass sie vollständig �
 
 ## 2. Die goldenen Regeln der Bearbeitung
 
-Alle Inhalte liegen in der Datei `config.js`. Damit die Technik funktioniert, beachten Sie bitte diese Regeln:
+Alle Inhalte liegen in der Datei `config.js`. Damit die Technik funktioniert, beachte bitte diese Regeln:
 
 *   **Anführungszeichen:** Texte müssen immer in `"Anführungszeichen"` stehen.
 *   **Kommas:** Nach jedem Eintrag muss ein Komma `,` stehen.
-*   **Kein Bild?** Wenn Sie kein Foto haben, schreiben Sie `null` (ohne Anführungszeichen). Die Seite zeigt dann automatisch einen schönen Platzhalter ("Foto folgt") an.
-*   **Reihenfolge:** Der **oberste** Eintrag in einer Liste (z.B. bei Projekten) erscheint auf der Webseite als **erster**. Wenn Sie etwas Neues hinzufügen, setzen Sie es also am besten ganz **oben in die Liste** (nach der öffnenden Klammer `[`).
-*   **Zeilenumbrüche in Texten:** Sie können `<br>` für einen Zeilenwechsel nutzen. Beispiel: `"Erster Satz.<br>Zweiter Satz."`
-*   **Icons:** Die Icons stammen von Lucide Icons. Eine Übersicht aller Namen finden Sie auf: [lucide.dev/icons](https://lucide.dev/icons). Tippen Sie einfach den Namen in Kleinbuchstaben ein (z.B. `sun`, `gift`, `utensils`).
+*   **Kein Bild?** Wenn du kein Foto hast, schreibe `null` (ohne Anführungszeichen). Die Seite zeigt dann automatisch einen schönen Platzhalter ("Foto folgt") an.
+*   **Reihenfolge:** Der **oberste** Eintrag in einer Liste (z.B. bei Projekten) erscheint auf der Webseite als **erster**. Wenn du etwas Neues hinzufügen willst, setze es am besten ganz **oben in die Liste** (nach der öffnenden Klammer `[`).
+*   **Zeilenumbrüche in Texten:** Du kannst `<br>` für einen Zeilenwechsel nutzen. Beispiel: `"Erster Satz.<br>Zweiter Satz."`
+*   **Icons:** Die Icons stammen von Lucide Icons. Eine Übersicht aller Namen findest du auf: [lucide.dev/icons](https://lucide.dev/icons). Tippe einfach den Namen in Kleinbuchstaben ein (z.B. `sun`, `gift`, `utensils`).
 
 ---
 
@@ -35,20 +35,20 @@ Egal ob ein neues Projekt, eine Aktion oder eine Elternstimme – der Ablauf ist
 ### Beispiel: Ein neues Projekt hinzufügen ("Die Matschküche")
 
 **Schritt 1: Das Bild hochladen**
-1. Gehen Sie in GitHub in den Ordner `assets` (oder einen Unterordner wie `2026`).
-2. Klicken Sie auf **"Add file"** → **"Upload files"**.
-3. Laden Sie Ihr Bild hoch (z.B. `matschkueche.jpg`).
+1. Geh in GitHub in den Ordner `assets` (oder einen Unterordner wie `2026`).
+2. Klick auf **"Add file"** → **"Upload files"**.
+3. Lade dein Bild hoch (z.B. `matschkueche.jpg`).
 
-> **Hinweis zu Ordnern:** Für Bilder nutzen Sie den Ordner `assets`. In Unterordner wie `assets/2026/` oder `assets/kita/` können Sie die Bilder sortieren. Für Dokumente (wie der Mitgliedsantrag) nutzen Sie den Ordner `assets/documents/`.
+> **Hinweis zu Ordnern:** Für Bilder nutze den Ordner `assets`. In Unterordner wie `assets/2026/` oder `assets/kita/` kannst du die Bilder sortieren. Für Dokumente (wie der Mitgliedsantrag) nutze den Ordner `assets/documents/`.
 
 **Schritt 2: Den Code in `config.js` vorbereiten**
-1. Öffnen Sie die `config.js`.
-2. Suchen Sie die Liste `projekte: [`.
-3. Kopieren Sie einen bestehenden Block (alles von `{` bis `},`) – am besten mit einem anderen Projekt.
-4. Fügen Sie ihn direkt unter der öffnenden Klammer `[` ein (damit erscheint er ganz oben).
+1. Öffne die `config.js`.
+2. Such die Liste `projekte: [`.
+3. Kopiere einen bestehenden Block (alles von `{` bis `},`) – am besten mit einem anderen Projekt.
+4. Füge ihn direkt unter der öffnenden Klammer `[` ein (damit erscheint er ganz oben).
 
 **Schritt 3: Werte anpassen**
-Passen Sie die Texte innerhalb der Anführungszeichen an. Das Ergebnis sieht dann so aus:
+Passe die Texte innerhalb der Anführungszeichen an. Das Ergebnis sieht dann so aus:
 
 ```javascript
 { 
@@ -66,7 +66,7 @@ Passen Sie die Texte innerhalb der Anführungszeichen an. Das Ergebnis sieht dan
 
 ### A. Navigation (`menu`)
 
-Die Menüpunkte oben in der Leiste können Sie bearbeiten. Jeder Menüeintrag besteht aus:
+Die Menüpunkte oben in der Leiste kannst du bearbeiten. Jeder Menüeintrag besteht aus:
 
 | Feld | Bedeutung | Beispiel |
 |------|-----------|----------|
@@ -75,7 +75,7 @@ Die Menüpunkte oben in der Leiste können Sie bearbeiten. Jeder Menüeintrag be
 | `highlight` | `true` = orangener Hervorhebungsbutton | `true` oder weglassen |
 | `kitaHighlight` | `true` = grüner Kinder-Button | `true` oder weglassen |
 
-**Beispiel für einen Menüeintrag:**
+**Beispiel für einen Menüeinrag:**
 ```javascript
 { label: "Mitglied werden", link: "#mitgliedschaft", highlight: true }
 ```
@@ -147,7 +147,7 @@ Hier werden die Vorstände vorgestellt. Der **Bearbeiten-Button** führt zu dies
 }
 ```
 
-> Setzen Sie neue Mitglieder **oben in die Liste**, um sie zuerst anzuzeigen.
+> Setze neue Mitglieder **oben in die Liste**, um sie zuerst anzuzeigen.
 
 ---
 
@@ -191,7 +191,7 @@ Die Funktionsräume der Kita mit Bildern.
 | `titel` | Name der Aktion |
 | `zeitraum` | Zeitangabe | `"Juli 2026"` oder `"Regelmäßig"` |
 | `icon` | Symbol | `sun`, `gift`, `utensils`, `hand-coins`, `venetian-mask` |
-| `text` | Beschreibung (nutzen Sie `<br>` für Umbrüche) |
+| `text` | Beschreibung (nutze `<br>` für Umbrüche) |
 | `bildUrl` | Bild oder `null` |
 | `textFarbe` | `"white"` (für helle Texte auf dunklen Bildern) oder weglassen |
 
@@ -206,7 +206,7 @@ Eltern können hier ihre Meinung zum Förderverein äußern.
 | `name` | Name (kann abgekürzt sein) |
 | `rolle` | Zurückgegeben (Mama, Papa, etc.) |
 | `text` | Das Zitat |
-| `avatar` | Avatar-Bild (nutzen Sie eine der Vorlagen): |
+| `avatar` | Avatar-Bild (nutze eine der Vorlagen): |
 
 **Avatar-Vorlagen (am Anfang der Datei):**
 ```javascript
@@ -300,7 +300,7 @@ links: [
 
 ## 5. Häufige Icons – Übersicht
 
-Hier sind gängige Icons, die Sie kennen sollten:
+Hier sind gängige Icons, die du kennen solltest:
 
 | Icon-Name | Symbol | Typische Verwendung |
 |-----------|--------|---------------------|
@@ -318,19 +318,19 @@ Hier sind gängige Icons, die Sie kennen sollten:
 | `phone` | 📞 | Telefon |
 | `mail` | 📧 | E-Mail |
 
-**Alle Icons finden Sie hier:** [lucide.dev/icons](https://lucide.dev/icons)
+**Alle Icons findest du hier:** [lucide.dev/icons](https://lucide.dev/icons)
 
 ---
 
 ## 6. Besucherstatistik (GoatCounter)
 
-Am unteren Ende der Webseite sehen Sie einen Besucherzähler mit der Frage "Wie viele Besucher hat unsere Seite?" Hinter dieser Zählung steht **GoatCounter** – ein kostenloses, datenschutzfreundliches Tool.
+Am unteren Ende der Webseite siehst du einen Besucherzähler mit der Frage "Wie viele Besucher hat unsere Seite?" Hinter dieser Zählung steht **GoatCounter** – ein kostenloses, datenschutzfreundliches Tool.
 
 ### Was ist GoatCounter?
-GoatCounter ist ein Dienst, der anonym zählt, wie oft Ihre Webseite besucht wird. Es ist:
+GoatCounter ist ein Dienst, der anonym zählt, wie oft deine Webseite besucht wird. Es ist:
 - **Komplett kostenlos** für gemeinnützige Vereine wie unseren
 - **Datenschutzkonform** – es werden keine Namen, E-Mail-Adressen oder ähnliche persönliche Daten gespeichert
-- **Ohne Cookies** – keine kleinen Datenspeicher auf Ihrem Computer
+- **Ohne Cookies** – keine kleinen Datenspeicher auf deinem Computer
 - **Transparent** – jeder kann sich die Auszahldaten auf der GoatCounter-Website ansehen
 
 ### Wie funktioniert es?
@@ -339,16 +339,16 @@ GoatCounter ist ein Dienst, der anonym zählt, wie oft Ihre Webseite besucht wir
 3. Bei manchen Besuchern mit Werbeblockern (wie AdBlock) kann die Anzeige blockiert werden – in diesem Fall steht "Durch Ad Blocker blockiert"
 
 ### Wo sehe ich die Statistik?
-- **Kurzansicht:** Klicken Sie unten auf "Besucherstatistik anzeigen"
-- **Vollständige Statistik:** Klicken Sie im Popup auf "Vollständige Statistik öffnen" – das öffnet die umfassende Auswertung in einem neuen Tab
+- **Kurzansicht:** Klick unten auf "Besucherstatistik anzeigen"
+- **Vollständige Statistik:** Klick im Popup auf "Vollständige Statistik öffnen" – das öffnet die umfassende Auswertung in einem neuen Tab
 
 ### Wichtig für technisch Interessierte
-Das GoatCounter-Skript ist bereits in die Webseite eingebaut. Sie müssen sich **nichts weiter** schicken – es läuft automatisch!
+Das GoatCounter-Skript ist bereits in die Webseite eingebaut. Du musst dich **nichts weiter** schicken – es läuft automatisch!
 
 ---
 
 ## 7. Änderungen live schalten
 
-1. Wenn Sie fertig sind, klicken Sie auf GitHub auf den grünen Button **"Commit changes"**.
-2. Warten Sie ca. **1 Minute**.
-3. Laden Sie die Webseite in Ihrem Browser neu (ggf. Taste `F5`). Fertig!
+1. Wenn du fertig bist, klickst du auf GitHub auf den grünen Button **"Commit changes"**.
+2. Warte ca. **1 Minute**.
+3. Lade die Webseite in deinem Browser neu (ggf. Taste `F5`). Fertig!
